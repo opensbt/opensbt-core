@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.algorithm package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt.algorithm package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.algorithm">opensbt.algorithm.algorithm module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType"><code class="docutils literal notranslate"><span class="pre">AlgorithmType</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType.NSGAII"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.NSGAII</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType.NSGAII_DT"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.NSGAII_DT</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType.PSO"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PSO</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType.PS_FPS"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PS_FPS</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType.PS_GRID"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PS_GRID</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.algorithm.AlgorithmType.PS_RAND"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PS_RAND</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.nsga2_optimizer">opensbt.algorithm.nsga2_optimizer module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer.algorithm</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.nsga2dt_optimizer">opensbt.algorithm.nsga2dt_optimizer module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._create_result"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer._create_result()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._update_history"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer._update_history()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer.algorithm_name</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.run"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.optimizer">opensbt.algorithm.optimizer module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer"><code class="docutils literal notranslate"><span class="pre">Optimizer</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.__init__"><code class="docutils literal notranslate"><span class="pre">Optimizer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">Optimizer._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">Optimizer.algorithm</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">Optimizer.algorithm_name</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.config"><code class="docutils literal notranslate"><span class="pre">Optimizer.config</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.parameters"><code class="docutils literal notranslate"><span class="pre">Optimizer.parameters</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.problem"><code class="docutils literal notranslate"><span class="pre">Optimizer.problem</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.run"><code class="docutils literal notranslate"><span class="pre">Optimizer.run()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.save_history"><code class="docutils literal notranslate"><span class="pre">Optimizer.save_history</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer.termination"><code class="docutils literal notranslate"><span class="pre">Optimizer.termination</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.ps">opensbt.algorithm.ps module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps.PureSampling"><code class="docutils literal notranslate"><span class="pre">PureSampling</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps.PureSampling.__init__"><code class="docutils literal notranslate"><span class="pre">PureSampling.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps.PureSampling._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSampling._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps.PureSampling._create_result"><code class="docutils literal notranslate"><span class="pre">PureSampling._create_result()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps.PureSampling.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PureSampling.algorithm_name</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps.PureSampling.run"><code class="docutils literal notranslate"><span class="pre">PureSampling.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.ps_fps">opensbt.algorithm.ps_fps module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_fps.PureSamplingFPS"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_fps.PureSamplingFPS.__init__"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_fps.PureSamplingFPS._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_fps.PureSamplingFPS.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.ps_grid">opensbt.algorithm.ps_grid module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_grid.PureSamplingGrid"><code class="docutils literal notranslate"><span class="pre">PureSamplingGrid</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_grid.PureSamplingGrid.__init__"><code class="docutils literal notranslate"><span class="pre">PureSamplingGrid.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_grid.PureSamplingGrid._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSamplingGrid._abc_impl</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.ps_rand">opensbt.algorithm.ps_rand module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_rand.PureSamplingRand"><code class="docutils literal notranslate"><span class="pre">PureSamplingRand</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_rand.PureSamplingRand.__init__"><code class="docutils literal notranslate"><span class="pre">PureSamplingRand.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.ps_rand.PureSamplingRand._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSamplingRand._abc_impl</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.pso_optimizer">opensbt.algorithm.pso_optimizer module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.algorithm</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.algorithm">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt.algorithm package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.algorithm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-algorithm-package">
+<h1>opensbt.algorithm package<a class="headerlink" href="#opensbt-algorithm-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.algorithm.classification.html">opensbt.algorithm.classification package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.classification.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.classification.decision_tree.html">opensbt.algorithm.classification.decision_tree package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.decision_tree.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.decision_tree.html#module-opensbt.algorithm.classification.decision_tree.decision_tree">opensbt.algorithm.classification.decision_tree.decision_tree module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.decision_tree.html#module-opensbt.algorithm.classification.decision_tree">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.classification.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.classification.html#module-opensbt.algorithm.classification.classifier">opensbt.algorithm.classification.classifier module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.classification.html#opensbt.algorithm.classification.classifier.ClassificationType"><code class="docutils literal notranslate"><span class="pre">ClassificationType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#opensbt.algorithm.classification.classifier.ClassificationType.DT"><code class="docutils literal notranslate"><span class="pre">ClassificationType.DT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#opensbt.algorithm.classification.classifier.ClassificationType.KNN"><code class="docutils literal notranslate"><span class="pre">ClassificationType.KNN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#opensbt.algorithm.classification.classifier.ClassificationType.NONE"><code class="docutils literal notranslate"><span class="pre">ClassificationType.NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#opensbt.algorithm.classification.classifier.ClassificationType.SVM"><code class="docutils literal notranslate"><span class="pre">ClassificationType.SVM</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.classification.html#module-opensbt.algorithm.classification">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.algorithm.algorithm">
+<span id="opensbt-algorithm-algorithm-module"></span><h2>opensbt.algorithm.algorithm module<a class="headerlink" href="#module-opensbt.algorithm.algorithm" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.algorithm.</span></span><span class="sig-name descname"><span class="pre">AlgorithmType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Defines all available algorithms to be triggered via number in -a flag.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType.NSGAII">
+<span class="sig-name descname"><span class="pre">NSGAII</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType.NSGAII" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType.NSGAII_DT">
+<span class="sig-name descname"><span class="pre">NSGAII_DT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType.NSGAII_DT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType.PSO">
+<span class="sig-name descname"><span class="pre">PSO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType.PSO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType.PS_FPS">
+<span class="sig-name descname"><span class="pre">PS_FPS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType.PS_FPS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType.PS_GRID">
+<span class="sig-name descname"><span class="pre">PS_GRID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType.PS_GRID" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.algorithm.AlgorithmType.PS_RAND">
+<span class="sig-name descname"><span class="pre">PS_RAND</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#opensbt.algorithm.algorithm.AlgorithmType.PS_RAND" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.nsga2_optimizer">
+<span id="opensbt-algorithm-nsga2-optimizer-module"></span><h2>opensbt.algorithm.nsga2_optimizer module<a class="headerlink" href="#module-opensbt.algorithm.nsga2_optimizer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.nsga2_optimizer.</span></span><span class="sig-name descname"><span class="pre">NsgaIIOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer" title="opensbt.algorithm.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></a></p>
+<p>This optimizer class provides the NSGA-II algorithm which is already implemented in pymoo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize here the Optimization algorithm to be used for search-based testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><em>SimulationProblem</em></a>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm">
+<span class="sig-name descname"><span class="pre">algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Algorithm</span></em><a class="headerlink" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm" title="Link to this definition"></a></dt>
+<dd><p>Prioritize max search time over set maximal number of generations</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NSGA-II'</span></em><a class="headerlink" href="#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.nsga2dt_optimizer">
+<span id="opensbt-algorithm-nsga2dt-optimizer-module"></span><h2>opensbt.algorithm.nsga2dt_optimizer module<a class="headerlink" href="#module-opensbt.algorithm.nsga2dt_optimizer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.nsga2dt_optimizer.</span></span><span class="sig-name descname"><span class="pre">NsgaIIDTOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer" title="opensbt.algorithm.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></a></p>
+<p>This optimizer implements the NSGA-II-DT algorithm from [1] which is based on the NSGA-II algorithm
+but is employing ML models, i.e. decision trees to guide the search for failures.</p>
+<p>[1] Raja Ben Abdessalem, Shiva Nejati, Lionel C. Briand, and Thomas Stifter. 2018.
+Testing vision-based control systems using learnable evolutionary algorithms.
+In Proceedings of the 40th International Conference on Software Engineering (ICSE ‘18).
+Association for Computing Machinery, New York, NY, USA, 1016–1026.
+<a class="reference external" href="https://doi.org/10.1145/3180155.3180160">https://doi.org/10.1145/3180155.3180160</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the NSGA-II-DT Optimizer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<em>Problem</em>) – The testing problem.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuraiton for the search.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._create_result">
+<span class="sig-name descname"><span class="pre">_create_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hist_holder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._create_result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._update_history">
+<span class="sig-name descname"><span class="pre">_update_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hist_holder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_num_gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_algorithm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._update_history" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NSGA-II-DT'</span></em><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult" title="opensbt.model_ga.result.SimulationResult"><span class="pre">SimulationResult</span></a></span></span><a class="headerlink" href="#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.run" title="Link to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Return a SimulationResults object which holds all information from the simulation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult" title="opensbt.model_ga.result.SimulationResult">SimulationResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.optimizer">
+<span id="opensbt-algorithm-optimizer-module"></span><h2>opensbt.algorithm.optimizer module<a class="headerlink" href="#module-opensbt.algorithm.optimizer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.optimizer.</span></span><span class="sig-name descname"><span class="pre">Optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><span class="pre">SimulationProblem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Base class for all optimizers in OpenSBT.  Subclasses need to
+implement the __init__ method. The run method has to be overriden when non pymoo implemented algorithms are used.
+For reference consider the implementation of the NSGA-II-DT optimizer in opensbt/algorithm/nsga2dt_optimizer.py</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.__init__">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><span class="pre">SimulationProblem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize here the Optimization algorithm to be used for search-based testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><em>SimulationProblem</em></a>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.algorithm">
+<span class="sig-name descname"><span class="pre">algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Algorithm</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.algorithm" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.parameters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.problem">
+<span class="sig-name descname"><span class="pre">problem</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Problem</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.problem" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult" title="opensbt.model_ga.result.SimulationResult"><span class="pre">SimulationResult</span></a></span></span><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.run" title="Link to this definition"></a></dt>
+<dd><p>Runs the optimizer for a given problem and search configuration.
+Returns the simulation output as an instance of SimulationResult.
+This methods need to overriden when a non pymoo-based algorithm is used (e.g., NSGA-II-DT)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.save_history">
+<span class="sig-name descname"><span class="pre">save_history</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.save_history" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.optimizer.Optimizer.termination">
+<span class="sig-name descname"><span class="pre">termination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span></em><a class="headerlink" href="#opensbt.algorithm.optimizer.Optimizer.termination" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.ps">
+<span id="opensbt-algorithm-ps-module"></span><h2>opensbt.algorithm.ps module<a class="headerlink" href="#module-opensbt.algorithm.ps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps.PureSampling">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.ps.</span></span><span class="sig-name descname"><span class="pre">PureSampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'pymoo.operators.sampling.rnd.FloatRandomSampling'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps.PureSampling" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer" title="opensbt.algorithm.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></a></p>
+<p>This class provides the parent class for all sampling based search algorithms.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps.PureSampling.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'pymoo.operators.sampling.rnd.FloatRandomSampling'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps.PureSampling.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes pure sampling approaches.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<em>Problem</em>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+<li><p><strong>sampling_type</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Sets by default sampling type to RS.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps.PureSampling._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.ps.PureSampling._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps.PureSampling._create_result">
+<span class="sig-name descname"><span class="pre">_create_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_splits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps.PureSampling._create_result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps.PureSampling.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RS'</span></em><a class="headerlink" href="#opensbt.algorithm.ps.PureSampling.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps.PureSampling.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult" title="opensbt.model_ga.result.SimulationResult"><span class="pre">SimulationResult</span></a></span></span><a class="headerlink" href="#opensbt.algorithm.ps.PureSampling.run" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Overrides the run method of Optimizer by providing custom evaluation of samples and division in “buckets” for further analysis with pymoo.</dt><dd><p>(s. n_splits variable)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Return a SimulationResults object which holds all information from the simulation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult" title="opensbt.model_ga.result.SimulationResult">SimulationResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.ps_fps">
+<span id="opensbt-algorithm-ps-fps-module"></span><h2>opensbt.algorithm.ps_fps module<a class="headerlink" href="#module-opensbt.algorithm.ps_fps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_fps.PureSamplingFPS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.ps_fps.</span></span><span class="sig-name descname"><span class="pre">PureSamplingFPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'opensbt.utils.fps.FPS'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps_fps.PureSamplingFPS" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.ps.PureSampling" title="opensbt.algorithm.ps.PureSampling"><code class="xref py py-class docutils literal notranslate"><span class="pre">PureSampling</span></code></a></p>
+<p>This class provides the Farthest Point Sampling algorithm (FPS) [1].
+FPS generate new inputs with the largest distance from the existing inputs to achieve
+a uniform distribution of test inputs in the search space.</p>
+<p>[1] Eldar Y, Lindenbaum M, Porat M, Zeevi Y (1997) The farthest point strategy for
+progressive image sampling. IEEE Trans Image Process 6:1305–15, DOI 10.1109/83.623193</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_fps.PureSamplingFPS.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'opensbt.utils.fps.FPS'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps_fps.PureSamplingFPS.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the furthes point sampling optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<em>Problem</em>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+<li><p><strong>sampling_type</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Sets by default sampling type to FPS.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_fps.PureSamplingFPS._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.ps_fps.PureSamplingFPS._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_fps.PureSamplingFPS.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FPS'</span></em><a class="headerlink" href="#opensbt.algorithm.ps_fps.PureSamplingFPS.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.ps_grid">
+<span id="opensbt-algorithm-ps-grid-module"></span><h2>opensbt.algorithm.ps_grid module<a class="headerlink" href="#module-opensbt.algorithm.ps_grid" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_grid.PureSamplingGrid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.ps_grid.</span></span><span class="sig-name descname"><span class="pre">PureSamplingGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'opensbt.utils.sampling.CartesianSampling'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps_grid.PureSamplingGrid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.ps.PureSampling" title="opensbt.algorithm.ps.PureSampling"><code class="xref py py-class docutils literal notranslate"><span class="pre">PureSampling</span></code></a></p>
+<p>This class provides the Grid Sampling algorithm which generate aquidistant test inputs placed on a grid in the search space.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_grid.PureSamplingGrid.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'opensbt.utils.sampling.CartesianSampling'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps_grid.PureSamplingGrid.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the grid search sampling optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<em>Problem</em>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search. The number of samples is equaly for each axis. The axis based sampling number is defined via the population size.</p></li>
+<li><p><strong>sampling_type</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Sets by default sampling type to Cartesian Sampling.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_grid.PureSamplingGrid._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.ps_grid.PureSamplingGrid._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.ps_rand">
+<span id="opensbt-algorithm-ps-rand-module"></span><h2>opensbt.algorithm.ps_rand module<a class="headerlink" href="#module-opensbt.algorithm.ps_rand" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_rand.PureSamplingRand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.ps_rand.</span></span><span class="sig-name descname"><span class="pre">PureSamplingRand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'pymoo.operators.sampling.rnd.FloatRandomSampling'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps_rand.PureSamplingRand" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.ps.PureSampling" title="opensbt.algorithm.ps.PureSampling"><code class="xref py py-class docutils literal notranslate"><span class="pre">PureSampling</span></code></a></p>
+<p>This class provides the random sampling algorithm which generates random test inputs in the search space.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_rand.PureSamplingRand.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem:</span> <span class="pre">~opensbt.model_ga.problem.SimulationProblem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~opensbt.experiment.search_configuration.SearchConfiguration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_type=&lt;class</span> <span class="pre">'pymoo.operators.sampling.rnd.FloatRandomSampling'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.ps_rand.PureSamplingRand.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the random sampling optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<em>Problem</em>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+<li><p><strong>sampling_type</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Sets by default sampling type to RS.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.ps_rand.PureSamplingRand._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.ps_rand.PureSamplingRand._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm.pso_optimizer">
+<span id="opensbt-algorithm-pso-optimizer-module"></span><h2>opensbt.algorithm.pso_optimizer module<a class="headerlink" href="#module-opensbt.algorithm.pso_optimizer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.pso_optimizer.</span></span><span class="sig-name descname"><span class="pre">PSOOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><span class="pre">SimulationProblem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer" title="opensbt.algorithm.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></a></p>
+<p>This class provides search with the Particle Swarm Optimization algorithm which is already implemented in pymoo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><span class="pre">SimulationProblem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the particle swarm opimization approach for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><em>SimulationProblem</em></a>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm">
+<span class="sig-name descname"><span class="pre">algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Algorithm</span></em><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm" title="Link to this definition"></a></dt>
+<dd><p>Prioritize max search time over set maximal number of generations</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PSO'</span></em><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.algorithm">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.algorithm" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

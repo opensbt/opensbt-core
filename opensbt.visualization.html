@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.visualization package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt.visualization package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.visualization.combined">opensbt.visualization.combined module</a><ul>
+<li><a class="reference internal" href="#opensbt.visualization.combined.calculate_combined_crit_pop"><code class="docutils literal notranslate"><span class="pre">calculate_combined_crit_pop()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.calculate_combined_pf"><code class="docutils literal notranslate"><span class="pre">calculate_combined_pf()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.make_comparison_plot"><code class="docutils literal notranslate"><span class="pre">make_comparison_plot()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.make_comparison_single"><code class="docutils literal notranslate"><span class="pre">make_comparison_single()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.make_subplots"><code class="docutils literal notranslate"><span class="pre">make_subplots()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.plot_combined_analysis"><code class="docutils literal notranslate"><span class="pre">plot_combined_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.plot_combined_analysis_last_min_max"><code class="docutils literal notranslate"><span class="pre">plot_combined_analysis_last_min_max()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.plot_combined_hypervolume_lin_analysis"><code class="docutils literal notranslate"><span class="pre">plot_combined_hypervolume_lin_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.read_metric_single"><code class="docutils literal notranslate"><span class="pre">read_metric_single()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.read_pf_single"><code class="docutils literal notranslate"><span class="pre">read_pf_single()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.retrieve_metric_data_from_csv"><code class="docutils literal notranslate"><span class="pre">retrieve_metric_data_from_csv()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.statistical_analysis"><code class="docutils literal notranslate"><span class="pre">statistical_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.statistical_analysis_from_overview"><code class="docutils literal notranslate"><span class="pre">statistical_analysis_from_overview()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.write_analysis_results"><code class="docutils literal notranslate"><span class="pre">write_analysis_results()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.write_last_metric_values"><code class="docutils literal notranslate"><span class="pre">write_last_metric_values()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.write_metric_data_to_csv"><code class="docutils literal notranslate"><span class="pre">write_metric_data_to_csv()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.combined.write_metric_data_to_csv_cid"><code class="docutils literal notranslate"><span class="pre">write_metric_data_to_csv_cid()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.visualization.configuration">opensbt.visualization.configuration module</a></li>
+<li><a class="reference internal" href="#module-opensbt.visualization.output_metric">opensbt.visualization.output_metric module</a><ul>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.calculate_n_crit_distinct"><code class="docutils literal notranslate"><span class="pre">calculate_n_crit_distinct()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.cid_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">cid_analysis_hitherto()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.gd_analysis"><code class="docutils literal notranslate"><span class="pre">gd_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.gd_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">gd_analysis_hitherto()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.hypervolume_analysis"><code class="docutils literal notranslate"><span class="pre">hypervolume_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.hypervolume_analysis_local"><code class="docutils literal notranslate"><span class="pre">hypervolume_analysis_local()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.igd_analysis"><code class="docutils literal notranslate"><span class="pre">igd_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.igd_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">igd_analysis_hitherto()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.si_analysis"><code class="docutils literal notranslate"><span class="pre">si_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.spread_analysis"><code class="docutils literal notranslate"><span class="pre">spread_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.spread_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">spread_analysis_hitherto()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.output_metric.write_metric_history"><code class="docutils literal notranslate"><span class="pre">write_metric_history()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.visualization.scenario_plotter">opensbt.visualization.scenario_plotter module</a><ul>
+<li><a class="reference internal" href="#opensbt.visualization.scenario_plotter.plot_scenario_gif"><code class="docutils literal notranslate"><span class="pre">plot_scenario_gif()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.visualization.visualization3d">opensbt.visualization.visualization3d module</a><ul>
+<li><a class="reference internal" href="#opensbt.visualization.visualization3d.read_testcases"><code class="docutils literal notranslate"><span class="pre">read_testcases()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualization3d.visualize_3d"><code class="docutils literal notranslate"><span class="pre">visualize_3d()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.visualization.visualizer">opensbt.visualization.visualizer module</a><ul>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.HandlerCircle"><code class="docutils literal notranslate"><span class="pre">HandlerCircle</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.HandlerCircle.create_artists"><code class="docutils literal notranslate"><span class="pre">HandlerCircle.create_artists()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer._additional_description"><code class="docutils literal notranslate"><span class="pre">_additional_description()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer._calc_properties"><code class="docutils literal notranslate"><span class="pre">_calc_properties()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.all_critical_individuals"><code class="docutils literal notranslate"><span class="pre">all_critical_individuals()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.all_individuals"><code class="docutils literal notranslate"><span class="pre">all_individuals()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.backup_problem"><code class="docutils literal notranslate"><span class="pre">backup_problem()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.create_markers"><code class="docutils literal notranslate"><span class="pre">create_markers()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.create_save_folder"><code class="docutils literal notranslate"><span class="pre">create_save_folder()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.design_space"><code class="docutils literal notranslate"><span class="pre">design_space()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.get_pop_using_mode"><code class="docutils literal notranslate"><span class="pre">get_pop_using_mode()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.objective_space"><code class="docutils literal notranslate"><span class="pre">objective_space()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.optimal_individuals"><code class="docutils literal notranslate"><span class="pre">optimal_individuals()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.plot_multi_objective_space"><code class="docutils literal notranslate"><span class="pre">plot_multi_objective_space()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.plot_single_objective_space"><code class="docutils literal notranslate"><span class="pre">plot_single_objective_space()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.plot_timeseries"><code class="docutils literal notranslate"><span class="pre">plot_timeseries()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.plot_timeseries_basic"><code class="docutils literal notranslate"><span class="pre">plot_timeseries_basic()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.simulations"><code class="docutils literal notranslate"><span class="pre">simulations()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.write_calculation_properties"><code class="docutils literal notranslate"><span class="pre">write_calculation_properties()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.write_generations"><code class="docutils literal notranslate"><span class="pre">write_generations()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.write_pf_individuals"><code class="docutils literal notranslate"><span class="pre">write_pf_individuals()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.write_simout"><code class="docutils literal notranslate"><span class="pre">write_simout()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.write_simulation_output"><code class="docutils literal notranslate"><span class="pre">write_simulation_output()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.visualization.visualizer.write_summary_results"><code class="docutils literal notranslate"><span class="pre">write_summary_results()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.visualization">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt.visualization package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.visualization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-visualization-package">
+<h1>opensbt.visualization package<a class="headerlink" href="#opensbt-visualization-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.visualization.combined">
+<span id="opensbt-visualization-combined-module"></span><h2>opensbt.visualization.combined module<a class="headerlink" href="#module-opensbt.visualization.combined" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.calculate_combined_crit_pop">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">calculate_combined_crit_pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_paths</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.calculate_combined_crit_pop" title="Link to this definition"></a></dt>
+<dd><p>Unions critical solutions from all runs to approximate “real” critical design space.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.calculate_combined_pf">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">calculate_combined_pf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.calculate_combined_pf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.make_comparison_plot">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">make_comparison_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_evaluations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algo_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_tick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.make_comparison_plot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.make_comparison_single">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">make_comparison_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_evaluations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algo_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.make_comparison_single" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.make_subplots">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">make_subplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_evaluations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algo_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_tick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.make_subplots" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.plot_combined_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">plot_combined_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_name_load</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_paths_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_func_evals_lim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fitting_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_chkp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.plot_combined_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.plot_combined_analysis_last_min_max">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">plot_combined_analysis_last_min_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_paths_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.plot_combined_analysis_last_min_max" title="Link to this definition"></a></dt>
+<dd><p>Outputs mean/std/min/max for final metric value instead for several number of evaluations as in plot_combined_analysis</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.plot_combined_hypervolume_lin_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">plot_combined_hypervolume_lin_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_paths_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.plot_combined_hypervolume_lin_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.read_metric_single">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">read_metric_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.read_metric_single" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.read_pf_single">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">read_pf_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.read_pf_single" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.retrieve_metric_data_from_csv">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">retrieve_metric_data_from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_algos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.retrieve_metric_data_from_csv" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.statistical_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">statistical_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_name_load</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runs_bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runs_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algo_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.statistical_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.statistical_analysis_from_overview">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">statistical_analysis_from_overview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.statistical_analysis_from_overview" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.write_analysis_results">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">write_analysis_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_runs_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nadir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.write_analysis_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.write_last_metric_values">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">write_last_metric_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_name_load</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_paths_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.write_last_metric_values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.write_metric_data_to_csv">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">write_metric_data_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algo_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_array_hv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_array_igd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_array_sp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.write_metric_data_to_csv" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.combined.write_metric_data_to_csv_cid">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.combined.</span></span><span class="sig-name descname"><span class="pre">write_metric_data_to_csv_cid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algo_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.combined.write_metric_data_to_csv_cid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.visualization.configuration">
+<span id="opensbt-visualization-configuration-module"></span><h2>opensbt.visualization.configuration module<a class="headerlink" href="#module-opensbt.visualization.configuration" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.visualization.output_metric">
+<span id="opensbt-visualization-output-metric-module"></span><h2>opensbt.visualization.output_metric module<a class="headerlink" href="#module-opensbt.visualization.output_metric" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.calculate_n_crit_distinct">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">calculate_n_crit_distinct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'F'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.calculate_n_crit_distinct" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.cid_analysis_hitherto">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">cid_analysis_hitherto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_evals_by_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.cid_analysis_hitherto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.gd_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">gd_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_pf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.gd_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.gd_analysis_hitherto">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">gd_analysis_hitherto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_pf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gd_global'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.gd_analysis_hitherto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.hypervolume_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">hypervolume_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_point_hv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nadir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.hypervolume_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.hypervolume_analysis_local">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">hypervolume_analysis_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.hypervolume_analysis_local" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.igd_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">igd_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_pf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'igd'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.igd_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.igd_analysis_hitherto">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">igd_analysis_hitherto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_pf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'igd_global'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.igd_analysis_hitherto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.si_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">si_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_pf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nadir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.si_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.spread_analysis">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">spread_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.spread_analysis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.spread_analysis_hitherto">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">spread_analysis_hitherto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hitherto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.spread_analysis_hitherto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.output_metric.write_metric_history">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.output_metric.</span></span><span class="sig-name descname"><span class="pre">write_metric_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_evals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hist_F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.output_metric.write_metric_history" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.visualization.scenario_plotter">
+<span id="opensbt-visualization-scenario-plotter-module"></span><h2>opensbt.visualization.scenario_plotter module<a class="headerlink" href="#module-opensbt.visualization.scenario_plotter" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.scenario_plotter.plot_scenario_gif">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.scenario_plotter.</span></span><span class="sig-name descname"><span class="pre">plot_scenario_gif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">savePath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.scenario_plotter.plot_scenario_gif" title="Link to this definition"></a></dt>
+<dd><p>This functions visualizes the executed scenario.</p>
+</dd></dl>
+
+</section>
+<section id="module-opensbt.visualization.visualization3d">
+<span id="opensbt-visualization-visualization3d-module"></span><h2>opensbt.visualization.visualization3d module<a class="headerlink" href="#module-opensbt.visualization.visualization3d" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualization3d.read_testcases">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualization3d.</span></span><span class="sig-name descname"><span class="pre">read_testcases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualization3d.read_testcases" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualization3d.visualize_3d">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualization3d.</span></span><span class="sig-name descname"><span class="pre">visualize_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'critical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[(45,</span> <span class="pre">-45),</span> <span class="pre">(45,</span> <span class="pre">45),</span> <span class="pre">(45,</span> <span class="pre">135),</span> <span class="pre">(45,</span> <span class="pre">225),</span> <span class="pre">(0,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">90),</span> <span class="pre">(0,</span> <span class="pre">180),</span> <span class="pre">(0,</span> <span class="pre">270)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualization3d.visualize_3d" title="Link to this definition"></a></dt>
+<dd><p>This function generated 3D plots of executed test inputs.</p>
+</dd></dl>
+
+</section>
+<section id="module-opensbt.visualization.visualizer">
+<span id="opensbt-visualization-visualizer-module"></span><h2>opensbt.visualization.visualizer module<a class="headerlink" href="#module-opensbt.visualization.visualizer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.HandlerCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">HandlerCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.HandlerCircle" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">HandlerPatch</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.HandlerCircle.create_artists">
+<span class="sig-name descname"><span class="pre">create_artists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xdescent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydescent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trans</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.HandlerCircle.create_artists" title="Link to this definition"></a></dt>
+<dd><p>Return the legend artists generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>legend</strong> (<cite>~matplotlib.legend.Legend</cite>) – The legend for which these legend artists are being created.</p></li>
+<li><p><strong>orig_handle</strong> (<cite>~matplotlib.artist.Artist</cite> or similar) – The object for which these legend artists are being created.</p></li>
+<li><p><strong>xdescent</strong> (<em>int</em>) – The rectangle (<em>xdescent</em>, <em>ydescent</em>, <em>width</em>, <em>height</em>) that the
+legend artists being created should fit within.</p></li>
+<li><p><strong>ydescent</strong> (<em>int</em>) – The rectangle (<em>xdescent</em>, <em>ydescent</em>, <em>width</em>, <em>height</em>) that the
+legend artists being created should fit within.</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – The rectangle (<em>xdescent</em>, <em>ydescent</em>, <em>width</em>, <em>height</em>) that the
+legend artists being created should fit within.</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – The rectangle (<em>xdescent</em>, <em>ydescent</em>, <em>width</em>, <em>height</em>) that the
+legend artists being created should fit within.</p></li>
+<li><p><strong>fontsize</strong> (<em>int</em>) – The fontsize in pixels. The legend artists being created should
+be scaled according to the given fontsize.</p></li>
+<li><p><strong>trans</strong> (<cite>~matplotlib.transforms.Transform</cite>) – The transform that is applied to the legend artists being created.
+Typically from unit coordinates in the handler box to screen
+coordinates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer._additional_description">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">_additional_description</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer._additional_description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer._calc_properties">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">_calc_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer._calc_properties" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.all_critical_individuals">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">all_critical_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.all_critical_individuals" title="Link to this definition"></a></dt>
+<dd><p>Output of all critical individuals</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.all_individuals">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">all_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.all_individuals" title="Link to this definition"></a></dt>
+<dd><p>Output of all evaluated individuals</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.backup_problem">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">backup_problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.backup_problem" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.create_markers">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">create_markers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.create_markers" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.create_save_folder">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">create_save_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_experimental</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.create_save_folder" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.design_space">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">design_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classification_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ClassificationType.DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.design_space" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.get_pop_using_mode">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">get_pop_using_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.get_pop_using_mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.objective_space">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">objective_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.objective_space" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.optimal_individuals">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">optimal_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.optimal_individuals" title="Link to this definition"></a></dt>
+<dd><p>Output of optimal individuals (duplicate free)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.plot_multi_objective_space">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">plot_multi_objective_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_iteration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.plot_multi_objective_space" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.plot_single_objective_space">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">plot_single_objective_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.plot_single_objective_space" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.plot_timeseries">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">plot_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'crit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'100'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.plot_timeseries" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.plot_timeseries_basic">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">plot_timeseries_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'crit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.plot_timeseries_basic" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.simulations">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">simulations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.simulations" title="Link to this definition"></a></dt>
+<dd><p>Visualization of the results of simulations</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.write_calculation_properties">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">write_calculation_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.write_calculation_properties" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.write_generations">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">write_generations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.write_generations" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.write_pf_individuals">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">write_pf_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pf_pop</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.write_pf_individuals" title="Link to this definition"></a></dt>
+<dd><p>Output of pf individuals (duplicate free)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.write_simout">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">write_simout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.write_simout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.write_simulation_output">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">write_simulation_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.write_simulation_output" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.visualization.visualizer.write_summary_results">
+<span class="sig-prename descclassname"><span class="pre">opensbt.visualization.visualizer.</span></span><span class="sig-name descname"><span class="pre">write_summary_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.visualization.visualizer.write_summary_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.visualization">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.visualization" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.problem package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt.problem package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.problem.adas_problem">opensbt.problem.adas_problem module</a><ul>
+<li><a class="reference internal" href="#opensbt.problem.adas_problem.ADASProblem"><code class="docutils literal notranslate"><span class="pre">ADASProblem</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.problem.adas_problem.ADASProblem.__init__"><code class="docutils literal notranslate"><span class="pre">ADASProblem.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.adas_problem.ADASProblem._evaluate"><code class="docutils literal notranslate"><span class="pre">ADASProblem._evaluate()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.adas_problem.ADASProblem.is_simulation"><code class="docutils literal notranslate"><span class="pre">ADASProblem.is_simulation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.problem.pymoo_test_problem">opensbt.problem.pymoo_test_problem module</a><ul>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem.__init__"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_front"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._calc_pareto_front()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_set"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._calc_pareto_set()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._evaluate"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._evaluate()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._instantiate_from_given_problem"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._instantiate_from_given_problem()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem.approx_sim_time"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem.approx_sim_time()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem.is_simulation"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem.is_simulation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.problem">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt.problem package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.problem.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-problem-package">
+<h1>opensbt.problem package<a class="headerlink" href="#opensbt-problem-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.problem.adas_problem">
+<span id="opensbt-problem-adas-problem-module"></span><h2>opensbt.problem.adas_problem module<a class="headerlink" href="#module-opensbt.problem.adas_problem" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.problem.adas_problem.ADASProblem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.problem.adas_problem.</span></span><span class="sig-name descname"><span class="pre">ADASProblem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><span class="pre">Fitness</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulate_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><span class="pre">Critical</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">design_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_eval_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_visualize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.adas_problem.ADASProblem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationProblem</span></code></a></p>
+<p>Basic problem class for ADAS problems</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.adas_problem.ADASProblem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><span class="pre">Fitness</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulate_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><span class="pre">Critical</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">design_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_eval_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_visualize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.adas_problem.ADASProblem.__init__" title="Link to this definition"></a></dt>
+<dd><p>Generates a simulation-based testing problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xl</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – Lower bound for the search domain.</p></li>
+<li><p><strong>xu</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – Upper bound for the search domain.</p></li>
+<li><p><strong>scenario_path</strong> (<em>str</em>) – The path to the scenario to be simulated.</p></li>
+<li><p><strong>fitness_function</strong> (<a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><em>Fitness</em></a>) – The instance of the fitness function to evaluate simulations.</p></li>
+<li><p><strong>simulate_function</strong> (<em>_type_</em>) – The pointer to the simulate function of the simulator.</p></li>
+<li><p><strong>critical_function</strong> (<a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><em>Critical</em></a>) – The instance of the oracle function to assign pass fail verdicts.</p></li>
+<li><p><strong>simulation_variables</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – The name of the simulation variables to alter for test generation.</p></li>
+<li><p><strong>simulation_time</strong> (<em>float</em><em>, </em><em>optional</em>) – The simulation time for the test execution, defaults to 10</p></li>
+<li><p><strong>sampling_time</strong> (<em>float</em><em>, </em><em>optional</em>) – The sampling time for the simulator, defaults to 100</p></li>
+<li><p><strong>design_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – The name for the search variable to use in the output. If none is said, simulation_variables is used, defaults to None</p></li>
+<li><p><strong>objective_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – The name of the objectives to use in the output, defaults to None</p></li>
+<li><p><strong>problem_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the problem, defaults to None</p></li>
+<li><p><strong>other_parameters</strong> (<em>Dict</em><em>, </em><em>optional</em>) – Other necessary parameters, defaults to None</p></li>
+<li><p><strong>approx_eval_time</strong> (<em>float</em><em>, </em><em>optional</em>) – The approximate evaluation time for one test execution, defaults to None</p></li>
+<li><p><strong>do_visualize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Visualize test execution or not, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError if min_or_max of fitness function is not correctly configured.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.adas_problem.ADASProblem._evaluate">
+<span class="sig-name descname"><span class="pre">_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.adas_problem.ADASProblem._evaluate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.adas_problem.ADASProblem.is_simulation">
+<span class="sig-name descname"><span class="pre">is_simulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.adas_problem.ADASProblem.is_simulation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.problem.pymoo_test_problem">
+<span id="opensbt-problem-pymoo-test-problem-module"></span><h2>opensbt.problem.pymoo_test_problem module<a class="headerlink" href="#module-opensbt.problem.pymoo_test_problem" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.problem.pymoo_test_problem.</span></span><span class="sig-name descname"><span class="pre">PymooTestProblem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><span class="pre">Critical</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_eval_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationProblem</span></code></a></p>
+<p>Problem class to test testing algorithms on mathematical problems implemented in pymoo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critical_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><span class="pre">Critical</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_eval_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem.__init__" title="Link to this definition"></a></dt>
+<dd><p>Instantiates a pymoo based problem with name “problem_name” as testing problem.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_front">
+<span class="sig-name descname"><span class="pre">_calc_pareto_front</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_front" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_set">
+<span class="sig-name descname"><span class="pre">_calc_pareto_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_set" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem._evaluate">
+<span class="sig-name descname"><span class="pre">_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._evaluate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem._instantiate_from_given_problem">
+<span class="sig-name descname"><span class="pre">_instantiate_from_given_problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem._instantiate_from_given_problem" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem.approx_sim_time">
+<span class="sig-name descname"><span class="pre">approx_sim_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem.approx_sim_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.problem.pymoo_test_problem.PymooTestProblem.is_simulation">
+<span class="sig-name descname"><span class="pre">is_simulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.problem.pymoo_test_problem.PymooTestProblem.is_simulation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.problem">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.problem" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

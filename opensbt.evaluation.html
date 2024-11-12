@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.evaluation package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt.evaluation package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.evaluation.critical">opensbt.evaluation.critical module</a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.Critical"><code class="docutils literal notranslate"><span class="pre">Critical</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.Critical.eval"><code class="docutils literal notranslate"><span class="pre">Critical.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.Critical.name"><code class="docutils literal notranslate"><span class="pre">Critical.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasDistanceVelocity"><code class="docutils literal notranslate"><span class="pre">CriticalAdasDistanceVelocity</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasDistanceVelocity.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasDistanceVelocity.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasExplicitRearCollision"><code class="docutils literal notranslate"><span class="pre">CriticalAdasExplicitRearCollision</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasExplicitRearCollision.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasExplicitRearCollision.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasFrontCollisions"><code class="docutils literal notranslate"><span class="pre">CriticalAdasFrontCollisions</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasFrontCollisions.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasTTCVelocity"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTCVelocity</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasTTCVelocity.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTCVelocity.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalBnh"><code class="docutils literal notranslate"><span class="pre">CriticalBnh</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalBnh.eval"><code class="docutils literal notranslate"><span class="pre">CriticalBnh.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalBnhDivided"><code class="docutils literal notranslate"><span class="pre">CriticalBnhDivided</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalBnhDivided.eval"><code class="docutils literal notranslate"><span class="pre">CriticalBnhDivided.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalRastrigin"><code class="docutils literal notranslate"><span class="pre">CriticalRastrigin</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalRastrigin.eval"><code class="docutils literal notranslate"><span class="pre">CriticalRastrigin.eval()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.MockCritical"><code class="docutils literal notranslate"><span class="pre">MockCritical</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.MockCritical.eval"><code class="docutils literal notranslate"><span class="pre">MockCritical.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.MockCritical.name"><code class="docutils literal notranslate"><span class="pre">MockCritical.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.evaluation.fitness">opensbt.evaluation.fitness module</a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.Fitness.eval"><code class="docutils literal notranslate"><span class="pre">Fitness.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.Fitness.min_or_max"><code class="docutils literal notranslate"><span class="pre">Fitness.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.Fitness.name"><code class="docutils literal notranslate"><span class="pre">Fitness.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.eval"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_parallel"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.fitness_parallel()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.name"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.eval"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.name"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.eval"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.name"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistance"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistance.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistance.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistance.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTC"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTC.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTC.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTC.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.MockFitness"><code class="docutils literal notranslate"><span class="pre">MockFitness</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.MockFitness.eval"><code class="docutils literal notranslate"><span class="pre">MockFitness.eval()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.MockFitness.min_or_max"><code class="docutils literal notranslate"><span class="pre">MockFitness.min_or_max</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.evaluation.fitness.MockFitness.name"><code class="docutils literal notranslate"><span class="pre">MockFitness.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.evaluation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt.evaluation package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.evaluation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-evaluation-package">
+<h1>opensbt.evaluation package<a class="headerlink" href="#opensbt-evaluation-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.evaluation.critical">
+<span id="opensbt-evaluation-critical-module"></span><h2>opensbt.evaluation.critical module<a class="headerlink" href="#module-opensbt.evaluation.critical" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.Critical">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">Critical</span></span><a class="headerlink" href="#opensbt.evaluation.critical.Critical" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class defines an interface for concrete oracle functions.
+The functions name and eval have to be implemented.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.Critical.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#opensbt.evaluation.critical.Critical.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.Critical.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.critical.Critical.name" title="Link to this definition"></a></dt>
+<dd><p>The name of the criticality function. To be overriden for specific name. Otherwise class name is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Name of the criticality function.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasDistanceVelocity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalAdasDistanceVelocity</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasDistanceVelocity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasDistanceVelocity.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasDistanceVelocity.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasExplicitRearCollision">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalAdasExplicitRearCollision</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasExplicitRearCollision" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<p>ADAS problems</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasExplicitRearCollision.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasExplicitRearCollision.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasFrontCollisions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalAdasFrontCollisions</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasFrontCollisions" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasTTCVelocity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalAdasTTCVelocity</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasTTCVelocity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasTTCVelocity.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasTTCVelocity.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalBnh">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalBnh</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalBnh" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalBnh.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalBnh.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalBnhDivided">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalBnhDivided</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalBnhDivided" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalBnhDivided.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalBnhDivided.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalRastrigin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalRastrigin</span></span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalRastrigin" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalRastrigin.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.critical.CriticalRastrigin.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.MockCritical">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">MockCritical</span></span><a class="headerlink" href="#opensbt.evaluation.critical.MockCritical" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.MockCritical.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#opensbt.evaluation.critical.MockCritical.eval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.MockCritical.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.critical.MockCritical.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.evaluation.fitness">
+<span id="opensbt-evaluation-fitness-module"></span><h2>opensbt.evaluation.fitness module<a class="headerlink" href="#module-opensbt.evaluation.fitness" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.Fitness">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">Fitness</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.Fitness" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class defines an interface for concrete fitness functions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.Fitness.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.Fitness.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id1"><span class="problematic" id="id2">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.Fitness.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.Fitness.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.Fitness.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.Fitness.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessAdaptedDistSpeedRelVelocity</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id3"><span class="problematic" id="id4">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_parallel">
+<span class="sig-name descname"><span class="pre">fitness_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_parallel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">car_length</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_parallel" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Input:</dt><dd><p>z_parallel, which is a projection of relative position of a car’s front bumper and a pedestrian to the
+axis, parallel to a car velocity.
+car_length, which is a length of a car.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a value between 0 and 1, indicating severeness of the relative position of a car and a pedestrian in the
+parallel direction. The higher the value - the more severe a scenario is.</p>
+</dd>
+</dl>
+<p>The fitness function is composed of exponential functions and constant functions. step_back characterizes
+steepness of decay of the fitness function behind the front bumper. step_front characterizes steepness of decay
+of the fitness function in front of the front bumper. The value of the fitness function for positions of a
+pedestrian behind the back bumper is 0.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular">
+<span class="sig-name descname"><span class="pre">fitness_perpendicular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_perpendicular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">car_width</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Input:</dt><dd><p>z_perpendicular, which is a projection of relative position of a car’s center and a pedestrian to the axis,
+perpendicular to a car velocity.
+car_width, which is a width of a car.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a value between 0 and 1, indicating severeness of the relative position of a car and a pedestrian in the
+perpendicular direction. The higher the value - the more severe a scenario is.</p>
+</dd>
+</dl>
+<p>The fitness function is composed of a “bell-shaped” function segments on the sides, and a constant function in
+the middle equal to 1. A “bell-shaped” function is a gaussian function. sigma is proportional to the width of a
+“bell”. A constant segment has a length of the car_width. The parallel fitness function, combined with the
+perpendicular fitness function, e.g. by multiplication, results in a proximity function, which defines a
+severeness of the relative position of a car and a pedestrian.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessAdaptedDistanceSpeed</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id5"><span class="problematic" id="id6">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessAdaptedDistanceSpeedTTC</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id7"><span class="problematic" id="id8">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessMinDistance</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistance" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistance.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistance.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id9"><span class="problematic" id="id10">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistance.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistance.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistance.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistance.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessMinDistanceVelocity</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocity.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id11"><span class="problematic" id="id12">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocity.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocity.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessMinDistanceVelocityFrontOnly</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id13"><span class="problematic" id="id14">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessMinTTC</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTC.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTC.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id15"><span class="problematic" id="id16">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTC.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTC.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTC.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTC.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTCVelocity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">FitnessMinTTCVelocity</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.fitness.Fitness" title="opensbt.evaluation.fitness.Fitness"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fitness</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTCVelocity.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity.eval" title="Link to this definition"></a></dt>
+<dd><p>Returns the fitness value of a given SimulationOutput instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance.</p></li>
+<li><p><strong>kwargs</strong> (<a href="#id17"><span class="problematic" id="id18">**</span></a>Dict) – Further optional variables needed for fitness evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the fitness value for the given simulation results. Each tuple element corresponds to value for the specific fitness dimension.</p>
+</dd>
+</dl>
+<p>:rtype Tuple[float]</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTCVelocity.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity.min_or_max" title="Link to this definition"></a></dt>
+<dd><p>Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds
+the value “min” or “max”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.FitnessMinTTCVelocity.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.FitnessMinTTCVelocity.name" title="Link to this definition"></a></dt>
+<dd><p>Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.MockFitness">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.fitness.</span></span><span class="sig-name descname"><span class="pre">MockFitness</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.MockFitness" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.MockFitness.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.evaluation.fitness.MockFitness.eval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.MockFitness.min_or_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_or_max</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.MockFitness.min_or_max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opensbt.evaluation.fitness.MockFitness.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#opensbt.evaluation.fitness.MockFitness.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.evaluation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.evaluation" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

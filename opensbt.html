@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.config">opensbt.config module</a></li>
+<li><a class="reference internal" href="#module-opensbt.version">opensbt.version module</a></li>
+<li><a class="reference internal" href="#module-opensbt">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-package">
+<h1>opensbt package<a class="headerlink" href="#opensbt-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.algorithm.html">opensbt.algorithm package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.classification.html">opensbt.algorithm.classification package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#module-opensbt.algorithm.classification.classifier">opensbt.algorithm.classification.classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.classification.html#module-opensbt.algorithm.classification">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.algorithm">opensbt.algorithm.algorithm module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType"><code class="docutils literal notranslate"><span class="pre">AlgorithmType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType.NSGAII"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.NSGAII</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType.NSGAII_DT"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.NSGAII_DT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType.PSO"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PSO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType.PS_FPS"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PS_FPS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType.PS_GRID"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PS_GRID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.algorithm.AlgorithmType.PS_RAND"><code class="docutils literal notranslate"><span class="pre">AlgorithmType.PS_RAND</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.nsga2_optimizer">opensbt.algorithm.nsga2_optimizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer.algorithm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">NsgaIIOptimizer.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.nsga2dt_optimizer">opensbt.algorithm.nsga2dt_optimizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._create_result"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer._create_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._update_history"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer._update_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer.algorithm_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.run"><code class="docutils literal notranslate"><span class="pre">NsgaIIDTOptimizer.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.optimizer">opensbt.algorithm.optimizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer"><code class="docutils literal notranslate"><span class="pre">Optimizer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.__init__"><code class="docutils literal notranslate"><span class="pre">Optimizer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">Optimizer._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">Optimizer.algorithm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">Optimizer.algorithm_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.config"><code class="docutils literal notranslate"><span class="pre">Optimizer.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.parameters"><code class="docutils literal notranslate"><span class="pre">Optimizer.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.problem"><code class="docutils literal notranslate"><span class="pre">Optimizer.problem</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.run"><code class="docutils literal notranslate"><span class="pre">Optimizer.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.save_history"><code class="docutils literal notranslate"><span class="pre">Optimizer.save_history</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.optimizer.Optimizer.termination"><code class="docutils literal notranslate"><span class="pre">Optimizer.termination</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.ps">opensbt.algorithm.ps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling"><code class="docutils literal notranslate"><span class="pre">PureSampling</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.__init__"><code class="docutils literal notranslate"><span class="pre">PureSampling.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSampling._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling._create_result"><code class="docutils literal notranslate"><span class="pre">PureSampling._create_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PureSampling.algorithm_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.run"><code class="docutils literal notranslate"><span class="pre">PureSampling.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.ps_fps">opensbt.algorithm.ps_fps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_fps.PureSamplingFPS"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_fps.PureSamplingFPS.__init__"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_fps.PureSamplingFPS._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_fps.PureSamplingFPS.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PureSamplingFPS.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.ps_grid">opensbt.algorithm.ps_grid module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_grid.PureSamplingGrid"><code class="docutils literal notranslate"><span class="pre">PureSamplingGrid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_grid.PureSamplingGrid.__init__"><code class="docutils literal notranslate"><span class="pre">PureSamplingGrid.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_grid.PureSamplingGrid._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSamplingGrid._abc_impl</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.ps_rand">opensbt.algorithm.ps_rand module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_rand.PureSamplingRand"><code class="docutils literal notranslate"><span class="pre">PureSamplingRand</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_rand.PureSamplingRand.__init__"><code class="docutils literal notranslate"><span class="pre">PureSamplingRand.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.ps_rand.PureSamplingRand._abc_impl"><code class="docutils literal notranslate"><span class="pre">PureSamplingRand._abc_impl</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm.pso_optimizer">opensbt.algorithm.pso_optimizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.pso_optimizer.PSOOptimizer"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.algorithm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.algorithm.html#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.algorithm.html#module-opensbt.algorithm">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.evaluation.html">opensbt.evaluation package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.evaluation.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.evaluation.html#module-opensbt.evaluation.critical">opensbt.evaluation.critical module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical"><code class="docutils literal notranslate"><span class="pre">Critical</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical.eval"><code class="docutils literal notranslate"><span class="pre">Critical.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.Critical.name"><code class="docutils literal notranslate"><span class="pre">Critical.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasDistanceVelocity"><code class="docutils literal notranslate"><span class="pre">CriticalAdasDistanceVelocity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasDistanceVelocity.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasDistanceVelocity.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasExplicitRearCollision"><code class="docutils literal notranslate"><span class="pre">CriticalAdasExplicitRearCollision</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasExplicitRearCollision.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasExplicitRearCollision.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasFrontCollisions"><code class="docutils literal notranslate"><span class="pre">CriticalAdasFrontCollisions</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasFrontCollisions.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasTTCVelocity"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTCVelocity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasTTCVelocity.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTCVelocity.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalBnh"><code class="docutils literal notranslate"><span class="pre">CriticalBnh</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalBnh.eval"><code class="docutils literal notranslate"><span class="pre">CriticalBnh.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalBnhDivided"><code class="docutils literal notranslate"><span class="pre">CriticalBnhDivided</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalBnhDivided.eval"><code class="docutils literal notranslate"><span class="pre">CriticalBnhDivided.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalRastrigin"><code class="docutils literal notranslate"><span class="pre">CriticalRastrigin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.CriticalRastrigin.eval"><code class="docutils literal notranslate"><span class="pre">CriticalRastrigin.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.MockCritical"><code class="docutils literal notranslate"><span class="pre">MockCritical</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.MockCritical.eval"><code class="docutils literal notranslate"><span class="pre">MockCritical.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.critical.MockCritical.name"><code class="docutils literal notranslate"><span class="pre">MockCritical.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.evaluation.html#module-opensbt.evaluation.fitness">opensbt.evaluation.fitness module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness.eval"><code class="docutils literal notranslate"><span class="pre">Fitness.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness.min_or_max"><code class="docutils literal notranslate"><span class="pre">Fitness.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness.name"><code class="docutils literal notranslate"><span class="pre">Fitness.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.eval"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_parallel"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.fitness_parallel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.name"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistSpeedRelVelocity.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.eval"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.name"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeed.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.eval"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.name"><code class="docutils literal notranslate"><span class="pre">FitnessAdaptedDistanceSpeedTTC.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistance"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistance.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistance.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistance.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistance.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocity"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocity.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinDistanceVelocityFrontOnly.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTC"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTC.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTC.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTC.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTC.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTCVelocity"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTCVelocity.eval"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTCVelocity.min_or_max"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTCVelocity.name"><code class="docutils literal notranslate"><span class="pre">FitnessMinTTCVelocity.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.MockFitness"><code class="docutils literal notranslate"><span class="pre">MockFitness</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.MockFitness.eval"><code class="docutils literal notranslate"><span class="pre">MockFitness.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.MockFitness.min_or_max"><code class="docutils literal notranslate"><span class="pre">MockFitness.min_or_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.evaluation.html#opensbt.evaluation.fitness.MockFitness.name"><code class="docutils literal notranslate"><span class="pre">MockFitness.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.evaluation.html#module-opensbt.evaluation">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.exception.html">opensbt.exception package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.exception.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.exception.html#module-opensbt.exception.configuration">opensbt.exception.configuration module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.exception.html#opensbt.exception.configuration.RestrictiveConfigException"><code class="docutils literal notranslate"><span class="pre">RestrictiveConfigException</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.exception.html#opensbt.exception.configuration.RestrictiveConfigException.__init__"><code class="docutils literal notranslate"><span class="pre">RestrictiveConfigException.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.exception.html#module-opensbt.exception">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.experiment.html">opensbt.experiment package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.experiment.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.experiment.html#module-opensbt.experiment.experiment">opensbt.experiment.experiment module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment.Experiment"><code class="docutils literal notranslate"><span class="pre">Experiment</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment.Experiment.__init__"><code class="docutils literal notranslate"><span class="pre">Experiment.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.experiment.html#module-opensbt.experiment.experiment_store">opensbt.experiment.experiment_store module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.DefaultExperiments"><code class="docutils literal notranslate"><span class="pre">DefaultExperiments</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.DefaultExperiments.get_store"><code class="docutils literal notranslate"><span class="pre">DefaultExperiments.get_store()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.DefaultExperiments.init"><code class="docutils literal notranslate"><span class="pre">DefaultExperiments.init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.DefaultExperiments.load"><code class="docutils literal notranslate"><span class="pre">DefaultExperiments.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.DefaultExperiments.register"><code class="docutils literal notranslate"><span class="pre">DefaultExperiments.register()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.Singleton"><code class="docutils literal notranslate"><span class="pre">Singleton</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.experiment_store.Singleton.init"><code class="docutils literal notranslate"><span class="pre">Singleton.init()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.experiment.html#module-opensbt.experiment.search_configuration">opensbt.experiment.search_configuration module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.eta_crossover"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.eta_crossover</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.eta_mutation"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.eta_mutation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.inner_num_gen"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.inner_num_gen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.max_tree_iterations"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.max_tree_iterations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.maximal_execution_time"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.maximal_execution_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.n_func_evals_lim"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.n_func_evals_lim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.n_generations"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.n_generations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.nadir"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.nadir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.num_offsprings"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.num_offsprings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.population_size"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.population_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.prob_crossover"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.prob_crossover</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.prob_mutation"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.prob_mutation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.ref_point_hv"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.ref_point_hv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration.seed"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.seed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.eta_crossover"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.eta_crossover</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.eta_mutation"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.eta_mutation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.ideal"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.ideal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.inner_num_gen"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.inner_num_gen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.max_tree_iterations"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.max_tree_iterations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.maximal_execution_time"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.maximal_execution_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.n_func_evals_lim"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.n_func_evals_lim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.n_generations"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.n_generations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.nadir"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.nadir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.num_offsprings"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.num_offsprings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.population_size"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.population_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.prob_crossover"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.prob_crossover</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.prob_mutation"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.prob_mutation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.ref_point_hv"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.ref_point_hv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration.seed"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.seed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.experiment.html#module-opensbt.experiment">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.model_ga.html">opensbt.model_ga package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.model_ga.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.model_ga.html#module-opensbt.model_ga.individual">opensbt.model_ga.individual module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.CB"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated.CB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.SO"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated.SO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.__init__"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.cb"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated.cb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.reset"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.so"><code class="docutils literal notranslate"><span class="pre">IndividualSimulated.so</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.model_ga.html#module-opensbt.model_ga.population">opensbt.model_ga.population module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.population.PopulationExtended"><code class="docutils literal notranslate"><span class="pre">PopulationExtended</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.population.PopulationExtended.divide_critical_non_critical"><code class="docutils literal notranslate"><span class="pre">PopulationExtended.divide_critical_non_critical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.population.PopulationExtended.empty"><code class="docutils literal notranslate"><span class="pre">PopulationExtended.empty()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.population.pop_from_array_or_individual"><code class="docutils literal notranslate"><span class="pre">pop_from_array_or_individual()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.model_ga.html#module-opensbt.model_ga.problem">opensbt.model_ga.problem module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem"><code class="docutils literal notranslate"><span class="pre">SimulationProblem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationProblem.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem._evaluate_elementwise"><code class="docutils literal notranslate"><span class="pre">SimulationProblem._evaluate_elementwise()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem.evaluate"><code class="docutils literal notranslate"><span class="pre">SimulationProblem.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem.pareto_front_n_points"><code class="docutils literal notranslate"><span class="pre">SimulationProblem.pareto_front_n_points()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.model_ga.html#module-opensbt.model_ga.result">opensbt.model_ga.result module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult"><code class="docutils literal notranslate"><span class="pre">SimulationResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationResult.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.additional_data"><code class="docutils literal notranslate"><span class="pre">SimulationResult.additional_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.get_first_critical"><code class="docutils literal notranslate"><span class="pre">SimulationResult.get_first_critical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.load"><code class="docutils literal notranslate"><span class="pre">SimulationResult.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.obtain_all_population"><code class="docutils literal notranslate"><span class="pre">SimulationResult.obtain_all_population()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.obtain_history"><code class="docutils literal notranslate"><span class="pre">SimulationResult.obtain_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.obtain_history_design"><code class="docutils literal notranslate"><span class="pre">SimulationResult.obtain_history_design()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.obtain_history_hitherto"><code class="docutils literal notranslate"><span class="pre">SimulationResult.obtain_history_hitherto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.persist"><code class="docutils literal notranslate"><span class="pre">SimulationResult.persist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.result.SimulationResult.write_results"><code class="docutils literal notranslate"><span class="pre">SimulationResult.write_results()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.model_ga.html#module-opensbt.model_ga">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.problem.html">opensbt.problem package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.problem.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.problem.html#module-opensbt.problem.adas_problem">opensbt.problem.adas_problem module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.adas_problem.ADASProblem"><code class="docutils literal notranslate"><span class="pre">ADASProblem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.adas_problem.ADASProblem.__init__"><code class="docutils literal notranslate"><span class="pre">ADASProblem.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.adas_problem.ADASProblem._evaluate"><code class="docutils literal notranslate"><span class="pre">ADASProblem._evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.adas_problem.ADASProblem.is_simulation"><code class="docutils literal notranslate"><span class="pre">ADASProblem.is_simulation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.problem.html#module-opensbt.problem.pymoo_test_problem">opensbt.problem.pymoo_test_problem module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem.__init__"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_front"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._calc_pareto_front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_set"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._calc_pareto_set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._evaluate"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._instantiate_from_given_problem"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem._instantiate_from_given_problem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem.approx_sim_time"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem.approx_sim_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem.is_simulation"><code class="docutils literal notranslate"><span class="pre">PymooTestProblem.is_simulation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.problem.html#module-opensbt.problem">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.simulation.html">opensbt.simulation package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.simulation.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.simulation.html#module-opensbt.simulation.dummy_simulation">opensbt.simulation.dummy_simulation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator"><code class="docutils literal notranslate"><span class="pre">DummySimulator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.DETECTION_THRESH"><code class="docutils literal notranslate"><span class="pre">DummySimulator.DETECTION_THRESH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.RANDOMNESS_BIAS"><code class="docutils literal notranslate"><span class="pre">DummySimulator.RANDOMNESS_BIAS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator._abc_impl"><code class="docutils literal notranslate"><span class="pre">DummySimulator._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.simulate"><code class="docutils literal notranslate"><span class="pre">DummySimulator.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.simulate_single"><code class="docutils literal notranslate"><span class="pre">DummySimulator.simulate_single()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.time_step"><code class="docutils literal notranslate"><span class="pre">DummySimulator.time_step</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.are_actors_nearby"><code class="docutils literal notranslate"><span class="pre">are_actors_nearby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.plan_motion"><code class="docutils literal notranslate"><span class="pre">plan_motion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.dummy_simulation.random"><code class="docutils literal notranslate"><span class="pre">random()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.simulation.html#module-opensbt.simulation.simulator">opensbt.simulation.simulator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput"><code class="docutils literal notranslate"><span class="pre">SimulationOutput</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.acceleration"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.acceleration</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.actors"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.actors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.collisions"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.collisions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.from_json"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.location"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.otherParams"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.otherParams</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.simTime"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.simTime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.speed"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.speed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.times"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.times</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.to_json"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.velocity"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.velocity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput.yaw"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.yaw</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.Simulator"><code class="docutils literal notranslate"><span class="pre">Simulator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.Simulator._abc_impl"><code class="docutils literal notranslate"><span class="pre">Simulator._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.Simulator.simulate"><code class="docutils literal notranslate"><span class="pre">Simulator.simulate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.simulation.html#module-opensbt.simulation">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.utils.html">opensbt.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.duplicates">opensbt.utils.duplicates module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.duplicates.duplicate_free"><code class="docutils literal notranslate"><span class="pre">duplicate_free()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.duplicates.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">remove_duplicates()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.encoder_utils">opensbt.utils.encoder_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.encoder_utils.NumpyEncoder"><code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.encoder_utils.NumpyEncoder.default"><code class="docutils literal notranslate"><span class="pre">NumpyEncoder.default()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.evaluation">opensbt.utils.evaluation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.evaluation.evaluate_individuals"><code class="docutils literal notranslate"><span class="pre">evaluate_individuals()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.fps">opensbt.utils.fps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.fps.FPS"><code class="docutils literal notranslate"><span class="pre">FPS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.fps.FPS._do"><code class="docutils literal notranslate"><span class="pre">FPS._do()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.fps.fps"><code class="docutils literal notranslate"><span class="pre">fps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.fps.fps_by_bounds"><code class="docutils literal notranslate"><span class="pre">fps_by_bounds()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.geometric">opensbt.utils.geometric module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.geometric.dist"><code class="docutils literal notranslate"><span class="pre">dist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.geometric.distPair"><code class="docutils literal notranslate"><span class="pre">distPair()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.geometric.intersection"><code class="docutils literal notranslate"><span class="pre">intersection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.geometric.line"><code class="docutils literal notranslate"><span class="pre">line()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.log_utils">opensbt.utils.log_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.log_utils.disable_pymoo_warnings"><code class="docutils literal notranslate"><span class="pre">disable_pymoo_warnings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.log_utils.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.path">opensbt.utils.path module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.path.get_subfolders_from_folder"><code class="docutils literal notranslate"><span class="pre">get_subfolders_from_folder()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.result_utils">opensbt.utils.result_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.result_utils.create_result"><code class="docutils literal notranslate"><span class="pre">create_result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.result_utils.create_result_from_generations"><code class="docutils literal notranslate"><span class="pre">create_result_from_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.sampling">opensbt.utils.sampling module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.sampling.CartesianSampling"><code class="docutils literal notranslate"><span class="pre">CartesianSampling</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.sampling.CartesianSampling._do"><code class="docutils literal notranslate"><span class="pre">CartesianSampling._do()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.sampling.cartesian_by_bounds"><code class="docutils literal notranslate"><span class="pre">cartesian_by_bounds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.sampling.cartesian_reference_set"><code class="docutils literal notranslate"><span class="pre">cartesian_reference_set()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.sorting">opensbt.utils.sorting module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.sorting.calc_nondominated_individuals"><code class="docutils literal notranslate"><span class="pre">calc_nondominated_individuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.sorting.get_nondominated_population"><code class="docutils literal notranslate"><span class="pre">get_nondominated_population()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils.time_utils">opensbt.utils.time_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.utils.html#opensbt.utils.time_utils.convert_pymoo_time_to_seconds"><code class="docutils literal notranslate"><span class="pre">convert_pymoo_time_to_seconds()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.utils.html#module-opensbt.utils">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opensbt.visualization.html">opensbt.visualization package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization.combined">opensbt.visualization.combined module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.calculate_combined_crit_pop"><code class="docutils literal notranslate"><span class="pre">calculate_combined_crit_pop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.calculate_combined_pf"><code class="docutils literal notranslate"><span class="pre">calculate_combined_pf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.make_comparison_plot"><code class="docutils literal notranslate"><span class="pre">make_comparison_plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.make_comparison_single"><code class="docutils literal notranslate"><span class="pre">make_comparison_single()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.make_subplots"><code class="docutils literal notranslate"><span class="pre">make_subplots()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.plot_combined_analysis"><code class="docutils literal notranslate"><span class="pre">plot_combined_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.plot_combined_analysis_last_min_max"><code class="docutils literal notranslate"><span class="pre">plot_combined_analysis_last_min_max()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.plot_combined_hypervolume_lin_analysis"><code class="docutils literal notranslate"><span class="pre">plot_combined_hypervolume_lin_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.read_metric_single"><code class="docutils literal notranslate"><span class="pre">read_metric_single()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.read_pf_single"><code class="docutils literal notranslate"><span class="pre">read_pf_single()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.retrieve_metric_data_from_csv"><code class="docutils literal notranslate"><span class="pre">retrieve_metric_data_from_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.statistical_analysis"><code class="docutils literal notranslate"><span class="pre">statistical_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.statistical_analysis_from_overview"><code class="docutils literal notranslate"><span class="pre">statistical_analysis_from_overview()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.write_analysis_results"><code class="docutils literal notranslate"><span class="pre">write_analysis_results()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.write_last_metric_values"><code class="docutils literal notranslate"><span class="pre">write_last_metric_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.write_metric_data_to_csv"><code class="docutils literal notranslate"><span class="pre">write_metric_data_to_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.combined.write_metric_data_to_csv_cid"><code class="docutils literal notranslate"><span class="pre">write_metric_data_to_csv_cid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization.configuration">opensbt.visualization.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization.output_metric">opensbt.visualization.output_metric module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.calculate_n_crit_distinct"><code class="docutils literal notranslate"><span class="pre">calculate_n_crit_distinct()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.cid_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">cid_analysis_hitherto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.gd_analysis"><code class="docutils literal notranslate"><span class="pre">gd_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.gd_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">gd_analysis_hitherto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.hypervolume_analysis"><code class="docutils literal notranslate"><span class="pre">hypervolume_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.hypervolume_analysis_local"><code class="docutils literal notranslate"><span class="pre">hypervolume_analysis_local()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.igd_analysis"><code class="docutils literal notranslate"><span class="pre">igd_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.igd_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">igd_analysis_hitherto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.si_analysis"><code class="docutils literal notranslate"><span class="pre">si_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.spread_analysis"><code class="docutils literal notranslate"><span class="pre">spread_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.spread_analysis_hitherto"><code class="docutils literal notranslate"><span class="pre">spread_analysis_hitherto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.output_metric.write_metric_history"><code class="docutils literal notranslate"><span class="pre">write_metric_history()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization.scenario_plotter">opensbt.visualization.scenario_plotter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.scenario_plotter.plot_scenario_gif"><code class="docutils literal notranslate"><span class="pre">plot_scenario_gif()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization.visualization3d">opensbt.visualization.visualization3d module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualization3d.read_testcases"><code class="docutils literal notranslate"><span class="pre">read_testcases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualization3d.visualize_3d"><code class="docutils literal notranslate"><span class="pre">visualize_3d()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization.visualizer">opensbt.visualization.visualizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.HandlerCircle"><code class="docutils literal notranslate"><span class="pre">HandlerCircle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.HandlerCircle.create_artists"><code class="docutils literal notranslate"><span class="pre">HandlerCircle.create_artists()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer._additional_description"><code class="docutils literal notranslate"><span class="pre">_additional_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer._calc_properties"><code class="docutils literal notranslate"><span class="pre">_calc_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.all_critical_individuals"><code class="docutils literal notranslate"><span class="pre">all_critical_individuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.all_individuals"><code class="docutils literal notranslate"><span class="pre">all_individuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.backup_problem"><code class="docutils literal notranslate"><span class="pre">backup_problem()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.create_markers"><code class="docutils literal notranslate"><span class="pre">create_markers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.create_save_folder"><code class="docutils literal notranslate"><span class="pre">create_save_folder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.design_space"><code class="docutils literal notranslate"><span class="pre">design_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.get_pop_using_mode"><code class="docutils literal notranslate"><span class="pre">get_pop_using_mode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.objective_space"><code class="docutils literal notranslate"><span class="pre">objective_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.optimal_individuals"><code class="docutils literal notranslate"><span class="pre">optimal_individuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.plot_multi_objective_space"><code class="docutils literal notranslate"><span class="pre">plot_multi_objective_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.plot_single_objective_space"><code class="docutils literal notranslate"><span class="pre">plot_single_objective_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.plot_timeseries"><code class="docutils literal notranslate"><span class="pre">plot_timeseries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.plot_timeseries_basic"><code class="docutils literal notranslate"><span class="pre">plot_timeseries_basic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.simulations"><code class="docutils literal notranslate"><span class="pre">simulations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.write_calculation_properties"><code class="docutils literal notranslate"><span class="pre">write_calculation_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.write_generations"><code class="docutils literal notranslate"><span class="pre">write_generations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.write_pf_individuals"><code class="docutils literal notranslate"><span class="pre">write_pf_individuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.write_simout"><code class="docutils literal notranslate"><span class="pre">write_simout()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.write_simulation_output"><code class="docutils literal notranslate"><span class="pre">write_simulation_output()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensbt.visualization.html#opensbt.visualization.visualizer.write_summary_results"><code class="docutils literal notranslate"><span class="pre">write_summary_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensbt.visualization.html#module-opensbt.visualization">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.config">
+<span id="opensbt-config-module"></span><h2>opensbt.config module<a class="headerlink" href="#module-opensbt.config" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.version">
+<span id="opensbt-version-module"></span><h2>opensbt.version module<a class="headerlink" href="#module-opensbt.version" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

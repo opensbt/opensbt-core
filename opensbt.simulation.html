@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.simulation package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt.simulation package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.simulation.dummy_simulation">opensbt.simulation.dummy_simulation module</a><ul>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator"><code class="docutils literal notranslate"><span class="pre">DummySimulator</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator.DETECTION_THRESH"><code class="docutils literal notranslate"><span class="pre">DummySimulator.DETECTION_THRESH</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator.RANDOMNESS_BIAS"><code class="docutils literal notranslate"><span class="pre">DummySimulator.RANDOMNESS_BIAS</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator._abc_impl"><code class="docutils literal notranslate"><span class="pre">DummySimulator._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator.simulate"><code class="docutils literal notranslate"><span class="pre">DummySimulator.simulate()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator.simulate_single"><code class="docutils literal notranslate"><span class="pre">DummySimulator.simulate_single()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.DummySimulator.time_step"><code class="docutils literal notranslate"><span class="pre">DummySimulator.time_step</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.are_actors_nearby"><code class="docutils literal notranslate"><span class="pre">are_actors_nearby()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.plan_motion"><code class="docutils literal notranslate"><span class="pre">plan_motion()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.dummy_simulation.random"><code class="docutils literal notranslate"><span class="pre">random()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.simulation.simulator">opensbt.simulation.simulator module</a><ul>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput"><code class="docutils literal notranslate"><span class="pre">SimulationOutput</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.acceleration"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.acceleration</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.actors"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.actors</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.collisions"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.collisions</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.from_json"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.from_json()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.location"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.location</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.otherParams"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.otherParams</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.simTime"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.simTime</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.speed"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.speed</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.times"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.times</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.to_json"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.to_json()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.velocity"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.velocity</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput.yaw"><code class="docutils literal notranslate"><span class="pre">SimulationOutput.yaw</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.Simulator"><code class="docutils literal notranslate"><span class="pre">Simulator</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.Simulator._abc_impl"><code class="docutils literal notranslate"><span class="pre">Simulator._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.simulation.simulator.Simulator.simulate"><code class="docutils literal notranslate"><span class="pre">Simulator.simulate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt.simulation package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.simulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-simulation-package">
+<h1>opensbt.simulation package<a class="headerlink" href="#opensbt-simulation-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.simulation.dummy_simulation">
+<span id="opensbt-simulation-dummy-simulation-module"></span><h2>opensbt.simulation.dummy_simulation module<a class="headerlink" href="#module-opensbt.simulation.dummy_simulation" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.simulation.dummy_simulation.</span></span><span class="sig-name descname"><span class="pre">DummySimulator</span></span><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.simulation.simulator.Simulator" title="opensbt.simulation.simulator.Simulator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Simulator</span></code></a></p>
+<p>This class implements a simplified driving simulator for two actors, where the ego and adversary move with linear velocity.
+The ego scans for nearby vehicles. If the distance is below some threshold the ego reduces its speed until it is 0.
+The ego continues driving when no adversary is visible within the threshold distance.
+The position of ego deviates based on some random noise.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator.DETECTION_THRESH">
+<span class="sig-name descname"><span class="pre">DETECTION_THRESH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator.DETECTION_THRESH" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator.RANDOMNESS_BIAS">
+<span class="sig-name descname"><span class="pre">RANDOMNESS_BIAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator.RANDOMNESS_BIAS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator.simulate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_individuals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Individual</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_visualize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator.simulate" title="Link to this definition"></a></dt>
+<dd><p>Simulates a set of scenarios based on a list of individuals and returns the simulation outputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_individuals</strong> (<em>List</em><em>[</em><em>Individual</em><em>]</em>) – A list of individuals representing different scenarios to be simulated.</p></li>
+<li><p><strong>variable_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – A list of variable names used in the simulation.</p></li>
+<li><p><strong>scenario_path</strong> (<em>str</em>) – The file path to the scenario configuration.</p></li>
+<li><p><strong>sim_time</strong> (<em>float</em>) – Total simulation time.</p></li>
+<li><p><strong>time_step</strong> (<em>float</em><em>, </em><em>optional</em>) – Time step for the simulation, by default DummySimulator.time_step.</p></li>
+<li><p><strong>do_visualize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to visualize the simulation, by default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of simulation outputs for each individual in the input list.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput">SimulationOutput</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator.simulate_single">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simulate_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Individual</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detection_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomness_bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a></span></span><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator.simulate_single" title="Link to this definition"></a></dt>
+<dd><p>Executes single scenario in DummySimulator</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.DummySimulator.time_step">
+<span class="sig-name descname"><span class="pre">time_step</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#opensbt.simulation.dummy_simulation.DummySimulator.time_step" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.are_actors_nearby">
+<span class="sig-prename descclassname"><span class="pre">opensbt.simulation.dummy_simulation.</span></span><span class="sig-name descname"><span class="pre">are_actors_nearby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos_ego</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_others</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detection_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.simulation.dummy_simulation.are_actors_nearby" title="Link to this definition"></a></dt>
+<dd><p>Checks if the ego actor is within a certain distance of any actor in a list of positions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos_ego</strong> (<em>tuple</em><em> or </em><em>list</em>) – The position of the ego actor</p></li>
+<li><p><strong>pos_others</strong> (<em>list</em>) – A list of positions of other actors</p></li>
+<li><p><strong>detection_dist</strong> (<em>float</em>) – The distance within which actors are considered nearby</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the ego actor is within the specified distance of any other actor, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.plan_motion">
+<span class="sig-prename descclassname"><span class="pre">opensbt.simulation.dummy_simulation.</span></span><span class="sig-name descname"><span class="pre">plan_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">starting_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.simulation.dummy_simulation.plan_motion" title="Link to this definition"></a></dt>
+<dd><p>Plans the motion of an ego vehicle in a linear trajectory based on initial conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>starting_position</strong> (<em>tuple</em>) – The initial (x, y) position of the ego vehicle.</p></li>
+<li><p><strong>orientation</strong> (<em>float</em>) – The initial orientation (yaw) of the ego vehicle in degrees.</p></li>
+<li><p><strong>velocity</strong> (<em>float</em>) – The constant velocity of the ego vehicle.</p></li>
+<li><p><strong>sim_time</strong> (<em>float</em>) – The total simulation time.</p></li>
+<li><p><strong>sampling_time</strong> (<em>float</em>) – The time interval between each simulation step.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 2D array representing the trajectory with rows as [Time, X, Y, V, Yaw].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.simulation.dummy_simulation.random">
+<span class="sig-prename descclassname"><span class="pre">opensbt.simulation.dummy_simulation.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">interval</span> <span class="pre">[0,</span> <span class="pre">1).</span></span></span><a class="headerlink" href="#opensbt.simulation.dummy_simulation.random" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.simulation.simulator">
+<span id="opensbt-simulation-simulator-module"></span><h2>opensbt.simulation.simulator module<a class="headerlink" href="#module-opensbt.simulation.simulator" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.simulation.simulator.</span></span><span class="sig-name descname"><span class="pre">SimulationOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class represents data output after execution of a simulation. An example JSON representation of a SimulationOutput instance is:</p>
+<dl>
+<dt>{</dt><dd><p>“simTime” : 3,
+“times”: [1.0,2.0,3.0],
+“location”: {</p>
+<blockquote>
+<div><p>“ego” : [(1,1),(2,2),(3,3)],
+“adversary” : [(4,1),(4,2),(4,3)
+},</p>
+</div></blockquote>
+<dl class="simple">
+<dt>“velocity”: {</dt><dd><p>“ego” : [0.5,0.5,0.5],
+“adversary” : [0.9,0.9,0.9],
+},</p>
+</dd>
+</dl>
+<p>“collisions”: [],
+“actors” : {</p>
+<blockquote>
+<div><p>1: “ego”,
+2: “adversary”
+},</p>
+</div></blockquote>
+<dl class="simple">
+<dt>“otherParams”<span class="classifier">{</span></dt><dd><p>“isCollision”: False</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.acceleration">
+<span class="sig-name descname"><span class="pre">acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.actors">
+<span class="sig-name descname"><span class="pre">actors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.actors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.collisions">
+<span class="sig-name descname"><span class="pre">collisions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.collisions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.from_json">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.from_json" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.location">
+<span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.location" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.otherParams">
+<span class="sig-name descname"><span class="pre">otherParams</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.otherParams" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.simTime">
+<span class="sig-name descname"><span class="pre">simTime</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.simTime" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.speed">
+<span class="sig-name descname"><span class="pre">speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.speed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.times">
+<span class="sig-name descname"><span class="pre">times</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.times" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.to_json" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.velocity">
+<span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput.yaw">
+<span class="sig-name descname"><span class="pre">yaw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput.yaw" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.Simulator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.simulation.simulator.</span></span><span class="sig-name descname"><span class="pre">Simulator</span></span><a class="headerlink" href="#opensbt.simulation.simulator.Simulator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Base class to be inherited and implemented by a concrete simulator in OpenSBT</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.Simulator._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.simulation.simulator.Simulator._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.simulation.simulator.Simulator.simulate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_individuals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Individual</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_visualize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#opensbt.simulation.simulator.Simulator.simulate" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Instantiates a list of scenarios using the scenario_path, the variable_names and variable values in list_individuals, and
+simulates scenarios in defined simulator.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_individuals</strong> (<em>List</em><em>[</em><em>Individual</em><em>]</em>) – List of individuals. On individual corresponds to one scenario.</p></li>
+<li><p><strong>variable_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The scenario variables.</p></li>
+<li><p><strong>scenario_path</strong> (<em>str</em>) – The path to the abstract/logical scenario.</p></li>
+<li><p><strong>sim_time</strong> (<em>float</em><em>, </em><em>optional</em>) – The simulation time, defaults to 10</p></li>
+<li><p><strong>time_step</strong> (<em>float</em><em>, </em><em>optional</em>) – The time step, defaults to 0.01</p></li>
+<li><p><strong>do_visualize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Visualize or not simulation, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a list of Simulation output instances.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput">SimulationOutput</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.simulation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.simulation" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

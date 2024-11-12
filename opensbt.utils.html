@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.utils package &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opensbt.utils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opensbt.utils.duplicates">opensbt.utils.duplicates module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.duplicates.duplicate_free"><code class="docutils literal notranslate"><span class="pre">duplicate_free()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.duplicates.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">remove_duplicates()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.encoder_utils">opensbt.utils.encoder_utils module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.encoder_utils.NumpyEncoder"><code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.utils.encoder_utils.NumpyEncoder.default"><code class="docutils literal notranslate"><span class="pre">NumpyEncoder.default()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.evaluation">opensbt.utils.evaluation module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.evaluation.evaluate_individuals"><code class="docutils literal notranslate"><span class="pre">evaluate_individuals()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.fps">opensbt.utils.fps module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.fps.FPS"><code class="docutils literal notranslate"><span class="pre">FPS</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.utils.fps.FPS._do"><code class="docutils literal notranslate"><span class="pre">FPS._do()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.utils.fps.fps"><code class="docutils literal notranslate"><span class="pre">fps()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.fps.fps_by_bounds"><code class="docutils literal notranslate"><span class="pre">fps_by_bounds()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.geometric">opensbt.utils.geometric module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.geometric.dist"><code class="docutils literal notranslate"><span class="pre">dist()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.geometric.distPair"><code class="docutils literal notranslate"><span class="pre">distPair()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.geometric.intersection"><code class="docutils literal notranslate"><span class="pre">intersection()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.geometric.line"><code class="docutils literal notranslate"><span class="pre">line()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.log_utils">opensbt.utils.log_utils module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.log_utils.disable_pymoo_warnings"><code class="docutils literal notranslate"><span class="pre">disable_pymoo_warnings()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.log_utils.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.path">opensbt.utils.path module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.path.get_subfolders_from_folder"><code class="docutils literal notranslate"><span class="pre">get_subfolders_from_folder()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.result_utils">opensbt.utils.result_utils module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.result_utils.create_result"><code class="docutils literal notranslate"><span class="pre">create_result()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.result_utils.create_result_from_generations"><code class="docutils literal notranslate"><span class="pre">create_result_from_generations()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.sampling">opensbt.utils.sampling module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.sampling.CartesianSampling"><code class="docutils literal notranslate"><span class="pre">CartesianSampling</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.utils.sampling.CartesianSampling._do"><code class="docutils literal notranslate"><span class="pre">CartesianSampling._do()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opensbt.utils.sampling.cartesian_by_bounds"><code class="docutils literal notranslate"><span class="pre">cartesian_by_bounds()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.sampling.cartesian_reference_set"><code class="docutils literal notranslate"><span class="pre">cartesian_reference_set()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.sorting">opensbt.utils.sorting module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.sorting.calc_nondominated_individuals"><code class="docutils literal notranslate"><span class="pre">calc_nondominated_individuals()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.utils.sorting.get_nondominated_population"><code class="docutils literal notranslate"><span class="pre">get_nondominated_population()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils.time_utils">opensbt.utils.time_utils module</a><ul>
+<li><a class="reference internal" href="#opensbt.utils.time_utils.convert_pymoo_time_to_seconds"><code class="docutils literal notranslate"><span class="pre">convert_pymoo_time_to_seconds()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opensbt.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opensbt.utils package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensbt.utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensbt-utils-package">
+<h1>opensbt.utils package<a class="headerlink" href="#opensbt-utils-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opensbt.utils.duplicates">
+<span id="opensbt-utils-duplicates-module"></span><h2>opensbt.utils.duplicates module<a class="headerlink" href="#module-opensbt.utils.duplicates" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.duplicates.duplicate_free">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.duplicates.</span></span><span class="sig-name descname"><span class="pre">duplicate_free</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.duplicates.duplicate_free" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.duplicates.remove_duplicates">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.duplicates.</span></span><span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.duplicates.remove_duplicates" title="Link to this definition"></a></dt>
+<dd><p>Returns indices of elements of array M after elimination of duplicates where all elements are duplicate free</p>
+</dd></dl>
+
+</section>
+<section id="module-opensbt.utils.encoder_utils">
+<span id="opensbt-utils-encoder-utils-module"></span><h2>opensbt.utils.encoder_utils module<a class="headerlink" href="#module-opensbt.utils.encoder_utils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.utils.encoder_utils.NumpyEncoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.utils.encoder_utils.</span></span><span class="sig-name descname"><span class="pre">NumpyEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipkeys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ensure_ascii</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_circular</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.encoder_utils.NumpyEncoder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">JSONEncoder</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.utils.encoder_utils.NumpyEncoder.default">
+<span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.encoder_utils.NumpyEncoder.default" title="Link to this definition"></a></dt>
+<dd><p>Implement this method in a subclass such that it returns
+a serializable object for <code class="docutils literal notranslate"><span class="pre">o</span></code>, or calls the base implementation
+(to raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>).</p>
+<p>For example, to support arbitrary iterators, you could
+implement default like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">iterable</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="c1"># Let the base class default method raise the TypeError</span>
+    <span class="k">return</span> <span class="n">JSONEncoder</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-opensbt.utils.evaluation">
+<span id="opensbt-utils-evaluation-module"></span><h2>opensbt.utils.evaluation module<a class="headerlink" href="#module-opensbt.utils.evaluation" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.evaluation.evaluate_individuals">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.evaluation.</span></span><span class="sig-name descname"><span class="pre">evaluate_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Population</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Problem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.evaluation.evaluate_individuals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.fps">
+<span id="opensbt-utils-fps-module"></span><h2>opensbt.utils.fps module<a class="headerlink" href="#module-opensbt.utils.fps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.utils.fps.FPS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.utils.fps.</span></span><span class="sig-name descname"><span class="pre">FPS</span></span><a class="headerlink" href="#opensbt.utils.fps.FPS" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sampling</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.utils.fps.FPS._do">
+<span class="sig-name descname"><span class="pre">_do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.fps.FPS._do" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.fps.fps">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.fps.</span></span><span class="sig-name descname"><span class="pre">fps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.fps.fps" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.fps.fps_by_bounds">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.fps.</span></span><span class="sig-name descname"><span class="pre">fps_by_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.fps.fps_by_bounds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.geometric">
+<span id="opensbt-utils-geometric-module"></span><h2>opensbt.utils.geometric module<a class="headerlink" href="#module-opensbt.utils.geometric" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.geometric.dist">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.geometric.</span></span><span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.geometric.dist" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.geometric.distPair">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.geometric.</span></span><span class="sig-name descname"><span class="pre">distPair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.geometric.distPair" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.geometric.intersection">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.geometric.</span></span><span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.geometric.intersection" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.geometric.line">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.geometric.</span></span><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.geometric.line" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.log_utils">
+<span id="opensbt-utils-log-utils-module"></span><h2>opensbt.utils.log_utils module<a class="headerlink" href="#module-opensbt.utils.log_utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.log_utils.disable_pymoo_warnings">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.log_utils.</span></span><span class="sig-name descname"><span class="pre">disable_pymoo_warnings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.log_utils.disable_pymoo_warnings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.log_utils.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.log_utils.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.log_utils.setup_logging" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.path">
+<span id="opensbt-utils-path-module"></span><h2>opensbt.utils.path module<a class="headerlink" href="#module-opensbt.utils.path" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.path.get_subfolders_from_folder">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.path.</span></span><span class="sig-name descname"><span class="pre">get_subfolders_from_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.path.get_subfolders_from_folder" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.result_utils">
+<span id="opensbt-utils-result-utils-module"></span><h2>opensbt.utils.result_utils module<a class="headerlink" href="#module-opensbt.utils.result_utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.result_utils.create_result">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.result_utils.</span></span><span class="sig-name descname"><span class="pre">create_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hist_holder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.result_utils.create_result" title="Link to this definition"></a></dt>
+<dd><p>Generates a result object from generation data to adhere to pymoos result model. Consider the implementation of NSGA-II-DT optimizer for reference.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.result_utils.create_result_from_generations">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.result_utils.</span></span><span class="sig-name descname"><span class="pre">create_result_from_generations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_generations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.result_utils.create_result_from_generations" title="Link to this definition"></a></dt>
+<dd><p>Generates a result object from recorded generation files which contain test inputs from the specific generations in human readable format.</p>
+</dd></dl>
+
+</section>
+<section id="module-opensbt.utils.sampling">
+<span id="opensbt-utils-sampling-module"></span><h2>opensbt.utils.sampling module<a class="headerlink" href="#module-opensbt.utils.sampling" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.utils.sampling.CartesianSampling">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.utils.sampling.</span></span><span class="sig-name descname"><span class="pre">CartesianSampling</span></span><a class="headerlink" href="#opensbt.utils.sampling.CartesianSampling" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sampling</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.utils.sampling.CartesianSampling._do">
+<span class="sig-name descname"><span class="pre">_do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples_one_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.sampling.CartesianSampling._do" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.sampling.cartesian_by_bounds">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.sampling.</span></span><span class="sig-name descname"><span class="pre">cartesian_by_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples_one_axis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.sampling.cartesian_by_bounds" title="Link to this definition"></a></dt>
+<dd><p>Generates aequidistant points in a grid shape.</p>
+<dl class="simple">
+<dt>Input:</dt><dd><p>n_var: number of axis
+x_l: lower bound for each axis
+x_u: upper_bound for each axis
+n_samples_one_axis: number of samples for one axis</p>
+</dd>
+</dl>
+<p>Output: aequidistant points in a grid shape where space is defined by axis with lower/upper bounds xl/xu
+((TODO Pass number of samples for each axis via algorithm definition))</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.sampling.cartesian_reference_set">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.sampling.</span></span><span class="sig-name descname"><span class="pre">cartesian_reference_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_evals_by_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.sampling.cartesian_reference_set" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.sorting">
+<span id="opensbt-utils-sorting-module"></span><h2>opensbt.utils.sorting module<a class="headerlink" href="#module-opensbt.utils.sorting" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.sorting.calc_nondominated_individuals">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.sorting.</span></span><span class="sig-name descname"><span class="pre">calc_nondominated_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Population</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.sorting.calc_nondominated_individuals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.sorting.get_nondominated_population">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.sorting.</span></span><span class="sig-name descname"><span class="pre">get_nondominated_population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Population</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opensbt.utils.sorting.get_nondominated_population" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils.time_utils">
+<span id="opensbt-utils-time-utils-module"></span><h2>opensbt.utils.time_utils module<a class="headerlink" href="#module-opensbt.utils.time_utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opensbt.utils.time_utils.convert_pymoo_time_to_seconds">
+<span class="sig-prename descclassname"><span class="pre">opensbt.utils.time_utils.</span></span><span class="sig-name descname"><span class="pre">convert_pymoo_time_to_seconds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pymoo_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#opensbt.utils.time_utils.convert_pymoo_time_to_seconds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-opensbt.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.utils" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
