@@ -187,7 +187,7 @@ CSV file with performance values of the algorithm, including the number of faili
 OpenSBTs Ecosystem
 ===============
 
-- `OpenSBT-Core <https://git.fortiss.org/opensbt/opensbt-core>`_: Contains the OpenSBT framework and usage tutorials.
+- `OpenSBT-Core <https://github.com/opensbt/opensbt-core.git>`_: Contains the OpenSBT framework and usage tutorials.
 - `CARLA Runner <https://git.fortiss.org/opensbt/carla-runner>`_: Contains a simulation adapter to integrate the CARLA Simulator to simulate CARLA Agents and FMI-based SUTs with OpenSBT.
 - `Prescan Runner <https://git.fortiss.org/opensbt/prescan_runner>`_: Contains a simulation adapter to integrate a Simulink-based SUT with OpenSBT to simulate it in the Prescan Simulator.
 - `SUT Example <https://git.fortiss.org/opensbt/sut-examples>`_: Contains FMI-based SUT for the CARLA tutorial example in the Jupyter notebooks.
@@ -199,7 +199,7 @@ OpenSBTs Ecosystem
 Releases
 ===============
 
-- `0.1.6 <https://github.com/ast-fortiss-tum/opensbt-core/releases/tag/0.1.6>`_
+- `0.1.6 <https://github.com/opensbt/opensbt-core/releases/tag/0.1.6>`_
 
 Integrated Simulators
 =====================
