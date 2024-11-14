@@ -1,0 +1,1117 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.visualization.combined &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">opensbt.visualization.combined</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for opensbt.visualization.combined</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">opensbt.model_ga.individual</span> <span class="kn">import</span> <span class="n">Individual</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">opensbt.model_ga.population</span> <span class="kn">import</span> <span class="n">Population</span>
+<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="n">get_nondominated_population</span>
+<span class="kn">from</span> <span class="nn">opensbt.visualization.visualizer</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">opensbt.analysis.quality_indicators.quality</span> <span class="kn">import</span> <span class="n">EvaluationResult</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">opensbt.utils.duplicates</span> <span class="kn">import</span> <span class="n">duplicate_free</span>
+<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">log</span>
+<span class="kn">from</span> <span class="nn">opensbt.analysis.statistics</span> <span class="kn">import</span> <span class="n">wilcoxon</span>
+<span class="kn">from</span> <span class="nn">opensbt.analysis.quality_indicators.metrics</span> <span class="kn">import</span> <span class="n">ncrit</span>
+
+<span class="kn">from</span> <span class="nn">opensbt.config</span> <span class="kn">import</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">N_CELLS</span>
+
+<span class="sd">&quot;&quot;&quot;This module provides functions for the analysis of completed runs with different search approaches.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="calculate_combined_crit_pop">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.calculate_combined_crit_pop">[docs]</a>
+<span class="k">def</span> <span class="nf">calculate_combined_crit_pop</span><span class="p">(</span><span class="n">run_paths</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unions critical solutions from all runs to approximate &quot;real&quot; critical design space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">len</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run_paths: </span><span class="si">{</span><span class="n">run_paths</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">crit_pop</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="n">run_paths</span><span class="p">:</span>
+        <span class="n">crit_run</span> <span class="o">=</span> <span class="n">read_pf_single</span><span class="p">(</span>
+            <span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="s2">&quot;all_critical_testcases.csv&quot;</span><span class="p">)</span>
+        <span class="n">crit_pop</span> <span class="o">=</span> <span class="n">Population</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">crit_pop</span><span class="p">,</span> <span class="n">crit_run</span><span class="p">)</span>
+    <span class="c1"># assign critical label for the visualization</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">crit_pop</span><span class="p">)):</span>
+        <span class="n">crit_pop</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crit_pop</span></div>
+
+
+<div class="viewcode-block" id="calculate_combined_pf">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.calculate_combined_pf">[docs]</a>
+<span class="k">def</span> <span class="nf">calculate_combined_pf</span><span class="p">(</span><span class="n">run_paths</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># TODO add information on the deviation of the values wrt. to differen runs in the plots</span>
+
+    <span class="n">pf_pop</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="n">run_paths</span><span class="p">:</span>
+        <span class="n">pf_run</span> <span class="o">=</span> <span class="n">read_pf_single</span><span class="p">(</span><span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="s2">&quot;optimal_testcases.csv&quot;</span><span class="p">)</span>
+        <span class="n">pf_pop</span> <span class="o">=</span> <span class="n">Population</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pf_pop</span><span class="p">,</span> <span class="n">pf_run</span><span class="p">)</span>
+    <span class="c1"># log.info(f&quot;len: {len(pf_pop)}&quot;)</span>
+    <span class="n">pf_pop</span> <span class="o">=</span> <span class="n">get_nondominated_population</span><span class="p">(</span><span class="n">pf_pop</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">critical_only</span><span class="p">:</span>
+        <span class="n">crit_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pf_pop</span> <span class="o">=</span> <span class="n">pf_pop</span><span class="p">[</span><span class="n">crit_inds</span><span class="p">]</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">pf_pop</span><span class="p">]</span>
+    <span class="n">pf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="c1"># log.info(f&quot;pf: {pf}&quot;)</span>
+    <span class="k">return</span> <span class="n">pf</span><span class="p">,</span> <span class="n">pf_pop</span></div>
+
+
+
+<div class="viewcode-block" id="plot_combined_analysis_last_min_max">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.plot_combined_analysis_last_min_max">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_combined_analysis_last_min_max</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Outputs mean/std/min/max for final metric value instead for several number of evaluations as in plot_combined_analysis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plot_array</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">values_all</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">y_stacked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">key_run</span><span class="p">,</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths</span><span class="p">):</span>
+            <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                <span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">)</span>
+            <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">values_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;run &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key_run</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">values_all</span><span class="p">)</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">values_all</span><span class="p">)</span>
+
+        <span class="n">max_value_runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_value</span><span class="p">]</span>
+        <span class="n">min_value_runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">min_value</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">std_dev</span><span class="p">(</span><span class="n">y_values</span><span class="p">):</span>
+            <span class="n">y_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> \
+                <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">y_error</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_mean</span><span class="p">)):</span>
+                <span class="n">square_sum</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">y_values</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]):</span>
+                        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="n">deviation</span> <span class="o">=</span> <span class="n">y_values</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_mean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">square_sum</span> <span class="o">+=</span> <span class="n">deviation</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">variance</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">variance</span> <span class="o">=</span> <span class="n">square_sum</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">standart_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+                <span class="n">y_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">standart_deviation</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">y_error</span><span class="p">,</span> <span class="n">y_mean</span>
+
+        <span class="n">y_stacked</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">values_all</span>
+        <span class="n">y_error</span><span class="p">,</span> <span class="n">y_mean</span> <span class="o">=</span> <span class="n">std_dev</span><span class="p">(</span><span class="n">y_stacked</span><span class="p">)</span>
+
+        <span class="n">x_plot</span> <span class="o">=</span> <span class="n">n_evals</span>  <span class="c1"># TODO make labels RS and NSGA-II</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;combined&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span>
+                     <span class="n">y_error</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+        <span class="n">Path</span><span class="p">(</span><span class="n">save_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric_name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> Analysis (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Evaluations&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric_name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+            <span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">_combined_single&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">plot_array</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span> <span class="n">y_error</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span>
+            <span class="n">x_plot</span><span class="p">)],</span> <span class="n">min_value_runs</span><span class="p">,</span> <span class="n">max_value_runs</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">plot_array</span></div>
+
+
+<div class="viewcode-block" id="write_last_metric_values">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_last_metric_values">[docs]</a>
+<span class="k">def</span> <span class="nf">write_last_metric_values</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">values_algo</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">algos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">values_algo</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="n">run_paths</span><span class="p">:</span>
+            <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                <span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">metric_name_load</span><span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">values_algo</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">Path</span><span class="p">(</span><span class="n">save_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;overview_</span><span class="si">{</span><span class="n">metric_name_label</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algos</span><span class="p">:</span>
+            <span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
+                          
+        <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">values_algo</span><span class="p">[</span><span class="n">algo</span><span class="p">])):</span>
+            <span class="n">line</span> <span class="o">=</span>  <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algos</span><span class="p">:</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values_algo</span><span class="p">[</span><span class="n">algo</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+            
+<div class="viewcode-block" id="plot_combined_analysis">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.plot_combined_analysis">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_combined_analysis</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">n_func_evals_lim</span><span class="p">,</span> <span class="n">n_fitting_points</span><span class="p">,</span> <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step_chkp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">error_mean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">plot_array</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">num_evals_limit</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="n">run_paths</span><span class="p">:</span>
+            <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                <span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">metric_name_load</span><span class="p">)</span>
+            <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">num_evals_limit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_evals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">min_num_evals</span> <span class="o">=</span> <span class="n">n_func_evals_lim</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">min_num_evals</span> <span class="o">//</span> <span class="n">n_fitting_points</span>
+
+        <span class="k">if</span> <span class="n">step_chkp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="n">step_chkp</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">min_num_evals</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">y_stacked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">key_run</span><span class="p">,</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths</span><span class="p">):</span>
+            <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                <span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">metric_name_load</span><span class="p">)</span>
+            <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">spl</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">n_evals</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hv</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">x_run</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">min_num_evals</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">spl</span><span class="p">(</span><span class="n">x_run</span><span class="p">)</span>
+            <span class="n">y_stacked</span><span class="p">[</span><span class="n">key_run</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span> <span class="o">=</span> <span class="n">y</span>
+ 
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;run &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key_run</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">y_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_stacked</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y_stacked</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">y_error</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_mean</span><span class="p">)):</span>
+            <span class="n">square_sum</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">y_stacked</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]):</span>
+                    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">deviation</span> <span class="o">=</span> <span class="n">y_stacked</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_mean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">square_sum</span> <span class="o">+=</span> <span class="n">deviation</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">variance</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">variance</span> <span class="o">=</span> <span class="n">square_sum</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">standard_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">error_mean</span><span class="p">:</span>
+                <span class="n">y_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">standard_deviation</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">y_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">standard_deviation</span><span class="p">)</span>
+
+        <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">min_num_evals</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;combined&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span>
+                     <span class="n">y_error</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+        <span class="n">Path</span><span class="p">(</span><span class="n">save_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">metric_name_label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">metric_name_label</span> <span class="o">=</span> <span class="n">metric_name_load</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric_name_label</span><span class="si">}</span><span class="s2"> Analysis (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Evaluations&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric_name_label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+            <span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric_name_label</span><span class="si">}</span><span class="s1">_combined_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">plot_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)],</span> <span class="n">y_error</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)]])</span>
+
+    <span class="k">return</span> <span class="n">plot_array</span></div>
+
+
+<div class="viewcode-block" id="plot_combined_hypervolume_lin_analysis">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.plot_combined_hypervolume_lin_analysis">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_combined_hypervolume_lin_analysis</span><span class="p">(</span><span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Path list is empty&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Performance Analysis (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Evaluations&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Hypervolume&quot;</span><span class="p">)</span>
+
+        <span class="n">n_runs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">)</span>
+        <span class="n">hv_run</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">evals_run</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gnuplot&#39;</span><span class="p">)</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_runs</span><span class="p">)]</span>
+
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths</span><span class="p">):</span>
+            <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                <span class="n">run_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="s2">&quot;hv&quot;</span><span class="p">)</span>
+            <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
+                     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;run: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ind</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">hv_run</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hv</span><span class="p">)</span>
+            <span class="n">evals_run</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_evals</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">get_interpol_value</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="nb">eval</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_evals</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">n_evals</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pos</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">hv</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">diff</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="n">n_evals</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                        <span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="n">hv</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-</span> <span class="n">hv</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> \
+                            <span class="p">(</span><span class="n">n_evals</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-</span> <span class="n">n_evals</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">hv</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">grad</span> <span class="o">*</span> <span class="n">diff</span>
+                    <span class="k">return</span> <span class="n">value</span>
+
+        <span class="n">step</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="n">last_n_evals</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_evals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">n_evals</span> <span class="ow">in</span> <span class="n">evals_run</span><span class="p">]</span>
+        <span class="c1"># n_steps = floor(min(last_n_evals)/step)</span>
+        <span class="n">last_n_eval</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">last_n_evals</span><span class="p">)</span>
+        <span class="n">n_evals_comb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last_n_eval</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_runs</span><span class="p">):</span>
+            <span class="n">n_evals</span> <span class="o">=</span> <span class="n">evals_run</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+            <span class="n">hv</span> <span class="o">=</span> <span class="n">hv_run</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+            <span class="n">hv_run</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_interpol_value</span><span class="p">(</span>
+                <span class="n">val</span><span class="p">,</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">n_evals_comb</span><span class="p">]</span>
+
+        <span class="n">hv_comb_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">hv_run</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">hv_comb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hv_comb_all</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_runs</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_evals_comb</span><span class="p">,</span> <span class="n">hv_comb</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;combined&quot;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+        <span class="c1"># plt.legend(loc=&#39;center left&#39;, bbox_to_anchor=(1, 0.5))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="s1">&#39;hypervolume_combined_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="write_analysis_results">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_analysis_results">[docs]</a>
+<span class="k">def</span> <span class="nf">write_analysis_results</span><span class="p">(</span><span class="n">result_runs_all</span><span class="p">,</span> 
+                            <span class="n">save_folder</span><span class="p">,</span> 
+                            <span class="n">nadir</span><span class="p">,</span> 
+                            <span class="n">ideal</span><span class="p">):</span>
+    <span class="n">evaluations_all</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">evaluations_all_no_duplicates</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">critical_all</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">critical_all_no_duplicates</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">n_critical_all</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">n_critical_all_no_duplicates</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">mean_critical_all</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">mean_critical_all_no_duplicates</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">mean_evaluations_all</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">mean_evaluations_all_no_duplicates</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">ratio_critical_single_run</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ratio_critical_single_run_no_duplicates</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># temporary</span>
+    <span class="c1"># algo1 = list(result_runs_all.keys())[0]</span>
+    <span class="c1"># algo2 = list(result_runs_all.keys())[1]</span>
+
+    <span class="n">n_crit_no_dup_best</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">n_dominated_best_crit</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">grid_crit_distinct</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">n_crit_distinct_avg</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">n_crit_distinct_all</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">grid_crit_distinct_X</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">n_crit_distinct_avg_X</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">n_crit_distinct_all_X</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="n">base_algo</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="k">for</span> <span class="n">algo</span><span class="p">,</span> <span class="n">result_runs</span> <span class="ow">in</span> <span class="n">result_runs_all</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_runs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Result list is empty&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">n_runs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_runs</span><span class="p">)</span>
+
+        <span class="c1"># n evaluations analysis</span>
+        <span class="n">n_evals</span> <span class="o">=</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">n_eval</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result_runs</span><span class="p">]</span>
+        <span class="n">min_n_evals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">n_evals</span><span class="p">)</span>
+        <span class="n">max_n_evals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">n_evals</span><span class="p">)</span>
+        <span class="n">mean_n_evals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_evals</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_runs</span><span class="p">)</span>
+
+        <span class="c1"># time analysis</span>
+        <span class="n">exec_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">exec_time</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result_runs</span><span class="p">]</span>
+        <span class="n">min_exec_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">exec_time</span><span class="p">)</span>
+        <span class="n">max_exec_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">exec_time</span><span class="p">)</span>
+        <span class="n">mean_exec_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">exec_time</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_runs</span><span class="p">)</span>
+
+        <span class="c1"># criticality analysis</span>
+        <span class="n">evaluations_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+                                 <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result_runs</span><span class="p">]</span>
+        <span class="n">evaluations_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">duplicate_free</span><span class="p">(</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">())</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result_runs</span><span class="p">]</span>
+        
+        <span class="n">critical_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">evals</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">evals</span> <span class="ow">in</span> <span class="n">evaluations_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]]</span>
+        
+        <span class="n">critical_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">evals</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">evals</span> <span class="ow">in</span> <span class="n">evaluations_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]]</span>
+
+        <span class="n">n_critical_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">evals</span><span class="p">)</span> <span class="k">for</span> <span class="n">evals</span> <span class="ow">in</span>   <span class="n">critical_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+        <span class="n">n_critical_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">evals</span><span class="p">)</span> <span class="k">for</span> <span class="n">evals</span> <span class="ow">in</span> <span class="n">critical_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+
+        <span class="c1"># mean_critical_all[algo] = np.sum(</span>
+        <span class="c1">#     n_critical_all[algo])  # /len(result_runs)</span>
+        <span class="c1"># mean_critical_all_no_duplicates[algo] = np.sum(</span>
+        <span class="c1">#     n_critical_all_no_duplicates[algo])  # /len(result_runs)</span>
+
+        <span class="c1"># mean_evaluations_all[algo] = np.sum(</span>
+        <span class="c1">#     len(evals) for evals in evaluations_all[algo])  # /len(result_runs)</span>
+        <span class="c1"># mean_evaluations_all_no_duplicates[algo] = np.sum(</span>
+        <span class="c1">#     len(evals) for evals in evaluations_all_no_duplicates[algo])  # /len(result_runs)</span>
+
+        <span class="c1"># ratio_critical_single_run[algo] = [</span>
+        <span class="c1">#     n_critical_all[algo][i] / len(evaluations_all[algo][i]) for i in range(0, n_runs)]</span>
+        <span class="c1"># ratio_critical_single_run_no_duplicates[algo] = [</span>
+        <span class="c1">#     n_critical_all_no_duplicates[algo][i] / len(evaluations_all_no_duplicates[algo][i]) for i in range(0, n_runs)]</span>
+
+        <span class="n">n_crit_no_dup_best</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_nondominated_population</span><span class="p">(</span>
+                <span class="n">evaluations_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="p">)</span>
+        
+        <span class="c1"># criticality analysis using grid-based distinctness in fitness space</span>
+
+        <span class="n">grid_crit_distinct</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>  <span class="n">ncrit</span><span class="o">.</span><span class="n">get_n_crit_grid</span><span class="p">(</span><span class="n">evals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">),</span> 
+                                            <span class="n">b_min</span><span class="o">=</span><span class="n">ideal</span><span class="p">,</span>
+                                            <span class="n">b_max</span><span class="o">=</span><span class="n">nadir</span><span class="p">,</span>
+                                            <span class="n">n_cells</span><span class="o">=</span><span class="n">N_CELLS</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                                        <span class="k">for</span> <span class="n">evals</span> <span class="ow">in</span> <span class="n">critical_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]]</span>
+
+        <span class="n">n_crit_distinct_avg</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                                    <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+                                        <span class="p">[</span>
+                                            <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grid_crit_distinct</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span>
+                                        <span class="p">]</span>
+                                        <span class="p">)</span>
+                                    <span class="p">)</span> <span class="o">/</span> <span class="n">n_runs</span>
+
+        <span class="c1"># conjunction over all grids</span>
+        <span class="n">n_crit_distinct_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">grid_crit_distinct</span><span class="p">[</span><span class="n">algo</span><span class="p">]))</span>
+
+        
+        <span class="c1"># # criticality analysis using grid-based distinctness in input space</span>
+        <span class="n">grid_crit_distinct_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>  <span class="n">ncrit</span><span class="o">.</span><span class="n">get_n_crit_grid</span><span class="p">(</span><span class="n">evals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">),</span> 
+                                            <span class="n">b_min</span><span class="o">=</span><span class="n">result_runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">xl</span><span class="p">,</span>
+                                            <span class="n">b_max</span><span class="o">=</span><span class="n">result_runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">xu</span><span class="p">,</span>
+                                            <span class="n">n_cells</span><span class="o">=</span><span class="n">N_CELLS</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                                        <span class="k">for</span> <span class="n">evals</span> <span class="ow">in</span> <span class="n">critical_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">]]</span>
+
+        <span class="n">n_crit_distinct_avg_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                                    <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+                                        <span class="p">[</span>
+                                            <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grid_crit_distinct_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span>
+                                        <span class="p">]</span>
+                                        <span class="p">)</span>
+                                    <span class="p">)</span> <span class="o">/</span> <span class="n">n_runs</span>
+
+        <span class="c1"># conjunction over all grids</span>
+        <span class="n">n_crit_distinct_all_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">grid_crit_distinct_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]))</span>
+
+        <span class="c1"># grid_crit_distinct_X[algo] = [  ncrit.get_n_crit_grid(evals.get(&quot;X&quot;), </span>
+        <span class="c1">#                                     b_min=result_runs[-1].problem.xl,</span>
+        <span class="c1">#                                     b_max=result_runs[-1].problem.xu,</span>
+        <span class="c1">#                                     n_cells=N_CELLS)[1]</span>
+        <span class="c1">#                                 for evals in critical_all_no_duplicates[algo]]</span>
+
+
+        <span class="k">if</span> <span class="n">base_algo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base_algo</span> <span class="o">=</span> <span class="n">algo</span>
+
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Output of summery of the performance&#39;&#39;&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;analysis_results_</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+            <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">]</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;min_n_evals&#39;</span><span class="p">,</span> <span class="n">min_n_evals</span><span class="p">])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;max_n_evals&#39;</span><span class="p">,</span> <span class="n">max_n_evals</span><span class="p">])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;mean_n_evals&#39;</span><span class="p">,</span> <span class="n">mean_n_evals</span><span class="p">])</span>
+
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;min_exec_time [s]&#39;</span><span class="p">,</span> <span class="n">min_exec_time</span><span class="p">])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;max_exec_time [s]&#39;</span><span class="p">,</span> <span class="n">max_exec_time</span><span class="p">])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;mean_exec_time [s]&#39;</span><span class="p">,</span> <span class="n">mean_exec_time</span><span class="p">])</span>
+
+
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;num_critical_distinct_sum_F (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>   <span class="n">n_crit_distinct_all</span><span class="p">[</span><span class="n">algo</span><span class="p">]])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;num_critical_distinct_avg_F (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>    <span class="n">n_crit_distinct_avg</span><span class="p">[</span><span class="n">algo</span><span class="p">]])</span>
+
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;num_critical_distinct_sum_X (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>   <span class="n">n_crit_distinct_all_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;num_critical_distinct_avg_X (</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>    <span class="n">n_crit_distinct_avg_X</span><span class="p">[</span><span class="n">algo</span><span class="p">]])</span>
+            <span class="c1"># write_to.writerow([f&#39;num_opt_critical_distinct_sum_F ({algo})&#39;,  int(sum(n_crit_distinct_opt[algo]))])</span>
+            <span class="c1"># write_to.writerow([f&#39;num_opt_critical_distinct_avg_F ({algo})&#39;,  int(sum(n_crit_distinct_opt[algo])/n_runs)])</span>
+
+            <span class="c1"># write_to.writerow([f&#39;num_critical_distinct_sum_X ({algo})&#39;,  sum(n_crit_distinct_X[algo])])</span>
+            <span class="c1"># write_to.writerow([f&#39;num_critical_distinct_avg_X ({algo})&#39;,  int(sum(n_crit_distinct_X[algo])/n_runs)])</span>
+            <span class="c1"># write_to.writerow([f&#39;num_opt_critical_distinct_sum_X ({algo})&#39;,  int(sum(n_crit_distinct_opt_X[algo]))])</span>
+            <span class="c1"># write_to.writerow([f&#39;num_opt_critical_distinct_avg_X ({algo})&#39;,  int(sum(n_crit_distinct_opt_X[algo])/n_runs)])</span>
+            <span class="c1"># write_to.writerow([&#39;Mean number critical Scenarios&#39;, len(mean_critical)])</span>
+            <span class="c1"># write_to.writerow([&#39;Mean evaluations all scenarios&#39;, len(mean_evaluations_all)])</span>
+            <span class="c1"># write_to.writerow([&#39;Mean ratio critical/all scenarios&#39;, &#39;{0:.2f}&#39;.format(len(critical_all) / len(all_population))])</span>
+            <span class="c1"># write_to.writerow([&#39;Mean ratio best Critical/best Scenarios&#39;, &#39;{0:.2f}&#39;.format(len(critical_best) / len(best_population))])</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="c1"># ratio_critical_both = np.sum(n_critical_all[algo]) if np.sum(n_critical_all[algo]) == 0 \</span>
+        <span class="c1">#     else np.sum(n_critical_all[algo]) / np.sum(n_critical_all[algo])</span>
+
+        <span class="c1"># ratio_critical_both_no_duplicates = np.sum(n_critical_all_no_duplicates[algo]) if np.sum(n_critical_all_no_duplicates[algo]) == 0 \</span>
+        <span class="c1">#     else np.sum(n_critical_all_no_duplicates[algo]) / np.sum(n_critical_all_no_duplicates[algo])</span>
+
+        <span class="c1"># ratio_critical_both_average = np.sum(</span>
+        <span class="c1">#     ratio_critical_single_run[algo]) / np.sum(ratio_critical_single_run[algo])</span>
+        <span class="c1"># ratio_critical_both_average_no_duplicates = np.sum(</span>
+        <span class="c1">#     ratio_critical_single_run_no_duplicates[algo]) / np.sum(ratio_critical_single_run_no_duplicates[algo])</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Output of summery of the performance&#39;&#39;&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;analysis_combined.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        
+        <span class="n">algo_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">result_runs_all</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> 
+
+        <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algo_names</span><span class="p">:</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;Critical Scenarios </span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_critical_all</span><span class="p">[</span><span class="n">algo</span><span class="p">])])</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;Critical Scenarios </span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1"> (duplicate free)&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="n">n_critical_all_no_duplicates</span><span class="p">[</span><span class="n">algo</span><span class="p">])])</span>
+            
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;Non-dominated Critical Scenarios </span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1"> (duplicate free)&#39;</span><span class="p">,</span><span class="n">n_crit_no_dup_best</span><span class="p">[</span><span class="n">algo</span><span class="p">]])</span>
+        <span class="c1"># write_to.writerow([f&#39;Best Critical Scenarios {algo} Dominated By {base_algo} (duplicate free)&#39;,n_dominated_best_crit[algo]])</span>
+
+        <span class="c1"># write_to.writerow(</span>
+        <span class="c1">#     [f&#39;Critical Scenarios {algo}&#39;, np.sum(n_critical_all[algo])])</span>
+        <span class="c1"># write_to.writerow([f&#39;Critical Scenarios {algo} (duplicate free)&#39;, np.sum(</span>
+        <span class="c1">#     n_critical_all_no_duplicates[algo])])</span>
+
+        <span class="c1"># write_to.writerow(</span>
+        <span class="c1">#     [f&#39;Ratio Critical Scenarios {algo}/{algo} (union)&#39;, &#39;{0:.2f}&#39;.format(ratio_critical_both)])</span>
+        <span class="c1"># write_to.writerow(</span>
+        <span class="c1">#     [f&#39;Ratio Critical Scenarios {algo}/{algo} (union, duplicate free)&#39;, &#39;{0:.2f}&#39;.format(ratio_critical_both_no_duplicates)])</span>
+
+        <span class="c1"># write_to.writerow(</span>
+        <span class="c1">#     [f&#39;Ratio Critical Scenarios {algo}/{algo} (average)&#39;, &#39;{0:.2f}&#39;.format(ratio_critical_both_average)])</span>
+        <span class="c1"># write_to.writerow([f&#39;Ratio Critical Scenarios {algo}/{algo} (average, duplicate free)&#39;,</span>
+        <span class="c1">#                 &#39;{0:.2f}&#39;.format(ratio_critical_both_average_no_duplicates)])</span>
+
+        <span class="c1"># write_to.writerow([f&#39;Mean evaluations all scenarios {algo}&#39;, mean_evaluations_all[algo]])</span>
+        <span class="c1"># write_to.writerow([f&#39;Mean evaluations all scenarios {algo2}&#39;, mean_evaluations_all[algo2]])</span>
+        <span class="c1"># write_to.writerow([f&#39;Mean critical all {algo}&#39;, &#39;{0:.2f}&#39;.format(mean_critical_all[algo])])</span>
+        <span class="c1"># write_to.writerow([f&#39;Mean critical all {algo2}&#39;, &#39;{0:.2f}&#39;.format(mean_critical_all[algo2])])</span>
+        <span class="c1"># write_to.writerow([&#39;Mean ratio best Critical/best Scenarios&#39;, &#39;{0:.2f}&#39;.format(len(critical_best) / len(best_population))])</span>
+
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="read_metric_single">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.read_metric_single">[docs]</a>
+<span class="k">def</span> <span class="nf">read_metric_single</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">):</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;n_eval&quot;</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">])</span>
+    <span class="n">n_evals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;n_eval&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">hv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">metric_name</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span></div>
+
+
+<div class="viewcode-block" id="read_pf_single">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.read_pf_single">[docs]</a>
+<span class="k">def</span> <span class="nf">read_pf_single</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">n_var</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># identify number of objectives</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Fitness_&quot;</span><span class="p">):</span>
+            <span class="n">n_var</span> <span class="o">=</span> <span class="n">k</span>
+            <span class="k">break</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)):</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">n_var</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">n_var</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">CB</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">Individual</span><span class="p">()</span>
+        <span class="n">ind</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">ind</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+        <span class="n">ind</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">,</span> <span class="n">CB</span><span class="p">)</span>
+        <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="o">=</span><span class="n">individuals</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_comparison_single">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.make_comparison_single">[docs]</a>
+<span class="k">def</span> <span class="nf">make_comparison_single</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">subplot_metrics</span><span class="p">,</span> <span class="n">subplot_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">35</span>
+
+    <span class="n">offset_x_ax</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">max_evaluations</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">max_evaluations</span> <span class="o">+</span> <span class="n">offset_x_ax</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="mi">200</span>
+
+    <span class="n">algos</span> <span class="o">=</span> <span class="n">algo_names</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#9a226a&#39;</span><span class="p">,</span> <span class="s1">&#39;#1347ac&#39;</span><span class="p">]</span>
+    <span class="n">n_subplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">algos</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">):</span>
+            <span class="c1"># plt.subplot(n_subplots, 1, key + 1)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                             <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">subplot_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+        <span class="c1"># ax[i].xaxis.set_minor_locator()</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Number of Evaluations&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">algos</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">+</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;subplots_combined</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_comparison_plot">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.make_comparison_plot">[docs]</a>
+<span class="k">def</span> <span class="nf">make_comparison_plot</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> 
+                        <span class="n">save_folder</span><span class="p">,</span> 
+                        <span class="n">subplot_metrics</span><span class="p">,</span> 
+                        <span class="n">subplot_names</span><span class="p">,</span> 
+                        <span class="n">algo_names</span><span class="p">,</span> 
+                        <span class="n">distance_tick</span><span class="p">,</span>
+                        <span class="n">shift_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                        <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+                        <span class="n">linestyles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">size_title</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">size_ticks</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">if</span> <span class="n">shift_error</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">offset_algo_x</span> <span class="o">=</span> <span class="mf">0.010</span> <span class="o">*</span> <span class="n">max_evaluations</span>
+        <span class="n">offset_algo_y</span> <span class="o">=</span> <span class="mf">0.012</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">offset_algo_x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">offset_algo_y</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">marker_error</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">line_width</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">error_lw</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">error_ls</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">offset_x_ax</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">max_evaluations</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">max_evaluations</span> <span class="o">+</span> <span class="n">offset_x_ax</span>
+    <span class="k">if</span> <span class="n">distance_tick</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">max_evaluations</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">distance_tick</span>
+
+    <span class="n">algos</span> <span class="o">=</span> <span class="n">algo_names</span>
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#9a226a&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;#1347ac&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;#ffbb00&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;#a0052d&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;#666666&#39;</span><span class="p">]</span>
+    <span class="n">n_subplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">)</span>
+
+    <span class="c1"># only one metric to plot</span>
+    <span class="k">if</span> <span class="n">n_subplots</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">algos</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">):</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+                        <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">color</span><span class="o">=</span> <span class="n">cmap</span><span class="p">[</span><span class="n">algos</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                        <span class="n">marker</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">linestyles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">offset_algo_x</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> 
+                           <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">offset_algo_y</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> 
+                            <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> 
+                            <span class="n">ecolor</span><span class="o">=</span> <span class="n">cmap</span><span class="p">[</span><span class="n">algos</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                            <span class="n">marker</span><span class="o">=</span><span class="n">marker_error</span><span class="p">,</span>
+                            <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                            <span class="n">linestyle</span><span class="o">=</span><span class="n">error_ls</span><span class="p">,</span>
+                            <span class="n">linewidth</span><span class="o">=</span><span class="n">error_lw</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_evaluations</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">subplot_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+        <span class="c1"># ax[i].xaxis.set_minor_locator()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">size_ticks</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">size_ticks</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">size_ticks</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Number of Evaluations&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="n">size_title</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">algos</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># several metrics to plot</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">algos</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">):</span>
+                <span class="c1"># plt.subplot(n_subplots, 1, key + 1)</span>
+                <span class="c1"># log.info(f&quot;metric: {metric}&quot;)</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> 
+                             <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span>
+                             <span class="n">color</span><span class="o">=</span> <span class="n">cmap</span><span class="p">[</span><span class="n">algos</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                             <span class="n">marker</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                             <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">linestyles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                             <span class="n">lw</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+                                 <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span> <span class="n">offset_algo_x</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> 
+                                 <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">offset_algo_y</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> 
+                                 <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> 
+                                 <span class="n">marker</span><span class="o">=</span><span class="n">marker_error</span><span class="p">,</span>
+                                 <span class="n">ecolor</span><span class="o">=</span> <span class="n">cmap</span><span class="p">[</span><span class="n">algos</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                 <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                 <span class="n">linestyle</span><span class="o">=</span><span class="n">error_ls</span><span class="p">,</span>
+                                 <span class="n">linewidth</span><span class="o">=</span><span class="n">error_lw</span><span class="p">)</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">stop</span><span class="o">+</span><span class="n">step</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">):</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">subplot_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+            <span class="c1"># ax[i].xaxis.set_minor_locator()</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Number of Evaluations&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">algos</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span>  <span class="n">framealpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="n">Path</span><span class="p">(</span><span class="n">save_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;subplots_combined</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;subplots_combined</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s1">.pdf&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;pdf&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="make_subplots">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.make_subplots">[docs]</a>
+<span class="k">def</span> <span class="nf">make_subplots</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">subplot_metrics</span><span class="p">,</span> <span class="n">subplot_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">distance_tick</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">35</span>
+
+    <span class="n">offset_x_ax</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">max_evaluations</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">max_evaluations</span> <span class="o">+</span> <span class="n">offset_x_ax</span>
+    <span class="k">if</span> <span class="n">distance_tick</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">distance_tick</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">max_evaluations</span>
+
+    <span class="n">algos</span> <span class="o">=</span> <span class="n">algo_names</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#9a226a&#39;</span><span class="p">,</span> <span class="s1">&#39;#1347ac&#39;</span><span class="p">]</span>
+    <span class="n">n_subplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">algos</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subplot_metrics</span><span class="p">):</span>
+            <span class="c1"># plt.subplot(n_subplots, 1, key + 1)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                             <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_subplots</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">subplot_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+        <span class="c1"># ax[i].xaxis.set_minor_locator()</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Number of Evaluations&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">algos</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">+</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">n_subplots</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;subplots_combined</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+
+
+<span class="sd">&#39;&#39;&#39; </span>
+<span class="sd">    Write plot idge plot data in csv form. (TODO make more generic, i.e. independent of number of metrics)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="write_metric_data_to_csv_cid">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_metric_data_to_csv_cid">[docs]</a>
+<span class="k">def</span> <span class="nf">write_metric_data_to_csv_cid</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">plot_array</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="n">algo_1</span> <span class="o">=</span> <span class="n">algo_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">algo_2</span> <span class="o">=</span> <span class="n">algo_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">metric_name</span>
+
+    <span class="n">header_igd</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo_1</span><span class="si">}</span><span class="s1">_n_evals&#39;</span><span class="p">,</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo_1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo_1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">_sigma&#39;</span><span class="p">,</span>
+                  <span class="c1"># f&#39;{algo_1}__{m}_min&#39;,</span>
+                  <span class="c1"># f&#39;{algo_1}__{m}_max&#39;,</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo_2</span><span class="si">}</span><span class="s1">__n_evals&#39;</span><span class="p">,</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo_2</span><span class="si">}</span><span class="s1">__</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo_2</span><span class="si">}</span><span class="s1">__</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">_sigma&#39;</span><span class="p">,</span>
+                  <span class="c1"># f&#39;{algo_2}__{m}_min&#39;,</span>
+                  <span class="c1"># f&#39;{algo_2}__{m}_max&#39;</span>
+                  <span class="p">]</span>
+    <span class="c1"># metric_names = [&#39;hv&#39;, &#39;gd&#39;, &#39;sp&#39;]</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">metric</span> <span class="o">=</span> <span class="n">plot_array</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> <span class="n">metric_name</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> \
+        <span class="s1">&#39;combined_&#39;</span> <span class="o">+</span> <span class="n">metric_name</span> <span class="o">+</span> <span class="n">suffix</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header_igd</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">metric</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># algo1</span>
+                               <span class="n">metric</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                               <span class="n">metric</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                               <span class="c1"># metric[0][3][i],</span>
+                               <span class="c1"># metric[0][4][i],</span>
+                               <span class="n">metric</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># algo2</span>
+                               <span class="n">metric</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                               <span class="n">metric</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                               <span class="c1"># metric[1][3][i],</span>
+                               <span class="c1"># metric[1][4][i]</span>
+                               <span class="p">])</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">paths</span></div>
+
+
+
+<div class="viewcode-block" id="write_metric_data_to_csv">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_metric_data_to_csv">[docs]</a>
+<span class="k">def</span> <span class="nf">write_metric_data_to_csv</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">plot_array_hv</span><span class="p">,</span> <span class="n">plot_array_igd</span><span class="p">,</span> <span class="n">plot_array_sp</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">metric_names</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algo_names</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">_n_evals&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">_sigma&#39;</span><span class="p">]</span>
+        <span class="n">headers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">plot_array_hv</span><span class="p">,</span> <span class="n">plot_array_igd</span><span class="p">,</span> <span class="n">plot_array_sp</span><span class="p">]):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> \
+            <span class="n">metric_names</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="s1">&#39;combined_&#39;</span> <span class="o">+</span> \
+            <span class="n">metric_names</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+</span> <span class="n">suffix</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">headers</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">res_algo</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">algo_names</span><span class="p">):</span>
+                    <span class="n">res_algo</span> <span class="o">+=</span> <span class="p">[</span><span class="n">metric</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                                 <span class="n">metric</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">metric</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span>
+                <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">res_algo</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">paths</span></div>
+
+
+
+<div class="viewcode-block" id="retrieve_metric_data_from_csv">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.retrieve_metric_data_from_csv">[docs]</a>
+<span class="k">def</span> <span class="nf">retrieve_metric_data_from_csv</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">n_algos</span><span class="p">):</span>
+    <span class="n">storing_arrays</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">by_metric</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_algos</span><span class="p">):</span>
+            <span class="n">metric_algo</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> 
+                        <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> 
+                        <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="p">]</span>
+            <span class="n">by_metric</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metric_algo</span><span class="p">)</span>
+        <span class="n">storing_arrays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">by_metric</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">storing_arrays</span>  <span class="c1"># plot_array_hv, plot_array_igd, plot_array_sp</span></div>
+
+
+<div class="viewcode-block" id="statistical_analysis">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.statistical_analysis">[docs]</a>
+<span class="k">def</span> <span class="nf">statistical_analysis</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> 
+                        <span class="n">runs_bases</span><span class="p">,</span>
+                        <span class="n">runs_test</span><span class="p">,</span>
+                        <span class="n">algo_test</span><span class="p">,</span>
+                        <span class="n">save_folder</span><span class="p">,</span> 
+                        <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_last_metric_value</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+        <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">hv</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">return</span> <span class="n">hv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">m_test</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">m_bases</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="n">runs_test</span><span class="p">:</span>
+        <span class="n">m_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_last_metric_value</span><span class="p">(</span><span class="n">run_path</span><span class="p">,</span><span class="n">metric_name_load</span><span class="p">))</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;metric values test: </span><span class="si">{</span><span class="n">m_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">algos</span> <span class="o">=</span> <span class="n">runs_bases</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algos</span><span class="p">:</span>
+        <span class="c1"># We allow to have the algorithm under test in the list</span>
+        <span class="k">if</span> <span class="n">algo</span> <span class="o">==</span> <span class="n">algo_test</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">run_path</span> <span class="ow">in</span> <span class="n">runs_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">]:</span>
+            <span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_last_metric_value</span><span class="p">(</span><span class="n">run_path</span><span class="p">,</span><span class="n">metric_name_load</span><span class="p">))</span>
+        
+        <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">m_test</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">algo</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m_bases</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;metric values base_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">p_val</span><span class="p">,</span> <span class="n">effect</span> <span class="o">=</span>  <span class="n">wilcoxon</span><span class="o">.</span><span class="n">run_wilcoxon_and_delaney</span><span class="p">(</span><span class="n">m_test</span><span class="p">,</span><span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">])</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p_val</span><span class="p">,</span> <span class="n">effect</span><span class="p">]</span> 
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">m_bases</span><span class="p">)</span>
+   
+    <span class="c1"># write to file</span>
+    <span class="n">Path</span><span class="p">(</span><span class="n">save_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric_name_label</span><span class="si">}</span><span class="s1">_significance.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;algo (subject: </span><span class="si">{</span><span class="n">algo_test</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="s1">&#39;p_value&#39;</span><span class="p">,</span> <span class="s1">&#39;effect&#39;</span><span class="p">]</span>
+        <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algos</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">algo</span> <span class="o">==</span> <span class="n">algo_test</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="n">algo</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>   <span class="n">results</span><span class="p">[</span><span class="n">algo</span><span class="p">][</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="statistical_analysis_from_overview">
+<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.statistical_analysis_from_overview">[docs]</a>
+<span class="k">def</span> <span class="nf">statistical_analysis_from_overview</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> 
+                        <span class="n">input_folder</span><span class="p">,</span>
+                        <span class="n">save_folder</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">input_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;overview_</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+        <span class="n">m_test</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">m_bases</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">algos</span> <span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">algos</span><span class="p">)</span>
+
+        <span class="n">algo</span> <span class="o">=</span> <span class="n">algos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">m_test</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">algos</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1">#table.iloc[:, 1].to_numpy()</span>
+        <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algos</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1">#table.iloc[:, i + 1].to_numpy()</span>
+            <span class="c1"># assert(len(m_bases[col]) == len(m_test))</span>
+            <span class="n">d1</span> <span class="o">=</span> <span class="n">m_test</span>
+            <span class="n">d2</span> <span class="o">=</span> <span class="n">m_bases</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;test: </span><span class="si">{</span><span class="n">d1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;base: </span><span class="si">{</span><span class="n">d2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">p_val</span><span class="p">,</span> <span class="n">effect</span> <span class="o">=</span>  <span class="n">wilcoxon</span><span class="o">.</span><span class="n">run_wilcoxon_and_delaney</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">algo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p_val</span><span class="p">,</span> <span class="n">effect</span><span class="p">]</span> 
+
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">m_bases</span><span class="p">)</span>
+        <span class="c1"># write to file</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">save_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">_significance.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">write_to</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;algo (subject: </span><span class="si">{</span><span class="n">algos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="s1">&#39;p_value&#39;</span><span class="p">,</span> <span class="s1">&#39;effect&#39;</span><span class="p">]</span>
+            <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algos</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span>
+                                <span class="p">[</span>
+                                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
+                                    <span class="n">results</span><span class="p">[</span><span class="n">algo</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>   
+                                    <span class="n">results</span><span class="p">[</span><span class="n">algo</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                                    <span class="p">]</span>
+                                <span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># we do this to catch this exception from wilcoxon: </span>
+        <span class="c1">#  ValueError(&quot;zero_method &#39;wilcox&#39; and &#39;pratt&#39; do not &quot;</span>
+        <span class="c1">#                              &quot;work if x - y is zero for all elements.&quot;)</span>
+        <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No statistical analysis is possible. No files generated.&quot;</span><span class="p">)</span></div>
+
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

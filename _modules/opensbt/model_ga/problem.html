@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opensbt.model_ga.problem &mdash; OpenSBT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/fortiss-openSBT-Logo-RGB-neg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenSBT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">opensbt.model_ga.problem</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for opensbt.model_ga.problem</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymoo.gradient.toolbox</span> <span class="k">as</span> <span class="nn">anp</span>
+<span class="kn">from</span> <span class="nn">pymoo.util.misc</span> <span class="kn">import</span> <span class="n">at_least_2d_array</span>
+<span class="kn">from</span> <span class="nn">opensbt.simulation.simulator</span> <span class="kn">import</span> <span class="n">SimulationOutput</span>
+
+<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">ElementwiseEvaluationFunction</span>
+<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">LoopedElementwiseEvaluation</span>
+
+<div class="viewcode-block" id="SimulationProblem">
+<a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem">[docs]</a>
+<span class="k">class</span> <span class="nc">SimulationProblem</span><span class="p">(</span><span class="n">Problem</span><span class="p">):</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class extends the pymoo&#39;s Problem class to integrate the handling of simulation output-related data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="SimulationProblem.__init__">
+<a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">n_var</span><span class="p">,</span>
+                 <span class="n">n_obj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_ieq_constr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">n_eq_constr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">xl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">xu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">vtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="nb">vars</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">elementwise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">elementwise_func</span><span class="o">=</span><span class="n">ElementwiseEvaluationFunction</span><span class="p">,</span>
+                 <span class="n">elementwise_runner</span><span class="o">=</span><span class="n">LoopedElementwiseEvaluation</span><span class="p">(),</span>
+                 <span class="n">replace_nan_values_by</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">exclude_from_serialization</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_var : int</span>
+<span class="sd">            Number of Variables</span>
+
+<span class="sd">        n_obj : int</span>
+<span class="sd">            Number of Objectives</span>
+
+<span class="sd">        n_ieq_constr : int</span>
+<span class="sd">            Number of Inequality Constraints</span>
+
+<span class="sd">        n_eq_constr : int</span>
+<span class="sd">            Number of Equality Constraints</span>
+
+<span class="sd">        xl : np.array, float, int</span>
+<span class="sd">            Lower bounds for the variables. if integer all lower bounds are equal.</span>
+
+<span class="sd">        xu : np.array, float, int</span>
+<span class="sd">            Upper bounds for the variable. if integer all upper bounds are equal.</span>
+
+<span class="sd">        vtype : type</span>
+<span class="sd">            The variable type. So far, just used as a type hint.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># if variables are provided directly</span>
+        <span class="k">if</span> <span class="nb">vars</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_var</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">vars</span><span class="p">)</span>
+
+        <span class="c1"># number of variable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_var</span> <span class="o">=</span> <span class="n">n_var</span>
+
+        <span class="c1"># number of objectives</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_obj</span> <span class="o">=</span> <span class="n">n_obj</span>
+
+        <span class="c1"># number of inequality constraints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_ieq_constr</span> <span class="o">=</span> <span class="n">n_ieq_constr</span> <span class="k">if</span> <span class="s2">&quot;n_constr&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="nb">max</span><span class="p">(</span><span class="n">n_ieq_constr</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;n_constr&quot;</span><span class="p">])</span>
+
+        <span class="c1"># number of equality constraints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_eq_constr</span> <span class="o">=</span> <span class="n">n_eq_constr</span>
+
+        <span class="c1"># type of the variable to be evaluated</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># the lower bounds, make sure it is a numpy array with the length of n_var</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xu</span> <span class="o">=</span> <span class="n">xl</span><span class="p">,</span> <span class="n">xu</span>
+
+        <span class="c1"># a callback function to be called after every evaluation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
+
+        <span class="c1"># if the variables are provided in their explicit form</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vars</span> <span class="o">=</span> <span class="nb">vars</span>
+
+        <span class="c1"># the variable type (only as a type hint at this point)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vtype</span> <span class="o">=</span> <span class="n">vtype</span>
+
+        <span class="c1"># the functions used if elementwise is enabled</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elementwise</span> <span class="o">=</span> <span class="n">elementwise</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elementwise_func</span> <span class="o">=</span> <span class="n">elementwise_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elementwise_runner</span> <span class="o">=</span> <span class="n">elementwise_runner</span>
+
+        <span class="c1"># whether the shapes are checked strictly</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strict</span> <span class="o">=</span> <span class="n">strict</span>
+
+        <span class="c1"># if it is a problem with an actual number of variables - make sure xl and xu are numpy arrays</span>
+        <span class="k">if</span> <span class="n">n_var</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xl</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_var</span><span class="p">)</span> <span class="o">*</span> <span class="n">xl</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">xl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xl</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xu</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">xu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_var</span><span class="p">)</span> <span class="o">*</span> <span class="n">xu</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">xu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xu</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="c1"># this defines if NaN values should be replaced or not</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replace_nan_values_by</span> <span class="o">=</span> <span class="n">replace_nan_values_by</span>
+
+        <span class="c1"># attribute which are excluded from being serialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclude_from_serialization</span> <span class="o">=</span> <span class="n">exclude_from_serialization</span></div>
+
+
+
+
+<div class="viewcode-block" id="SimulationProblem._evaluate_elementwise">
+<a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem._evaluate_elementwise">[docs]</a>
+    <span class="k">def</span> <span class="nf">_evaluate_elementwise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># create the function that evaluates a single individual</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementwise_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># execute the runner</span>
+        <span class="n">elems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementwise_runner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># for each evaluation call</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
+
+            <span class="c1"># for each key stored for this evaluation</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+                <span class="c1"># if the element does not exist in out yet -&gt; create it</span>
+                <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="c1"># convert to arrays (the none check is important because otherwise an empty array is initialized)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">SimulationOutput</span><span class="p">):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">anp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="SimulationProblem.evaluate">
+<a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem.evaluate">[docs]</a>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">X</span><span class="p">,</span>
+                 <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                 <span class="n">return_values_of</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">return_as_dictionary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">return_values_of</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">return_values_of</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;F&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_ieq_constr</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">return_values_of</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;G&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_eq_constr</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">return_values_of</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
+
+        <span class="c1"># make sure the array is at least 2d. store if reshaping was necessary</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">X</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="nb">object</span><span class="p">:</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">only_single_value</span> <span class="o">=</span> <span class="n">at_least_2d_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">extend_as</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="n">return_if_reshaped</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_var</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Input dimension </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> are not equal to n_var </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_var</span><span class="si">}</span><span class="s1">!&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">only_single_value</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span>
+
+        <span class="c1"># this is where the actual evaluation takes place</span>
+        <span class="n">_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">return_values_of</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_out</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="c1"># copy it to a numpy array (it might be one of jax at this point)</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+            <span class="c1"># in case the input had only one dimension, then remove always the first dimension from each output</span>
+            <span class="k">if</span> <span class="n">only_single_value</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># if the NaN values should be replaced</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">replace_nan_values_by</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replace_nan_values_by</span>
+
+            <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="c1"># try:</span>
+            <span class="c1">#     out[k] = v.astype(np.float64)</span>
+            <span class="c1"># except:</span>
+            <span class="c1">#     out[k] = v</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+
+        <span class="c1"># now depending on what should be returned prepare the output</span>
+        <span class="k">if</span> <span class="n">return_as_dictionary</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">out</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">return_values_of</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">out</span><span class="p">[</span><span class="n">return_values_of</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">out</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">return_values_of</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="SimulationProblem.pareto_front_n_points">
+<a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem.pareto_front_n_points">[docs]</a>
+    <span class="k">def</span> <span class="nf">pareto_front_n_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pareto_front</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">(</span><span class="n">n_points</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pf</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No analytical solution provided for the given problem.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pf</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lev Sorokin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
