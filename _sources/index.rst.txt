@@ -49,7 +49,7 @@ Than install the dependencies:
 
     $ pip install -r requirements.txt
 
-A complete installation example is available as a `jupyter notebook <https://github.com/Leviathan321/leviathan321.github.io/blob/34-docs/docs/jupyter/01_Installation.ipynb>`_.  
+A complete installation example is available as a `jupyter notebook <https://github.com/opensbt/opensbt-core/tree/main/docs/jupyter/01_Installation.ipynb>`_.  
 
 Example
 +++++++++++++++
@@ -133,7 +133,7 @@ You can find several tutorials that help you to apply OpenSBT for your testing t
 
 - `Esmini Testing Example (DeepTest '23) <https://git.fortiss.org/public-ast/opensbt-deeptest-tutorial>`_ - This tutorial explains how to model the testing problem as a search-based testing problem and integrate the esmini simulator to perform testing of an automated lanekeeping system.
 
-- `Getting Started Tutorials <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/jupyter?ref_type=heads>`_  - These tutorials explain the installation of OpenSBT, the execution of test runs, and the integration of a simulator into OpenSBT.
+- `Getting Started Tutorials <https://github.com/opensbt/opensbt-core/tree/main/docs/jupyter?ref_type=heads>`_  - These tutorials explain the installation of OpenSBT, the execution of test runs, and the integration of a simulator into OpenSBT.
 
 Architecture 
 ===============
@@ -152,37 +152,37 @@ Output
 OpenSBT produces several result artefacts. An excerpt is given below.
 
 **Design Space Plot**  
-Visualization of all evaluated test cases in the input space and predicted failing regions using the decision tree algorithm, displayed pairwise. Constraints of derived regions are stored in a CSV file: :download:`bounds_regions.csv <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/bounds_regions.csv>`. The learned tree is saved in :download:`tree.pdf <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/tree.pdf>`.  
+Visualization of all evaluated test cases in the input space and predicted failing regions using the decision tree algorithm, displayed pairwise. Constraints of derived regions are stored in a CSV file: :download:`bounds_regions.csv <https://git.fortiss.org/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/bounds_regions.csv>`. The learned tree is saved in :download:`tree.pdf <https://git.fortiss.org/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/tree.pdf>`.  
 
-.. image:: https://github.com/ast-fortiss-tum/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/design_space/orientation_ego_orientation_ped.png?raw=True
+.. image:: https://github.com/opensbt/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/design_space/orientation_ego_orientation_ped.png?raw=True
    :alt: Design Space Plot
    :width: 400
 
 **Scenario 2D Visualization**  
 Visualization of traces of the ego vehicle and adversaries in a two-dimensional GIF animation.  
 
-.. image:: https://github.com/ast-fortiss-tum/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/gif/0_trajectory.gif?raw=True
+.. image:: https://github.com/opensbt/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/gif/0_trajectory.gif?raw=True
    :alt: Scenario Visualization
    :width: 300
 
 **Objective Space Plot**  
 Visualization of fitness values of evaluated test cases, displayed pairwise.  
 
-.. image:: https://github.com/ast-fortiss-tum/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/objective_space/Min%20Adapted%20Distance_Velocity%20At%20Min%20Adapted%20Distance.png?raw=True
+.. image:: https://github.com/opensbt/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/objective_space/Min%20Adapted%20Distance_Velocity%20At%20Min%20Adapted%20Distance.png?raw=True
    :alt: Objective Space Plot
    :width: 400
 
 **All Testcases**  
-CSV file of all test inputs of all evaluated test cases: :download:`all_testcases.csv <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/all_testcases.csv>`
+CSV file of all test inputs of all evaluated test cases: :download:`all_testcases.csv <https://github.com/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/all_testcases.csv>`
 
 **All Failing Testcases**  
-CSV file of all failing test inputs of all evaluated test cases: :download:`all_critical_testcases.csv <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/all_critical_testcases.csv>`
+CSV file of all failing test inputs of all evaluated test cases: :download:`all_critical_testcases.csv <https://github.com/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/all_critical_testcases.csv>`
 
 **Calculation Properties**  
-CSV file containing experiment configuration parameters (e.g., algorithm parameters, such as population size, number of iterations, search space, fitness function, etc.): :download:`calculation_properties.csv <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/calculation_properties.csv>`
+CSV file containing experiment configuration parameters (e.g., algorithm parameters, such as population size, number of iterations, search space, fitness function, etc.): :download:`calculation_properties.csv <https://github.com/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/calculation_properties.csv>`
 
 **Evaluation Results**  
-CSV file with performance values of the algorithm, including the number of failing test cases found relative to all evaluations, and execution time: :download:`summary_results.csv <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/summary_results.csv>`
+CSV file with performance values of the algorithm, including the number of failing test cases found relative to all evaluations, and execution time: :download:`summary_results.csv <https://github.com/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/summary_results.csv>`
 
 OpenSBTs Ecosystem
 ===============
@@ -208,10 +208,10 @@ The following simulators have been integrated into OpenSBT:
 
 - `Prescan <https://plm.sw.siemens.com/de-DE/simcenter/autonomous-vehicle-solutions/prescan/?srsltid=AfmBOopocBsnRiNvzArkpWzeY4hpyFAta4txtL_dYqWWtkw4w5u3PzhE>`_: `Example <https://git.fortiss.org/opensbt/prescan_runner>`_
 - `CARLA <https://carla.org/>`_: `Example <https://git.fortiss.org/opensbt/carla-runner>`_
-- `Donkey <https://github.com/tawnkramer/donkey>`_: `Example <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/examples/lanekeeping/donkey?ref_type=heads>`_
-- `Udacity <https://github.com/udacity/self-driving-car-sim>`_: `Example <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/examples/lanekeeping/udacity?ref_type=heads>`_
+- `Donkey <https://github.com/tawnkramer/donkey>`_: `Example <https://github.com/opensbt/opensbt-core/tree/main/examples/lanekeeping/donkey?ref_type=heads>`_
+- `Udacity <https://github.com/udacity/self-driving-car-sim>`_: `Example <https://github.com/opensbt/opensbt-core/tree/main/examples/lanekeeping/udacity?ref_type=heads>`_
 - `BeamNG <https://www.beamng.com/game/>`_: `Example <your-example-link-here>`_
-- `esmini <https://github.com/esmini/esmini>`_: `Example <https://git.fortiss.org/opensbt/opensbt-core/-/tree/main/examples/esmini?ref_type=heads>`_
+- `esmini <https://github.com/esmini/esmini>`_: `Example <https://github.com/opensbt/opensbt-core/tree/main/examples/esmini?ref_type=heads>`_
 
 Research Papers 
 ==================
