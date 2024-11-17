@@ -152,7 +152,7 @@ Output
 OpenSBT produces several result artefacts. An excerpt is given below.
 
 **Design Space Plot**  
-Visualization of all evaluated test cases in the input space and predicted failing regions using the decision tree algorithm, displayed pairwise. Constraints of derived regions are stored in a CSV file: :download:`bounds_regions.csv <https://git.fortiss.org/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/bounds_regions.csv>`. The learned tree is saved in :download:`tree.pdf <https://git.fortiss.org/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/tree.pdf>`.  
+Visualization of all evaluated test cases in the input space and predicted failing regions using the decision tree algorithm, displayed pairwise. Constraints of derived regions are stored in a CSV file: :download:`bounds_regions.csv <https://github.com/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/bounds_regions.csv>`. The learned tree is saved in :download:`tree.pdf <https://github.com/opensbt/opensbt-core/tree/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/classification/tree.pdf>`.  
 
 .. image:: https://github.com/opensbt/opensbt-core/blob/main/docs/example/results/single/PedestrianCrossingStartWalk/NSGA2-F/ex1/design_space/orientation_ego_orientation_ped.png?raw=True
    :alt: Design Space Plot
