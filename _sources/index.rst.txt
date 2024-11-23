@@ -118,7 +118,7 @@ You can find also several other tutorials as jupyter notebooks which explain ste
 
 The tutorials include as an example the integration of a real-world FMI-based AEB agent developed in the fortiss Mobility lab simulated in CARLA using the simulator adapter CARLA Runner Extension.
 
-As another `example <https://git.fortiss.org/opensbt/prescan_runner>`_ we have integrated Simulink-based systems simulated in the Prescan simulator into OpenSBT.
+As another `example <https://github.com/opensbt/prescan-runner>`_ we have integrated Simulink-based systems simulated in the Prescan simulator into OpenSBT.
 
 APIs/Modules
 ===================================
@@ -188,9 +188,9 @@ OpenSBTs Ecosystem
 ===============
 
 - `OpenSBT-Core <https://github.com/opensbt/opensbt-core.git>`_: Contains the OpenSBT framework and usage tutorials.
-- `CARLA Runner <https://git.fortiss.org/opensbt/carla-runner>`_: Contains a simulation adapter to integrate the CARLA Simulator to simulate CARLA Agents and FMI-based SUTs with OpenSBT.
-- `Prescan Runner <https://git.fortiss.org/opensbt/prescan_runner>`_: Contains a simulation adapter to integrate a Simulink-based SUT with OpenSBT to simulate it in the Prescan Simulator.
-- `SUT Example <https://git.fortiss.org/opensbt/sut-examples>`_: Contains FMI-based SUT for the CARLA tutorial example in the Jupyter notebooks.
+- `CARLA Runner <https://github.com/opensbt/carla-runner>`_: Contains a simulation adapter to integrate the CARLA Simulator to simulate CARLA Agents and FMI-based SUTs with OpenSBT.
+- `Prescan Runner <https://github.com/opensbt/prescan-runner>`_: Contains a simulation adapter to integrate a Simulink-based SUT with OpenSBT to simulate it in the Prescan Simulator.
+- `SUT Example <https://github.com/opensbt/sut-examples>`_: Contains FMI-based SUT for the CARLA tutorial example in the Jupyter notebooks.
 .. - opensbt-prescan-runner
 .. - opensbt-carla-runner
 .. - opensbt-ui
@@ -206,8 +206,8 @@ Integrated Simulators
 
 The following simulators have been integrated into OpenSBT:
 
-- `Prescan <https://plm.sw.siemens.com/de-DE/simcenter/autonomous-vehicle-solutions/prescan/?srsltid=AfmBOopocBsnRiNvzArkpWzeY4hpyFAta4txtL_dYqWWtkw4w5u3PzhE>`_: `Example <https://git.fortiss.org/opensbt/prescan_runner>`_
-- `CARLA <https://carla.org/>`_: `Example <https://git.fortiss.org/opensbt/carla-runner>`_
+- `Prescan <https://plm.sw.siemens.com/de-DE/simcenter/autonomous-vehicle-solutions/prescan/?srsltid=AfmBOopocBsnRiNvzArkpWzeY4hpyFAta4txtL_dYqWWtkw4w5u3PzhE>`_: `Example <https://github.com/opensbt/prescan-runner>`_
+- `CARLA <https://carla.org/>`_: `Example <https://github.com/opensbt/carla-runner>`_
 - `Donkey <https://github.com/tawnkramer/donkey>`_: `Example <https://github.com/opensbt/opensbt-core/tree/main/examples/lanekeeping/donkey?ref_type=heads>`_
 - `Udacity <https://github.com/udacity/self-driving-car-sim>`_: `Example <https://github.com/opensbt/opensbt-core/tree/main/examples/lanekeeping/udacity?ref_type=heads>`_
 - `BeamNG <https://www.beamng.com/game/>`_: `Example <your-example-link-here>`_
