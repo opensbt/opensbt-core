@@ -198,6 +198,7 @@ OpenSBTs Ecosystem
 
 Releases
 ===============
+- `0.1.6 <https://github.com/opensbt/opensbt-core/releases/tag/0.1.6>`_
 
 - `0.1.6 <https://github.com/opensbt/opensbt-core/releases/tag/0.1.6>`_
 
