@@ -237,33 +237,71 @@ The position of ego deviates based on some random noise.</p>
 <dt class="sig sig-object py" id="opensbt.simulation.simulator.SimulationOutput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.simulation.simulator.</span></span><span class="sig-name descname"><span class="pre">SimulationOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/opensbt/simulation/simulator.html#SimulationOutput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.simulation.simulator.SimulationOutput" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Class represents data output after execution of a simulation. An example JSON representation of a SimulationOutput instance is:</p>
+<blockquote>
+<div><p>Class represents data output after execution of a simulation. An example JSON representation of a SimulationOutput instance is:</p>
+</div></blockquote>
 <dl>
-<dt>{</dt><dd><p>“simTime” : 3,
-“times”: [1.0,2.0,3.0],
+<dt>{</dt><dd><p>“simTime”: 10,  // Simulation time
+“times”: [0.0, 0.1, 0.2, … , 10.0 ], // Time steps; delta is not predefined
 “location”: {</p>
 <blockquote>
-<div><p>“ego” : [(1,1),(2,2),(3,3)],
-“adversary” : [(4,1),(4,2),(4,3)
-},</p>
-</div></blockquote>
-<dl class="simple">
-<dt>“velocity”: {</dt><dd><p>“ego” : [0.5,0.5,0.5],
-“adversary” : [0.9,0.9,0.9],
-},</p>
+<div><dl class="simple">
+<dt>“ego”: [</dt><dd><p>[0.0, 0.0], [0.1, 0.1],  …  // x,y positions for each time step</p>
 </dd>
 </dl>
-<p>“collisions”: [],
-“actors” : {</p>
+<p>],
+“adversary”: [</p>
 <blockquote>
-<div><p>1: “ego”,
-2: “adversary”
-},</p>
+<div><p>[10.0, 0.0], [9.9, 0.1],  …</p>
 </div></blockquote>
-<dl class="simple">
-<dt>“otherParams”<span class="classifier">{</span></dt><dd><p>“isCollision”: False</p>
+<p>]</p>
+</div></blockquote>
+<p>},
+“velocity”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“ego”: [</dt><dd><p>[1,1,0], [1,1,0], …   // velocity vector for each time step</p>
+</dd>
+<dt>“adversary”: [</dt><dd><p>[0,1,0], [0, 1, 1], …</p>
 </dd>
 </dl>
+<p>]</p>
+</div></blockquote>
+<p>},
+“speed”: {</p>
+<blockquote>
+<div><p>“ego”: [1.4, 1.4, … ], // magnitude of velocity vector (known as “speed”) for each time step
+“adversary”: [1, 1, … ]</p>
+</div></blockquote>
+<p>},
+“acceleration”: {</p>
+<blockquote>
+<div><p>“ego”: [0.1, 0, …],
+“adversary”: [0.05, 0, …]</p>
+</div></blockquote>
+<p>},
+“yaw”: {                     // heading in rad for each time step</p>
+<blockquote>
+<div><p>“ego”: [0.5, 0.5, …],
+“adversary”: [0.2, 0.2, …]</p>
+</div></blockquote>
+<p>},
+“collisions”: [              // actor ids with timesteps if any collisions
+],
+“actors”: {                  // type of actors mapped to ids; the actor types “ego” and “adversary” have to be assigned</p>
+<blockquote>
+<div><p>“ego”: “ego”,
+“adversary”: “adversary”,
+“vehicles”: [],
+“pedestrians”: []</p>
+</div></blockquote>
+<p>},
+“otherParams”: {              // store custom data</p>
+<blockquote>
+<div><p>“car_width” : 3,
+“car_length” : 5</p>
+</div></blockquote>
+<p>}</p>
 </dd>
 </dl>
 <p>}</p>
