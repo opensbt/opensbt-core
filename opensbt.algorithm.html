@@ -133,7 +133,16 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#opensbt-algorithm-pso-optimizer-module">opensbt.algorithm.pso_optimizer module</a></li>
+<li><a class="reference internal" href="#module-opensbt.algorithm.pso_optimizer">opensbt.algorithm.pso_optimizer module</a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.algorithm</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name"><code class="docutils literal notranslate"><span class="pre">PSOOptimizer.algorithm_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-opensbt.algorithm">Module contents</a></li>
 </ul>
 </li>
@@ -573,8 +582,45 @@ progressive image sampling. IEEE Trans Image Process 6:1305–15, DOI 10.1109/83
 </dd></dl>
 
 </section>
-<section id="opensbt-algorithm-pso-optimizer-module">
-<h2>opensbt.algorithm.pso_optimizer module<a class="headerlink" href="#opensbt-algorithm-pso-optimizer-module" title="Link to this heading"></a></h2>
+<section id="module-opensbt.algorithm.pso_optimizer">
+<span id="opensbt-algorithm-pso-optimizer-module"></span><h2>opensbt.algorithm.pso_optimizer module<a class="headerlink" href="#module-opensbt.algorithm.pso_optimizer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.algorithm.pso_optimizer.</span></span><span class="sig-name descname"><span class="pre">PSOOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><span class="pre">SimulationProblem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/opensbt/algorithm/pso_optimizer.html#PSOOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.algorithm.optimizer.Optimizer" title="opensbt.algorithm.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></a></p>
+<p>This class provides search with the Particle Swarm Optimization algorithm which is already implemented in pymoo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><span class="pre">SimulationProblem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><span class="pre">SearchConfiguration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/opensbt/algorithm/pso_optimizer.html#PSOOptimizer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the particle swarm opimization approach for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="opensbt.model_ga.html#opensbt.model_ga.problem.SimulationProblem" title="opensbt.model_ga.problem.SimulationProblem"><em>SimulationProblem</em></a>) – The testing problem to be solved.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><em>SearchConfiguration</em></a>) – The configuration for the search.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm">
+<span class="sig-name descname"><span class="pre">algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Algorithm</span></em><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm" title="Link to this definition"></a></dt>
+<dd><p>Prioritize max search time over set maximal number of generations</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name">
+<span class="sig-name descname"><span class="pre">algorithm_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PSO'</span></em><a class="headerlink" href="#opensbt.algorithm.pso_optimizer.PSOOptimizer.algorithm_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-opensbt.algorithm">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opensbt.algorithm" title="Link to this heading"></a></h2>
