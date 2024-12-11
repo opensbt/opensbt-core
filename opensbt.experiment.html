@@ -69,6 +69,7 @@
 </li>
 <li><a class="reference internal" href="#module-opensbt.experiment.search_configuration">opensbt.experiment.search_configuration module</a><ul>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.custom_params"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.custom_params</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.eta_crossover"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.eta_crossover</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.eta_mutation"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.eta_mutation</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.inner_num_gen"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.inner_num_gen</span></code></a></li>
@@ -78,6 +79,7 @@
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.n_generations"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.n_generations</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.nadir"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.nadir</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.num_offsprings"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.num_offsprings</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.operators"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.operators</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.population_size"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.population_size</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.prob_crossover"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.prob_crossover</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.prob_mutation"><code class="docutils literal notranslate"><span class="pre">DefaultSearchConfiguration.prob_mutation</span></code></a></li>
@@ -86,6 +88,8 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.__init__"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.custom_params"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.custom_params</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.eta_crossover"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.eta_crossover</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.eta_mutation"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.eta_mutation</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.ideal"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.ideal</span></code></a></li>
@@ -96,6 +100,7 @@
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.n_generations"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.n_generations</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.nadir"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.nadir</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.num_offsprings"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.num_offsprings</span></code></a></li>
+<li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.operators"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.operators</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.population_size"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.population_size</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.prob_crossover"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.prob_crossover</span></code></a></li>
 <li><a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration.prob_mutation"><code class="docutils literal notranslate"><span class="pre">SearchConfiguration.prob_mutation</span></code></a></li>
@@ -250,6 +255,11 @@ from each other.</p>
 <dd><p>Bases: <a class="reference internal" href="#opensbt.experiment.search_configuration.SearchConfiguration" title="opensbt.experiment.search_configuration.SearchConfiguration"><code class="xref py py-class docutils literal notranslate"><span class="pre">SearchConfiguration</span></code></a></p>
 <p>This class holds all configuration parameter initialized with default values</p>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.experiment.search_configuration.DefaultSearchConfiguration.custom_params">
+<span class="sig-name descname"><span class="pre">custom_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.custom_params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="opensbt.experiment.search_configuration.DefaultSearchConfiguration.eta_crossover">
 <span class="sig-name descname"><span class="pre">eta_crossover</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.eta_crossover" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -295,6 +305,11 @@ from each other.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.experiment.search_configuration.DefaultSearchConfiguration.operators">
+<span class="sig-name descname"><span class="pre">operators</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cx':</span> <span class="pre">None,</span> <span class="pre">'dup':</span> <span class="pre">None,</span> <span class="pre">'init':</span> <span class="pre">None,</span> <span class="pre">'mut':</span> <span class="pre">None}</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.operators" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="opensbt.experiment.search_configuration.DefaultSearchConfiguration.population_size">
 <span class="sig-name descname"><span class="pre">population_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.DefaultSearchConfiguration.population_size" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -326,6 +341,16 @@ from each other.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.experiment.search_configuration.</span></span><span class="sig-name descname"><span class="pre">SearchConfiguration</span></span><a class="reference internal" href="_modules/opensbt/experiment/search_configuration.html#SearchConfiguration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.experiment.search_configuration.SearchConfiguration" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class holds all configuration parameter related to opimization algorithms</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.experiment.search_configuration.SearchConfiguration.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#opensbt.experiment.search_configuration.SearchConfiguration.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.experiment.search_configuration.SearchConfiguration.custom_params">
+<span class="sig-name descname"><span class="pre">custom_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.SearchConfiguration.custom_params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="opensbt.experiment.search_configuration.SearchConfiguration.eta_crossover">
 <span class="sig-name descname"><span class="pre">eta_crossover</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.SearchConfiguration.eta_crossover" title="Link to this definition"></a></dt>
@@ -374,6 +399,11 @@ from each other.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="opensbt.experiment.search_configuration.SearchConfiguration.num_offsprings">
 <span class="sig-name descname"><span class="pre">num_offsprings</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.SearchConfiguration.num_offsprings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="opensbt.experiment.search_configuration.SearchConfiguration.operators">
+<span class="sig-name descname"><span class="pre">operators</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cx':</span> <span class="pre">None,</span> <span class="pre">'dup':</span> <span class="pre">None,</span> <span class="pre">'init':</span> <span class="pre">None,</span> <span class="pre">'mut':</span> <span class="pre">None}</span></em><a class="headerlink" href="#opensbt.experiment.search_configuration.SearchConfiguration.operators" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">

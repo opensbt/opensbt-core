@@ -68,7 +68,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.algorithm.pso_optimizer</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
+<span></span><span class="kn">from</span> <span class="nn">opensbt.utils.operators</span> <span class="kn">import</span> <span class="n">select_operator</span>
+<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
 <span class="kn">from</span> <span class="nn">pymoo.termination</span> <span class="kn">import</span> <span class="n">get_termination</span>
 <span class="kn">from</span> <span class="nn">pymoo.algorithms.soo.nonconvex.pso</span> <span class="kn">import</span> <span class="n">PSO</span>
 <span class="kn">from</span> <span class="nn">pymoo.termination</span> <span class="kn">import</span> <span class="n">get_termination</span>
@@ -112,7 +113,8 @@
 
         <span class="c1"># initialize algorithm</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">PSO</span><span class="p">(</span>
-            <span class="n">pop_size</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span>
+            <span class="n">pop_size</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span>
+            <span class="n">sampling</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span><span class="n">config</span><span class="p">)</span>
         <span class="p">)</span>
 
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Prioritize max search time over set maximal number of generations&#39;&#39;&#39;</span>

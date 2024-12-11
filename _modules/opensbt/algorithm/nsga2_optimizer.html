@@ -68,7 +68,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.algorithm.nsga2_optimizer</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
+<span></span><span class="kn">from</span> <span class="nn">opensbt.utils.operators</span> <span class="kn">import</span> <span class="n">select_operator</span>
+<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
 <span class="kn">from</span> <span class="nn">pymoo.termination</span> <span class="kn">import</span> <span class="n">get_termination</span>
 <span class="kn">from</span> <span class="nn">pymoo.algorithms.moo.nsga2</span> <span class="kn">import</span> <span class="n">NSGA2</span>
 <span class="kn">from</span> <span class="nn">pymoo.operators.crossover.sbx</span> <span class="kn">import</span> <span class="n">SBX</span>
@@ -91,7 +92,6 @@
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                 <span class="n">problem</span><span class="p">:</span> <span class="n">Problem</span><span class="p">,</span>
-        
                 <span class="n">config</span><span class="p">:</span> <span class="n">SearchConfiguration</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">problem</span> <span class="o">=</span> <span class="n">problem</span>
@@ -114,11 +114,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">NSGA2</span><span class="p">(</span>
             <span class="n">pop_size</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span>
             <span class="n">n_offsprings</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">num_offsprings</span><span class="p">,</span>
-            <span class="n">sampling</span><span class="o">=</span><span class="n">FloatRandomSampling</span><span class="p">(),</span>
-            <span class="n">crossover</span><span class="o">=</span><span class="n">SBX</span><span class="p">(</span><span class="n">prob</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">prob_crossover</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">eta_crossover</span><span class="p">),</span>
-            <span class="n">mutation</span><span class="o">=</span><span class="n">PM</span><span class="p">(</span><span class="n">prob</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">prob_mutation</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">eta_mutation</span><span class="p">),</span>
-            <span class="n">eliminate_duplicates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
+            <span class="n">sampling</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+            <span class="n">crossover</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+            <span class="n">mutation</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;mut&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+            <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="p">)</span>
+<span class="w">        </span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Prioritize max search time over set maximal number of generations&#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">maximal_execution_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">termination</span> <span class="o">=</span> <span class="n">get_termination</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">maximal_execution_time</span><span class="p">)</span>
