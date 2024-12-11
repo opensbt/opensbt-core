@@ -79,6 +79,9 @@
 <span class="kn">from</span> <span class="nn">opensbt.algorithm.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
 <span class="kn">from</span> <span class="nn">opensbt.experiment.search_configuration</span> <span class="kn">import</span> <span class="n">SearchConfiguration</span>
 <span class="kn">from</span> <span class="nn">opensbt.model_ga.result</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pymoo.util.archive</span> <span class="kn">import</span> <span class="n">MultiObjectiveArchive</span>
+
+<span class="kn">from</span> <span class="nn">opensbt.utils.archive</span> <span class="kn">import</span> <span class="n">MemoryArchive</span>
 
 <div class="viewcode-block" id="NsgaIIOptimizer">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2_optimizer.NsgaIIOptimizer">[docs]</a>
@@ -117,9 +120,10 @@
             <span class="n">sampling</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
             <span class="n">crossover</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
             <span class="n">mutation</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;mut&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
-            <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+            <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+            <span class="n">archive</span><span class="o">=</span><span class="n">MemoryArchive</span><span class="p">()</span>
         <span class="p">)</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Prioritize max search time over set maximal number of generations&#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">maximal_execution_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">termination</span> <span class="o">=</span> <span class="n">get_termination</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">maximal_execution_time</span><span class="p">)</span>

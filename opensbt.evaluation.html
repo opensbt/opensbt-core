@@ -64,6 +64,10 @@
 <li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasFrontCollisions.eval()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasTTC"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTC</span></code></a><ul>
+<li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasTTC.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTC.eval()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasTTCVelocity"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTCVelocity</span></code></a><ul>
 <li><a class="reference internal" href="#opensbt.evaluation.critical.CriticalAdasTTCVelocity.eval"><code class="docutils literal notranslate"><span class="pre">CriticalAdasTTCVelocity.eval()</span></code></a></li>
 </ul>
@@ -290,6 +294,32 @@ The functions name and eval have to be implemented.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval">
 <span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/opensbt/evaluation/critical.html#CriticalAdasFrontCollisions.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasFrontCollisions.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_fitness</strong> (<em>np.ndarray</em>) – List of fitness values.</p></li>
+<li><p><strong>simout</strong> (<a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><em>SimulationOutput</em></a>) – SimulationOutput instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if simulation is critical/failed or otherwise False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasTTC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opensbt.evaluation.critical.</span></span><span class="sig-name descname"><span class="pre">CriticalAdasTTC</span></span><a class="reference internal" href="_modules/opensbt/evaluation/critical.html#CriticalAdasTTC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasTTC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opensbt.evaluation.critical.Critical" title="opensbt.evaluation.critical.Critical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Critical</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opensbt.evaluation.critical.CriticalAdasTTC.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="opensbt.simulation.html#opensbt.simulation.simulator.SimulationOutput" title="opensbt.simulation.simulator.SimulationOutput"><span class="pre">SimulationOutput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/opensbt/evaluation/critical.html#CriticalAdasTTC.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opensbt.evaluation.critical.CriticalAdasTTC.eval" title="Link to this definition"></a></dt>
 <dd><p>Evaluate whether a test has failed or passed. To be implemented based on specific conditions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

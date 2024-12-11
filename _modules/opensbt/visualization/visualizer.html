@@ -97,9 +97,10 @@
 <span class="kn">from</span> <span class="nn">opensbt.visualization.visualization3d</span> <span class="kn">import</span> <span class="n">visualize_3d</span>
 <span class="kn">from</span> <span class="nn">opensbt.visualization</span> <span class="kn">import</span> <span class="n">scenario_plotter</span>
 <span class="kn">from</span> <span class="nn">opensbt.config</span> <span class="kn">import</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">CONSIDER_HIGH_VAL_OS_PLOT</span><span class="p">,</span>  \
-                           <span class="n">PENALTY_MAX</span><span class="p">,</span> <span class="n">PENALTY_MIN</span><span class="p">,</span> \
-                           <span class="n">LAST_ITERATION_ONLY_DEFAULT</span> \
-<span class="w">                               </span>
+                            <span class="n">PENALTY_MAX</span><span class="p">,</span> <span class="n">PENALTY_MIN</span><span class="p">,</span> <span class="n">WRITE_ALL_INDIVIDUALS</span><span class="p">,</span> \
+                                <span class="n">METRIC_PLOTS_FOLDER</span><span class="p">,</span> <span class="n">LAST_ITERATION_ONLY_DEFAULT</span><span class="p">,</span> \
+                                <span class="n">OUTPUT_PRECISION</span>
+
 <span class="sd">&quot;&quot;&quot;This module provides functions for the output and presentation of results.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="create_save_folder">
@@ -188,11 +189,11 @@
     <span class="n">inds</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
     <span class="c1"># print(f&quot;mode: {mode}&quot;)</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
-        <span class="n">inds</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;opt&quot;</span><span class="p">:</span>
         <span class="n">inds</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">opt</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;crit&quot;</span><span class="p">:</span>
-        <span class="nb">all</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+        <span class="nb">all</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
         <span class="n">inds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">all</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mode is not accepted. Accepted modes are: all, opt, crit.&quot;</span><span class="p">)</span>
@@ -299,7 +300,7 @@
 <div class="viewcode-block" id="write_summary_results">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_summary_results">[docs]</a>
 <span class="k">def</span> <span class="nf">write_summary_results</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
-    <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+    <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
     <span class="n">best_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">opt</span>
 
     <span class="n">critical_best</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">best_population</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
@@ -367,7 +368,7 @@
     <span class="n">xl</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">xl</span>
     <span class="n">xu</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">xu</span>
 
-    <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+    <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
     <span class="n">critical_all</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">all_population</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">classification_type</span> <span class="o">==</span> <span class="n">ClassificationType</span><span class="o">.</span><span class="n">DT</span><span class="p">:</span>
@@ -483,7 +484,7 @@
     <span class="n">objective_names</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">objective_names</span>
     
     <span class="k">if</span> <span class="n">n_obj</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-       <span class="n">plot_single_objective_space</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">res</span><span class="p">,</span>
+        <span class="n">plot_single_objective_space</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">res</span><span class="p">,</span>
                                    <span class="n">save_folder_plot</span><span class="o">=</span><span class="n">save_folder_plot</span><span class="p">,</span>
                                    <span class="n">objective_names</span><span class="o">=</span><span class="n">objective_names</span><span class="p">,</span>
                                    <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">,</span>
@@ -493,9 +494,7 @@
 
         <span class="c1"># output 3d plots</span>
         <span class="k">if</span> <span class="n">n_obj</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">all_population</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">history</span><span class="p">):</span>
-                <span class="n">all_population</span> <span class="o">=</span> <span class="n">Population</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">all_population</span><span class="p">,</span> <span class="n">generation</span><span class="o">.</span><span class="n">pop</span><span class="p">)</span>
+            <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
             <span class="n">visualize_3d</span><span class="p">(</span><span class="n">all_population</span><span class="p">,</span> 
                 <span class="n">save_folder_objective</span><span class="p">,</span> 
                 <span class="n">objective_names</span><span class="p">,</span> 
@@ -512,10 +511,20 @@
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_multi_objective_space">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_multi_objective_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">n_obj</span><span class="p">,</span> <span class="n">save_folder_objective</span><span class="p">,</span> <span class="n">objective_names</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">pf</span><span class="p">,</span> <span class="n">last_iteration</span><span class="p">):</span>
     <span class="n">all_population</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
+    <span class="c1"># n_evals_all = 0</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">history</span><span class="p">):</span>
-        <span class="n">all_population</span> <span class="o">=</span> <span class="n">Population</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">all_population</span><span class="p">,</span> <span class="n">generation</span><span class="o">.</span><span class="n">pop</span><span class="p">)</span>
-        <span class="c1"># all_population = res.obtain_all_population()</span>
+        <span class="c1"># TODO first generation has somehow archive size of 0</span>
+        <span class="c1"># all_population = generation.archive #Population.merge(all_population, generation.pop)</span>
+        <span class="n">n_eval</span> <span class="o">=</span> <span class="n">generation</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">n_eval</span>
+        <span class="c1"># TODO assure that every algorithm stores in n_eval the number of evaluations SO FAR performed!!</span>
+        <span class="c1"># n_evals_all += n_eval</span>
+        <span class="c1"># print(f&quot;[visualizer] n_eval: {n_eval}&quot;)</span>
 
+        <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">archive</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_eval</span><span class="p">]</span>
+        <span class="c1">#assert len(all_population) == n_eval, f&quot;{len(all_population)} != {n_eval}&quot;</span>
+
+        <span class="c1"># all_population = res.obtain_all_population()</span>
+        <span class="c1"># print(f&quot;[visualizer] len(gen archive): {len(all_population)}&quot;)</span>
         <span class="n">critical_all</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">all_population</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
         
         <span class="c1"># plot only last iteration if requested</span>
@@ -625,16 +634,21 @@
     <span class="c1"># Set the figure size to stretch the x-axis physically</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="n">x_axis_width</span><span class="p">,</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_figheight</span><span class="p">(),</span> <span class="n">forward</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+    <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
     <span class="n">critical</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">all_population</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="se">\n</span><span class="s2">Objective Space | </span><span class="si">{</span><span class="n">problem</span><span class="o">.</span><span class="n">problem_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span> \
                     <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_population</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; testcases, &quot;</span> <span class="o">+</span> \
                         <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">critical</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; of which are critical)&quot;</span><span class="p">)</span>
-    
+        
+    <span class="n">n_evals_all</span> <span class="o">=</span> <span class="mi">0</span>
+
     <span class="c1"># we plot the fitness over time as it is only one value for each iteration</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">history</span><span class="p">):</span>
-        <span class="n">all_population</span> <span class="o">=</span> <span class="n">generation</span><span class="o">.</span><span class="n">pop</span>
+        <span class="n">n_eval</span> <span class="o">=</span> <span class="n">generation</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">n_eval</span>
+        <span class="n">n_evals_all</span> <span class="o">+=</span> <span class="n">n_eval</span>
+        <span class="c1"># print(f&quot;[visualizer] n_eval: {n_eval}&quot;)</span>
+        <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">archive</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_evals_all</span><span class="p">]</span>
         <span class="n">axis_y</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">critical</span><span class="p">,</span> <span class="n">not_critical</span> <span class="o">=</span> <span class="n">all_population</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
         <span class="n">critical_clean</span> <span class="o">=</span> <span class="n">duplicate_free</span><span class="p">(</span><span class="n">critical</span><span class="p">)</span>
@@ -647,9 +661,9 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">critical_clean</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">critical_clean</span><span class="p">),</span> <span class="n">critical_clean</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[:,</span> <span class="n">axis_y</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
                         <span class="n">facecolors</span><span class="o">=</span><span class="n">color_not_optimal</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="n">color_critical</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-
         <span class="n">optimal_pop</span> <span class="o">=</span> <span class="n">get_nondominated_population</span><span class="p">(</span><span class="n">all_population</span><span class="p">)</span>
         <span class="n">critical</span><span class="p">,</span> <span class="n">not_critical</span> <span class="o">=</span> <span class="n">optimal_pop</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()</span>
+
         <span class="n">critical_clean</span> <span class="o">=</span> <span class="n">duplicate_free</span><span class="p">(</span><span class="n">critical</span><span class="p">)</span>
         <span class="n">not_critical_clean</span> <span class="o">=</span> <span class="n">duplicate_free</span><span class="p">(</span><span class="n">not_critical</span><span class="p">)</span>
         
@@ -710,8 +724,8 @@
 
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clean_pop</span><span class="p">)):</span>
             <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">clean_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">clean_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">clean_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">clean_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
             <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">clean_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
             <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
@@ -740,14 +754,13 @@
         <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
 
         <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="p">)):</span>
+        <span class="n">all_individuals</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_individuals</span><span class="p">):</span>
                 <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
-                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
-                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
-                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">ind</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)])</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">ind</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)])</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ind</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">)])</span>
                 <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-                <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
@@ -760,7 +773,7 @@
     <span class="n">design_names</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">design_names</span>
     <span class="n">objective_names</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">objective_names</span>
 
-    <span class="nb">all</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_all_population</span><span class="p">()</span>
+    <span class="nb">all</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
     <span class="n">critical</span> <span class="o">=</span> <span class="nb">all</span><span class="o">.</span><span class="n">divide_critical_non_critical</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder</span> <span class="o">+</span> <span class="s1">&#39;all_critical_testcases.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -778,8 +791,8 @@
         <span class="c1"># for algo in hist:</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">critical</span><span class="p">)):</span>
             <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">critical</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">critical</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">critical</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">critical</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
             <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
@@ -834,8 +847,8 @@
             <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="p">)):</span>
                 <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
-                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
-                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
                 <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]])</span>
                 <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
                 <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -870,8 +883,8 @@
 
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pf_pop</span><span class="p">)):</span>
             <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">X_i</span> <span class="k">for</span> <span class="n">X_i</span> <span class="ow">in</span> <span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;%.</span><span class="si">{</span><span class="n">OUTPUT_PRECISION</span><span class="si">}</span><span class="s2">f&quot;</span> <span class="o">%</span> <span class="n">F_i</span> <span class="k">for</span> <span class="n">F_i</span> <span class="ow">in</span> <span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
             <span class="n">row</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CB&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">]])</span>
             <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>

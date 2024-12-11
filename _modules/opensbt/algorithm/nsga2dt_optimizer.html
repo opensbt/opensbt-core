@@ -83,6 +83,7 @@
 <span class="kn">from</span> <span class="nn">pymoo.termination</span> <span class="kn">import</span> <span class="n">get_termination</span>
 <span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
 <span class="kn">from</span> <span class="nn">opensbt.exception.configuration</span> <span class="kn">import</span> <span class="n">RestrictiveConfigException</span>
+<span class="kn">from</span> <span class="nn">opensbt.utils.archive</span> <span class="kn">import</span> <span class="n">MemoryArchive</span>
 <span class="kn">from</span> <span class="nn">opensbt.utils.time_utils</span> <span class="kn">import</span> <span class="n">convert_pymoo_time_to_seconds</span>
 <span class="kn">from</span> <span class="nn">pymoo.core.population</span> <span class="kn">import</span> <span class="n">Population</span>
 <span class="kn">from</span> <span class="nn">opensbt.visualization.configuration</span> <span class="kn">import</span> <span class="o">*</span>
@@ -206,7 +207,8 @@
             <span class="n">sampling</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
             <span class="n">crossover</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
             <span class="n">mutation</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;mut&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
-            <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+            <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+            <span class="n">archive</span><span class="o">=</span><span class="n">MemoryArchive</span><span class="p">()</span>
         <span class="p">)</span>
 
         <span class="n">tree_iteration</span> <span class="o">=</span> <span class="mi">0</span>
@@ -232,10 +234,12 @@
                     <span class="n">pop_size</span><span class="o">=</span><span class="n">pop_size</span><span class="p">,</span>
                     <span class="n">n_offsprings</span><span class="o">=</span><span class="n">num_offsprings</span><span class="p">,</span>
                     <span class="n">sampling</span><span class="o">=</span><span class="n">initial_population</span><span class="p">,</span>
-                    <span class="n">crossover</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
-                    <span class="n">mutation</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;mut&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
-                    <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-                <span class="p">)</span>
+                    <span class="n">crossover</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span><span class="n">config</span><span class="p">),</span>
+                    <span class="n">mutation</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span><span class="s2">&quot;mut&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+                    <span class="n">eliminate_duplicates</span> <span class="o">=</span> <span class="n">select_operator</span><span class="p">(</span> <span class="s2">&quot;dup&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span>
+                    <span class="n">archive</span><span class="o">=</span><span class="n">MemoryArchive</span><span class="p">()</span>
+                 <span class="p">)</span>
+
 
                 <span class="n">termination</span> <span class="o">=</span> <span class="n">get_termination</span><span class="p">(</span><span class="s2">&quot;n_gen&quot;</span><span class="p">,</span> <span class="n">inner_num_gen</span><span class="p">)</span>
 
@@ -333,6 +337,7 @@
         <span class="c1"># log.info(f&quot;opt_all: {opt_all}&quot;)</span>
         <span class="n">opt_all_nds</span> <span class="o">=</span> <span class="n">get_nondominated_population</span><span class="p">(</span><span class="n">opt_all</span><span class="p">)</span>
         <span class="n">res_holder</span><span class="o">.</span><span class="n">opt</span> <span class="o">=</span> <span class="n">opt_all_nds</span>
+        <span class="n">res_holder</span><span class="o">.</span><span class="n">archive</span> <span class="o">=</span> <span class="n">opt_all</span>  <span class="c1"># for now the same all pops together</span>
 
         <span class="k">return</span> <span class="n">res_holder</span></div>
 </div>

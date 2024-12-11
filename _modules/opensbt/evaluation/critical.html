@@ -184,6 +184,19 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
+</div>
+
+        
+<div class="viewcode-block" id="CriticalAdasTTC">
+<a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasTTC">[docs]</a>
+<span class="k">class</span> <span class="nc">CriticalAdasTTC</span><span class="p">(</span><span class="n">Critical</span><span class="p">):</span>
+<div class="viewcode-block" id="CriticalAdasTTC.eval">
+<a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.critical.CriticalAdasTTC.eval">[docs]</a>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_fitness</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">vector_fitness</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
 
 
 
