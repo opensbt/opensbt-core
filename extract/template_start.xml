@@ -1,0 +1,11 @@
+<Actions>
+  <Private entityRef="obs_10180">
+    <PrivateAction>
+      <TeleportAction>
+        <Position>
+          <WorldPosition x="8.305662431294499" y="-5.405895133832167" z="0.0" h="2.885502313499262" p="0.0" r="0.0"/>
+        </Position>
+      </TeleportAction>
+    </PrivateAction>
+  </Private>
+</Actions>
