@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <OpenSCENARIO>
     <FileHeader revMajor="1" revMinor="1" date="2022-11-15T10:00:00" description="Demonstrate ALKS controller" author="esmini-team"/>
     <ParameterDeclarations>
@@ -18,57 +18,24 @@
         <LogicFile filepath="./examples/esmini/scenarios/cutin/straight_500m.xodr"/>
     </RoadNetwork>
     <Entities>
-        <ScenarioObject name="ego">
-            <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
-            <ObjectController>
-                <Controller name="ALKS_R157SM_Controller">
-                    <Properties>
-                        <Property name="mode" value="override"/>
-                        <Property name="model" value="RSS"/>
-                        <Property name="logLevel" value="2"/>
-                        <Property name="cruise" value="true"/>
-                        <Property name="cutInPerceptionDelayMode" value="Time"/>
-                        <Property name="fullStop" value="true"/>
-                        <Property name="lateralTrigDistance" value="0.5"/>
-                        <Property name="aebTTC" value="2"/>
-                    </Properties>
-                </Controller>
-            </ObjectController>
-        </ScenarioObject>
-        <ScenarioObject name="adversary">
-            <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
-        </ScenarioObject>
     </Entities>
     <Storyboard>
         <Init>
             <Actions>
-                <!-- Add specific actions here, e.g., start position, teleport, etc. -->
             </Actions>
         </Init>
-        <Story>
-            <Act>
-                <ManeuverGroup name="ego_maneuver_group" maximumExecutionCount="1">
-                    <!-- Define the specific maneuver actions for ego vehicle here -->
-                </ManeuverGroup>
-                <StartTrigger>
-                    <ConditionGroup>
-                        <Condition name="start_trigger" delay="0.0" conditionEdge="rising">
-                            <ByValueCondition>
-                                <SimulationTimeCondition value="0.0" rule="greaterThan"/>
-                            </ByValueCondition>
-                        </Condition>
-                    </ConditionGroup>
-                </StartTrigger>
-                <StopTrigger>
-                    <ConditionGroup>
-                        <Condition name="stop_trigger" delay="0" conditionEdge="none">
-                            <ByValueCondition>
-                                <SimulationTimeCondition value="$MaxSimTime" rule="greaterThan"/>
-                            </ByValueCondition>
-                        </Condition>
-                    </ConditionGroup>
-                </StopTrigger>
-            </Act>
+        <Story name="MyStory">
+            <ParameterDeclarations/>
         </Story>
+        <StopTrigger>
+            <ConditionGroup>
+                <Condition name="stop_trigger " delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                        <SimulationTimeCondition value="1000" rule="greaterThan"/>
+                    </ByValueCondition>
+                </Condition>
+            </ConditionGroup>
+        </StopTrigger>
     </Storyboard>
 </OpenSCENARIO>
+

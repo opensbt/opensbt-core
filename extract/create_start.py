@@ -55,6 +55,8 @@ def append_start_position(file_path, start_position, file_path_new):
 
     # Append the new position
     actions.append(new_position)
+    
+    print(file_path_new)
 
     # Prettify and save the updated XML
     with open(file_path_new, "w", encoding="utf-8") as f:

@@ -26,7 +26,9 @@ class Waypoint:
         return vertex
 
 class ManeuverGroup:
-    def __init__(self, entity_name, waypoints, maneuver_name="ego trajectory", act_name="Main act"):
+    def __init__(self, entity_name, waypoints, 
+                 maneuver_name="ego trajectory", 
+                 act_name="Main act"):
         self.entity_name = entity_name
         self.waypoints = waypoints
         self.maneuver_name = maneuver_name
@@ -38,7 +40,7 @@ class ManeuverGroup:
         act = ET.Element("Act", name=self.act_name)
 
         # ManeuverGroup element
-        maneuver_group = ET.SubElement(act, "ManeuverGroup", name="ego", maximumExecutionCount="1")
+        maneuver_group = ET.SubElement(act, "ManeuverGroup", name=self.entity_name, maximumExecutionCount="1")
 
         # Actors element
         actors = ET.SubElement(maneuver_group, "Actors", selectTriggeringEntities="false")
@@ -97,20 +99,24 @@ def prettify_xml(element):
     return pretty_xml
 
 def append_maneuver_group(file_path, maneuver_group, file_path_new):
-    """Append a maneuver group with waypoints to the <Actions> section of an OpenSCENARIO file."""
+    """Append a maneuver group with waypoints to the <Story> section of an OpenSCENARIO file."""
     tree = ET.parse(file_path)
     root = tree.getroot()
 
-    # Find the Actions element
-    actions = root.find(".//Actions")
-    if actions is None:
-        actions = ET.SubElement(root, "Actions")
+    # Find the Story element
+    storyboard = root.find(".//Storyboard")
+    if storyboard is None:
+        storyboard = ET.SubElement(root, "Storyboard")
+
+    story = storyboard.find(".//Story")
+    if story is None:
+        story = ET.SubElement(storyboard, "Story")
 
     # Create a new maneuver group
     new_maneuver_group = maneuver_group.to_xml()
 
     # Append the new maneuver group
-    actions.append(new_maneuver_group)
+    story.append(new_maneuver_group)
 
     # Prettify and save the updated XML
     with open(file_path_new, "w", encoding="utf-8") as f:
