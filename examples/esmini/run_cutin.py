@@ -48,7 +48,7 @@ class FitnessMinDistanceVelocityExtended(Fitness):
     def name(self):
         return "Min distance", "Velocity at min distance"
 
-    def eval(self, simout: SimulationOutput) -> Tuple[float]:
+    def eval(self, simout: SimulationOutput, **kwargs) -> Tuple[float]:
         if "adversary" in simout.location:
             name_adversary = "adversary"
         else:
@@ -80,7 +80,7 @@ problem = ADASProblem(
                       fitness_function=FitnessMinDistanceVelocityExtended(), # we select an appropriate fitness function later
                       critical_function=CriticalAdasDistanceVelocity(), # we select an appropriate criticality function later
                       simulate_function=EsminiSimulator.simulate,
-                      do_visualize=False
+                      do_visualize=True
                       )
 config = DefaultSearchConfiguration()
 config.population_size = 2

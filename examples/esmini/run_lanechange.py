@@ -44,7 +44,7 @@ class FitnessMinDistanceVelocityExtended(Fitness):
     def name(self):
         return "Min distance", "Velocity at min distance"
 
-    def eval(self, simout: SimulationOutput) -> Tuple[float]:
+    def eval(self, simout: SimulationOutput, **kwargs) -> Tuple[float]:
         if "adversary" in simout.location:
             name_adversary = "adversary"
         else:
