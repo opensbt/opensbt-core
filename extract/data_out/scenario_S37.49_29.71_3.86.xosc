@@ -19,6 +19,7 @@
     </RoadNetwork>
     <Entities>
         <ScenarioObject name="ego">
+            <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
             <Vehicle name="ego" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <BoundingBox>
@@ -42,6 +43,7 @@
             </ObjectController>
         </ScenarioObject>
         <ScenarioObject name="adversary">
+            <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
             <Vehicle name="adversary" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <BoundingBox>

@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 from opensbt.visualization import visualizer
 import logging as log
+from visualization import export
 
 from opensbt.config import RESULTS_FOLDER, WRITE_ALL_INDIVIDUALS, EXPERIMENTAL_MODE
 
@@ -221,10 +222,16 @@ class SimulationResult(Result):
                                mode= config.MODE_PLOT_TIME_TRACES,
                                 write_max = config.NUM_PLOT_TIME_TRACES)
         
-        visualizer.simulations(self, 
-                    save_folder,
-                    mode = config.MODE_WRITE_GIF,
-                    write_max = config.NUM_GIF_MAX)
+        # visualizer.simulations(self, 
+        #             save_folder,
+        #             mode = config.MODE_WRITE_GIF,
+        #             write_max = config.NUM_GIF_MAX)
+        
+        export.export_xosc(self, 
+                           save_folder,
+                           mode=config.MODE_WRITE_SIMOUT,
+                           max=config.NUM_SIMOUT_MAX)
+
         if WRITE_ALL_INDIVIDUALS:
             visualizer.all_individuals(self, save_folder)
         

@@ -40,7 +40,7 @@ def prettify_xml(element):
 
     return pretty_xml
 
-def append_start_position(file_path, start_position, file_path_new):
+def append_start_position(file_path, start_position, file_path_new = None):
     """Append a start position to the <Actions> section of an OpenSCENARIO file."""
     tree = ET.parse(file_path)
     root = tree.getroot()

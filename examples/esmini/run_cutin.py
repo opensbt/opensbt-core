@@ -80,7 +80,7 @@ problem = ADASProblem(
                       fitness_function=FitnessMinDistanceVelocityExtended(), # we select an appropriate fitness function later
                       critical_function=CriticalAdasDistanceVelocity(), # we select an appropriate criticality function later
                       simulate_function=EsminiSimulator.simulate,
-                      do_visualize=True
+                      do_visualize=False
                       )
 config = DefaultSearchConfiguration()
 config.population_size = 2

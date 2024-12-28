@@ -21,10 +21,12 @@ test_case_generation.egg-info
 # Temporary files
 carla_simulation/temp
 docs/jupyter/.ipynb_checkpoints/*
-
+examples/esmini/scenarios/tmp/**
 **/results/*
 
 docs/jupyter/opensbt-core/results/*
+
+examples/esmini/esmini-**
 
 # Testing
 docs/jupyter/opensbt-core

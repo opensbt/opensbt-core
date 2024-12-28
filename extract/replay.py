@@ -39,9 +39,9 @@ def run_scenario(esmini_path, scenario):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run esmini with OpenSCENARIO file.")
     parser.add_argument("--scenario", help="Path to the OpenSCENARIO (.xosc) file",
-                        default="/home/lev/Documents/testing/opensbt/opensbt-core/examples/esmini/scenarios/cutin/alks_cut-in.xosc")
+                        default="./examples/esmini/scenarios/cutin/alks_cut-in.xosc")
     
     args = parser.parse_args()
 
-    esmini_path = "/home/lev/Documents/testing/opensbt/opensbt-core/examples/esmini/esmini-demo_linux/esmini/bin/esmini"
+    esmini_path = "./examples/esmini/esmini-demo_linux/esmini/bin/esmini"
     run_scenario(esmini_path, args.scenario)
