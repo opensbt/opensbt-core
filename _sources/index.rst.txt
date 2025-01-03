@@ -10,7 +10,6 @@ Welcome to OpenSBT's documentation! (Version: |version|)
    :maxdepth: 3
    :caption: Contents
 
-
 About
 ==================
 OpenSBT is a modular and extensible codebase designed to facilitate search-based testing of 
@@ -21,7 +20,7 @@ An introductory video of OpenSBT can be found here: https://www.youtube.com/watc
 Getting Started
 ===============
 
-This section will help you get started with installing and running **OpenSBT**.
+This section will help you get started with installing and running `OpenSBT <https://github.com/opensbt/opensbt-core>`_.
 
 Installation
 +++++++++++++++
@@ -124,7 +123,6 @@ APIs/Modules
 ===================================
 
 You can find an overview of implemented modules, classes and functions here: :ref:`opensbt-modules`.
-
 
 Tutorials
 ===============
