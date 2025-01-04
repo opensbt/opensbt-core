@@ -197,6 +197,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running evaluation number </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># it is assumed that the i-th simout in the simout list correponds to i-th scenario in the list x</span>
             <span class="n">simout_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulate_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> 
                                                  <span class="bp">self</span><span class="o">.</span><span class="n">simulation_variables</span><span class="p">,</span> 
                                                  <span class="bp">self</span><span class="o">.</span><span class="n">scenario_path</span><span class="p">,</span> 
