@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.algorithm.nsga2dt_optimizer &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,42 +68,42 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.algorithm.nsga2dt_optimizer</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.result</span>  <span class="kn">import</span> <span class="n">SimulationResult</span>
-<span class="kn">from</span> <span class="nn">opensbt.evaluation.critical</span> <span class="kn">import</span> <span class="n">Critical</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.operators</span> <span class="kn">import</span> <span class="n">select_operator</span>
-<span class="kn">from</span> <span class="nn">pymoo.termination</span> <span class="kn">import</span> <span class="n">get_termination</span>
-<span class="kn">from</span> <span class="nn">pymoo.algorithms.moo.nsga2</span> <span class="kn">import</span> <span class="n">NSGA2</span>
-<span class="kn">from</span> <span class="nn">pymoo.core.population</span> <span class="kn">import</span> <span class="n">Population</span>
-<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
-<span class="kn">from</span> <span class="nn">pymoo.operators.crossover.sbx</span> <span class="kn">import</span> <span class="n">SBX</span>
-<span class="kn">from</span> <span class="nn">pymoo.operators.mutation.pm</span> <span class="kn">import</span> <span class="n">PM</span>
-<span class="kn">from</span> <span class="nn">pymoo.operators.sampling.lhs</span> <span class="kn">import</span> <span class="n">LHS</span>
-<span class="kn">from</span> <span class="nn">pymoo.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
-<span class="kn">from</span> <span class="nn">pymoo.termination</span> <span class="kn">import</span> <span class="n">get_termination</span>
-<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
-<span class="kn">from</span> <span class="nn">opensbt.exception.configuration</span> <span class="kn">import</span> <span class="n">RestrictiveConfigException</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.archive</span> <span class="kn">import</span> <span class="n">MemoryArchive</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.time_utils</span> <span class="kn">import</span> <span class="n">convert_pymoo_time_to_seconds</span>
-<span class="kn">from</span> <span class="nn">pymoo.core.population</span> <span class="kn">import</span> <span class="n">Population</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization.configuration</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.algorithm.classification.decision_tree</span> <span class="kn">import</span> <span class="n">decision_tree</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_individuals</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.time_utils</span> <span class="kn">import</span> <span class="n">convert_pymoo_time_to_seconds</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization.configuration</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.experiment.search_configuration</span> <span class="kn">import</span> <span class="n">SearchConfiguration</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.result</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">log</span>
-<span class="kn">from</span> <span class="nn">opensbt.algorithm.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.result</span><span class="w">  </span><span class="kn">import</span> <span class="n">SimulationResult</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.evaluation.critical</span><span class="w"> </span><span class="kn">import</span> <span class="n">Critical</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.operators</span><span class="w"> </span><span class="kn">import</span> <span class="n">select_operator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.termination</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_termination</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.algorithms.moo.nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">NSGA2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.population</span><span class="w"> </span><span class="kn">import</span> <span class="n">Population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.operators.crossover.sbx</span><span class="w"> </span><span class="kn">import</span> <span class="n">SBX</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.operators.mutation.pm</span><span class="w"> </span><span class="kn">import</span> <span class="n">PM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.operators.sampling.lhs</span><span class="w"> </span><span class="kn">import</span> <span class="n">LHS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.termination</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_termination</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.exception.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestrictiveConfigException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.archive</span><span class="w"> </span><span class="kn">import</span> <span class="n">MemoryArchive</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.time_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_pymoo_time_to_seconds</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.population</span><span class="w"> </span><span class="kn">import</span> <span class="n">Population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.algorithm.classification.decision_tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">decision_tree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.evaluation</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_individuals</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.time_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_pymoo_time_to_seconds</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.experiment.search_configuration</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchConfiguration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.result</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.algorithm.optimizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimizer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <div class="viewcode-block" id="NsgaIIDTOptimizer">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer">[docs]</a>
-<span class="k">class</span> <span class="nc">NsgaIIDTOptimizer</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NsgaIIDTOptimizer</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">        This optimizer implements the NSGA-II-DT algorithm from [1] which is based on the NSGA-II algorithm </span>
 <span class="sd">        but is employing ML models, i.e. decision trees to guide the search for failures. </span>
@@ -119,7 +119,7 @@
 
 <div class="viewcode-block" id="NsgaIIDTOptimizer.__init__">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">problem</span><span class="p">:</span> <span class="n">Problem</span><span class="p">,</span>
                  <span class="n">config</span><span class="p">:</span> <span class="n">SearchConfiguration</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the NSGA-II-DT Optimizer</span>
@@ -139,7 +139,7 @@
         
 <div class="viewcode-block" id="NsgaIIDTOptimizer.run">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer.run">[docs]</a>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimulationResult</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimulationResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
 
 <span class="sd">        :return: Return a SimulationResults object which holds all information from the simulation.</span>
@@ -298,7 +298,7 @@
 
 <div class="viewcode-block" id="NsgaIIDTOptimizer._update_history">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._update_history">[docs]</a>
-    <span class="k">def</span> <span class="nf">_update_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">hist_holder</span><span class="p">,</span> <span class="n">tree_iteration</span><span class="p">,</span> <span class="n">inner_num_gen</span><span class="p">,</span> <span class="n">inner_algorithm</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">hist_holder</span><span class="p">,</span> <span class="n">tree_iteration</span><span class="p">,</span> <span class="n">inner_num_gen</span><span class="p">,</span> <span class="n">inner_algorithm</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inner_num_gen</span><span class="p">):</span>
             <span class="n">pop</span> <span class="o">=</span> <span class="n">Population</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
                 <span class="n">hist_holder</span><span class="p">[</span><span class="n">tree_iteration</span> <span class="o">*</span> <span class="n">inner_num_gen</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">)</span>
@@ -313,7 +313,7 @@
 
 <div class="viewcode-block" id="NsgaIIDTOptimizer._create_result">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.nsga2dt_optimizer.NsgaIIDTOptimizer._create_result">[docs]</a>
-    <span class="k">def</span> <span class="nf">_create_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">hist_holder</span><span class="p">,</span> <span class="n">inner_algorithm</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">hist_holder</span><span class="p">,</span> <span class="n">inner_algorithm</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">):</span>
         <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">hist_holder</span><span class="p">:</span>
             <span class="n">I</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="p">)</span>

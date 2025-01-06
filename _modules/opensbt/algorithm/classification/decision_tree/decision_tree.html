@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.algorithm.classification.decision_tree.decision_tree &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,12 +68,12 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.algorithm.classification.decision_tree.decision_tree</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">pymoo.core.population</span>
-<span class="kn">import</span> <span class="nn">csv</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymoo.core.population</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
 
 <span class="n">MIN_SAMPLES_SPLIT</span> <span class="o">=</span> <span class="mf">0.07</span>
 <span class="n">MIN_SAMPLES_LEAF</span> <span class="o">=</span> <span class="mi">5</span>
@@ -86,12 +86,12 @@
 
 <div class="viewcode-block" id="Region">
 <a class="viewcode-back" href="../../../../../opensbt.algorithm.classification.decision_tree.html#opensbt.algorithm.classification.decision_tree.decision_tree.Region">[docs]</a>
-<span class="k">class</span> <span class="nc">Region</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Region</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Represent a subspace of the design space and its criticality based on the tests in the region. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Region.__init__">
 <a class="viewcode-back" href="../../../../../opensbt.algorithm.classification.decision_tree.html#opensbt.algorithm.classification.decision_tree.decision_tree.Region.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xl</span><span class="p">,</span> <span class="n">xu</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xl</span><span class="p">,</span> <span class="n">xu</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xl</span> <span class="o">=</span> <span class="n">xl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xu</span> <span class="o">=</span> <span class="n">xu</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">population</span> <span class="o">=</span> <span class="n">population</span>
@@ -101,7 +101,7 @@
 
 <div class="viewcode-block" id="Region.define_critical">
 <a class="viewcode-back" href="../../../../../opensbt.algorithm.classification.decision_tree.html#opensbt.algorithm.classification.decision_tree.decision_tree.Region.define_critical">[docs]</a>
-    <span class="k">def</span> <span class="nf">define_critical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_min</span><span class="p">,</span> <span class="n">threshold_max</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_critical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_min</span><span class="p">,</span> <span class="n">threshold_max</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate the criticality of the region based on the given population and</span>
 <span class="sd">        the given thresholds.</span>
@@ -120,7 +120,7 @@
 
 <div class="viewcode-block" id="generate_critical_regions">
 <a class="viewcode-back" href="../../../../../opensbt.algorithm.classification.decision_tree.html#opensbt.algorithm.classification.decision_tree.decision_tree.generate_critical_regions">[docs]</a>
-<span class="k">def</span> <span class="nf">generate_critical_regions</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_critical_regions</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> 
                              <span class="n">problem</span><span class="p">,</span>
                              <span class="n">min_samples_split</span><span class="o">=</span><span class="n">MIN_SAMPLES_SPLIT</span><span class="p">,</span>
                              <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">MIN_SAMPLES_LEAF</span><span class="p">,</span> 
@@ -203,7 +203,7 @@
 
     <span class="n">classification</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">individuals_in_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">individuals_in_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">):</span>
         <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">classification</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">classification</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">node_id</span><span class="p">:</span>

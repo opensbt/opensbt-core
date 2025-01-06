@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.visualization.combined &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,33 +68,33 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.visualization.combined</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">traceback</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.individual</span> <span class="kn">import</span> <span class="n">Individual</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.population</span> <span class="kn">import</span> <span class="n">Population</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="n">get_nondominated_population</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization.visualizer</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.analysis.quality_indicators.quality</span> <span class="kn">import</span> <span class="n">EvaluationResult</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.duplicates</span> <span class="kn">import</span> <span class="n">duplicate_free</span>
-<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">log</span>
-<span class="kn">from</span> <span class="nn">opensbt.analysis.statistics</span> <span class="kn">import</span> <span class="n">wilcoxon</span>
-<span class="kn">from</span> <span class="nn">opensbt.analysis.quality_indicators.metrics</span> <span class="kn">import</span> <span class="n">ncrit</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.individual</span><span class="w"> </span><span class="kn">import</span> <span class="n">Individual</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.population</span><span class="w"> </span><span class="kn">import</span> <span class="n">Population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_nondominated_population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.visualizer</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.analysis.quality_indicators.quality</span><span class="w"> </span><span class="kn">import</span> <span class="n">EvaluationResult</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.duplicates</span><span class="w"> </span><span class="kn">import</span> <span class="n">duplicate_free</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.analysis.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">wilcoxon</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.analysis.quality_indicators.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">ncrit</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.config</span> <span class="kn">import</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">N_CELLS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">N_CELLS</span>
 
 <span class="sd">&quot;&quot;&quot;This module provides functions for the analysis of completed runs with different search approaches.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="calculate_combined_crit_pop">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.calculate_combined_crit_pop">[docs]</a>
-<span class="k">def</span> <span class="nf">calculate_combined_crit_pop</span><span class="p">(</span><span class="n">run_paths</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_combined_crit_pop</span><span class="p">(</span><span class="n">run_paths</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Unions critical solutions from all runs to approximate &quot;real&quot; critical design space.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">len</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run_paths: </span><span class="si">{</span><span class="n">run_paths</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -111,7 +111,7 @@
 
 <div class="viewcode-block" id="calculate_combined_pf">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.calculate_combined_pf">[docs]</a>
-<span class="k">def</span> <span class="nf">calculate_combined_pf</span><span class="p">(</span><span class="n">run_paths</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_combined_pf</span><span class="p">(</span><span class="n">run_paths</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="c1"># TODO add information on the deviation of the values wrt. to differen runs in the plots</span>
 
     <span class="n">pf_pop</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
@@ -132,7 +132,7 @@
 
 <div class="viewcode-block" id="plot_combined_analysis_last_min_max">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.plot_combined_analysis_last_min_max">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_combined_analysis_last_min_max</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_combined_analysis_last_min_max</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Outputs mean/std/min/max for final metric value instead for several number of evaluations as in plot_combined_analysis</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -158,7 +158,7 @@
         <span class="n">max_value_runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_value</span><span class="p">]</span>
         <span class="n">min_value_runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">min_value</span><span class="p">]</span>
 
-        <span class="k">def</span> <span class="nf">std_dev</span><span class="p">(</span><span class="n">y_values</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">std_dev</span><span class="p">(</span><span class="n">y_values</span><span class="p">):</span>
             <span class="n">y_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> \
                 <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">y_error</span> <span class="o">=</span> <span class="p">[]</span>
@@ -204,7 +204,7 @@
 
 <div class="viewcode-block" id="write_last_metric_values">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_last_metric_values">[docs]</a>
-<span class="k">def</span> <span class="nf">write_last_metric_values</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_last_metric_values</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">values_algo</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">algos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
@@ -236,7 +236,7 @@
             
 <div class="viewcode-block" id="plot_combined_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.plot_combined_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_combined_analysis</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">n_func_evals_lim</span><span class="p">,</span> <span class="n">n_fitting_points</span><span class="p">,</span> <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step_chkp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">error_mean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_combined_analysis</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> <span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">n_func_evals_lim</span><span class="p">,</span> <span class="n">n_fitting_points</span><span class="p">,</span> <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step_chkp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">error_mean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">plot_array</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
@@ -318,7 +318,7 @@
 
 <div class="viewcode-block" id="plot_combined_hypervolume_lin_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.plot_combined_hypervolume_lin_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_combined_hypervolume_lin_analysis</span><span class="p">(</span><span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_combined_hypervolume_lin_analysis</span><span class="p">(</span><span class="n">run_paths_array</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">run_paths</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">run_paths_array</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">run_paths</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Path list is empty&quot;</span><span class="p">)</span>
@@ -345,7 +345,7 @@
             <span class="n">hv_run</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hv</span><span class="p">)</span>
             <span class="n">evals_run</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_evals</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">get_interpol_value</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_interpol_value</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">hv</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="nb">eval</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_evals</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">n_evals</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pos</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -385,7 +385,7 @@
 
 <div class="viewcode-block" id="write_analysis_results">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_analysis_results">[docs]</a>
-<span class="k">def</span> <span class="nf">write_analysis_results</span><span class="p">(</span><span class="n">result_runs_all</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">write_analysis_results</span><span class="p">(</span><span class="n">result_runs_all</span><span class="p">,</span> 
                             <span class="n">save_folder</span><span class="p">,</span> 
                             <span class="n">nadir</span><span class="p">,</span> 
                             <span class="n">ideal</span><span class="p">):</span>
@@ -608,7 +608,7 @@
 
 <div class="viewcode-block" id="read_metric_single">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.read_metric_single">[docs]</a>
-<span class="k">def</span> <span class="nf">read_metric_single</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_metric_single</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">):</span>
     <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;n_eval&quot;</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">])</span>
     <span class="n">n_evals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;n_eval&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">hv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">metric_name</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -617,7 +617,7 @@
 
 <div class="viewcode-block" id="read_pf_single">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.read_pf_single">[docs]</a>
-<span class="k">def</span> <span class="nf">read_pf_single</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_pf_single</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">n_var</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -642,7 +642,7 @@
 
 <div class="viewcode-block" id="make_comparison_single">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.make_comparison_single">[docs]</a>
-<span class="k">def</span> <span class="nf">make_comparison_single</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">subplot_metrics</span><span class="p">,</span> <span class="n">subplot_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_comparison_single</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">subplot_metrics</span><span class="p">,</span> <span class="n">subplot_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
     <span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
     <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
     <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
@@ -690,7 +690,7 @@
 
 <div class="viewcode-block" id="make_comparison_plot">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.make_comparison_plot">[docs]</a>
-<span class="k">def</span> <span class="nf">make_comparison_plot</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">make_comparison_plot</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> 
                         <span class="n">save_folder</span><span class="p">,</span> 
                         <span class="n">subplot_metrics</span><span class="p">,</span> 
                         <span class="n">subplot_names</span><span class="p">,</span> 
@@ -830,7 +830,7 @@
     
 <div class="viewcode-block" id="make_subplots">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.make_subplots">[docs]</a>
-<span class="k">def</span> <span class="nf">make_subplots</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">subplot_metrics</span><span class="p">,</span> <span class="n">subplot_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">distance_tick</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_subplots</span><span class="p">(</span><span class="n">max_evaluations</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">subplot_metrics</span><span class="p">,</span> <span class="n">subplot_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">distance_tick</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
     <span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
     <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
     <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
@@ -885,7 +885,7 @@
 <span class="sd">&#39;&#39;&#39;</span>
 <div class="viewcode-block" id="write_metric_data_to_csv_cid">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_metric_data_to_csv_cid">[docs]</a>
-<span class="k">def</span> <span class="nf">write_metric_data_to_csv_cid</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">plot_array</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_metric_data_to_csv_cid</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">plot_array</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
     <span class="n">algo_1</span> <span class="o">=</span> <span class="n">algo_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">algo_2</span> <span class="o">=</span> <span class="n">algo_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -931,7 +931,7 @@
 
 <div class="viewcode-block" id="write_metric_data_to_csv">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.write_metric_data_to_csv">[docs]</a>
-<span class="k">def</span> <span class="nf">write_metric_data_to_csv</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">plot_array_hv</span><span class="p">,</span> <span class="n">plot_array_igd</span><span class="p">,</span> <span class="n">plot_array_sp</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_metric_data_to_csv</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">metric_names</span><span class="p">,</span> <span class="n">algo_names</span><span class="p">,</span> <span class="n">plot_array_hv</span><span class="p">,</span> <span class="n">plot_array_igd</span><span class="p">,</span> <span class="n">plot_array_sp</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">metric_names</span><span class="p">:</span>
         <span class="n">header</span> <span class="o">=</span> <span class="p">[]</span>
@@ -961,7 +961,7 @@
 
 <div class="viewcode-block" id="retrieve_metric_data_from_csv">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.retrieve_metric_data_from_csv">[docs]</a>
-<span class="k">def</span> <span class="nf">retrieve_metric_data_from_csv</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">n_algos</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">retrieve_metric_data_from_csv</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">n_algos</span><span class="p">):</span>
     <span class="n">storing_arrays</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -979,13 +979,13 @@
 
 <div class="viewcode-block" id="statistical_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.statistical_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">statistical_analysis</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">statistical_analysis</span><span class="p">(</span><span class="n">metric_name_load</span><span class="p">,</span> 
                         <span class="n">runs_bases</span><span class="p">,</span>
                         <span class="n">runs_test</span><span class="p">,</span>
                         <span class="n">algo_test</span><span class="p">,</span>
                         <span class="n">save_folder</span><span class="p">,</span> 
                         <span class="n">metric_name_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get_last_metric_value</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_metric_value</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
         <span class="n">eval_res</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">hv</span> <span class="o">=</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">eval_res</span><span class="o">.</span><span class="n">values</span>
         <span class="k">return</span> <span class="n">hv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -1032,7 +1032,7 @@
 
 <div class="viewcode-block" id="statistical_analysis_from_overview">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.combined.statistical_analysis_from_overview">[docs]</a>
-<span class="k">def</span> <span class="nf">statistical_analysis_from_overview</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">statistical_analysis_from_overview</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> 
                         <span class="n">input_folder</span><span class="p">,</span>
                         <span class="n">save_folder</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>

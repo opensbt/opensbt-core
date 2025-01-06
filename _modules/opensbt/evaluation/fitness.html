@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.evaluation.fitness &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,37 +68,37 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.evaluation.fitness</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
-<span class="kn">from</span> <span class="nn">opensbt.simulation.simulator</span> <span class="kn">import</span> <span class="n">SimulationOutput</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils</span> <span class="kn">import</span> <span class="n">geometric</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.simulation.simulator</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulationOutput</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometric</span>
 
 
 <div class="viewcode-block" id="Fitness">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness">[docs]</a>
-<span class="k">class</span> <span class="nc">Fitness</span><span class="p">():</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Fitness</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This class defines an interface for concrete fitness functions. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines for each objective if it is minimized or maximized. Returns a tuple, where each element holds </span>
 <span class="sd">           the value &quot;min&quot; or &quot;max&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines the name of the fitness funtion as a tuple, where each element corresponds to the name of the objective</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
  
 <div class="viewcode-block" id="Fitness.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.Fitness.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>    
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>    
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the fitness value of a given SimulationOutput instance.</span>
 <span class="sd">    </span>
 <span class="sd">        :param simout: SimulationOutput instance.</span>
@@ -114,36 +114,36 @@
 
 <div class="viewcode-block" id="MockFitness">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.MockFitness">[docs]</a>
-<span class="k">class</span> <span class="nc">MockFitness</span><span class="p">():</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MockFitness</span><span class="p">():</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span><span class="s2">&quot;min&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;dimension_1&quot;</span><span class="p">,</span><span class="s2">&quot;dimension_2&quot;</span>
 
 <div class="viewcode-block" id="MockFitness.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.MockFitness.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></div>
 </div>
 
         
 <div class="viewcode-block" id="FitnessMinDistance">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistance">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessMinDistance</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessMinDistance</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;min&quot;</span><span class="p">,)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Min distance&quot;</span>
 
 <div class="viewcode-block" id="FitnessMinDistance.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistance.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="k">if</span> <span class="s2">&quot;distance&quot;</span> <span class="ow">in</span> <span class="n">simout</span><span class="o">.</span><span class="n">otherParams</span><span class="p">:</span>
             <span class="n">dist</span> <span class="o">=</span> <span class="n">simout</span><span class="o">.</span><span class="n">otherParams</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">]</span>
             <span class="n">result</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
@@ -157,18 +157,18 @@
 
 <div class="viewcode-block" id="FitnessMinDistanceVelocity">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocity">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessMinDistanceVelocity</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessMinDistanceVelocity</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Min distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Velocity at min distance&quot;</span>
 
 <div class="viewcode-block" id="FitnessMinDistanceVelocity.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocity.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="k">if</span> <span class="s2">&quot;adversary&quot;</span> <span class="ow">in</span> <span class="n">simout</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
             <span class="n">name_adversary</span> <span class="o">=</span> <span class="s2">&quot;adversary&quot;</span>
         <span class="k">else</span><span class="p">:</span>
@@ -191,18 +191,18 @@
 
 <div class="viewcode-block" id="FitnessMinDistanceVelocityFrontOnly">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessMinDistanceVelocityFrontOnly</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessMinDistanceVelocityFrontOnly</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Min distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Velocity at min distance&quot;</span>
 
 <div class="viewcode-block" id="FitnessMinDistanceVelocityFrontOnly.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinDistanceVelocityFrontOnly.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="k">if</span> <span class="s2">&quot;adversary&quot;</span> <span class="ow">in</span> <span class="n">simout</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
             <span class="n">name_adversary</span> <span class="o">=</span> <span class="s2">&quot;adversary&quot;</span>
         <span class="k">else</span><span class="p">:</span>
@@ -226,18 +226,18 @@
 
 <div class="viewcode-block" id="FitnessMinTTC">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTC">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessMinTTC</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessMinTTC</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Min TTC&quot;</span><span class="p">,</span>
 
 <div class="viewcode-block" id="FitnessMinTTC.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTC.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="n">all_ttc</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="s2">&quot;adversary&quot;</span> <span class="ow">in</span> <span class="n">simout</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
             <span class="n">name_adversary</span> <span class="o">=</span> <span class="s2">&quot;adversary&quot;</span>
@@ -281,18 +281,18 @@
 
 <div class="viewcode-block" id="FitnessMinTTCVelocity">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTCVelocity">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessMinTTCVelocity</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessMinTTCVelocity</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Min TTC&quot;</span><span class="p">,</span> <span class="s2">&quot;Critical Velocity&quot;</span>
 
 <div class="viewcode-block" id="FitnessMinTTCVelocity.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessMinTTCVelocity.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">if</span> <span class="s2">&quot;adversary&quot;</span> <span class="ow">in</span> <span class="n">simout</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
             <span class="n">name_adversary</span> <span class="o">=</span> <span class="s2">&quot;adversary&quot;</span>
         <span class="k">else</span><span class="p">:</span>
@@ -342,20 +342,20 @@
 
 <div class="viewcode-block" id="FitnessAdaptedDistSpeedRelVelocity">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessAdaptedDistSpeedRelVelocity</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessAdaptedDistSpeedRelVelocity</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Critical Adapted distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Velocity at critical distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Relative velocity at critical distance&quot;</span>
 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Fitness function to resolve front and rear collisions&#39;&#39;&#39;</span>
 
 <div class="viewcode-block" id="FitnessAdaptedDistSpeedRelVelocity.fitness_parallel">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_parallel">[docs]</a>
-    <span class="k">def</span> <span class="nf">fitness_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_parallel</span><span class="p">,</span> <span class="n">car_length</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fitness_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_parallel</span><span class="p">,</span> <span class="n">car_length</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Input:</span>
 <span class="sd">            z_parallel, which is a projection of relative position of a car&#39;s front bumper and a pedestrian to the</span>
@@ -388,7 +388,7 @@
 
 <div class="viewcode-block" id="FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.fitness_perpendicular">[docs]</a>
-    <span class="k">def</span> <span class="nf">fitness_perpendicular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_perpendicular</span><span class="p">,</span> <span class="n">car_width</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fitness_perpendicular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_perpendicular</span><span class="p">,</span> <span class="n">car_width</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Input:</span>
 <span class="sd">            z_perpendicular, which is a projection of relative position of a car&#39;s center and a pedestrian to the axis,</span>
@@ -420,7 +420,7 @@
 
 <div class="viewcode-block" id="FitnessAdaptedDistSpeedRelVelocity.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistSpeedRelVelocity.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">if</span> <span class="s2">&quot;car_length&quot;</span> <span class="ow">in</span> <span class="n">simout</span><span class="o">.</span><span class="n">otherParams</span><span class="p">:</span>
             <span class="n">car_length</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">simout</span><span class="o">.</span><span class="n">otherParams</span><span class="p">[</span><span class="s2">&quot;car_length&quot;</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
@@ -487,18 +487,18 @@
 
 <div class="viewcode-block" id="FitnessAdaptedDistanceSpeed">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessAdaptedDistanceSpeed</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessAdaptedDistanceSpeed</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Critical adapted distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Velocity at critical distance&quot;</span>
 
 <div class="viewcode-block" id="FitnessAdaptedDistanceSpeed.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeed.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="c1"># use only adapted distance and velocity of the fitness comupation of existing function</span>
         <span class="n">vector_fitness_all</span> <span class="o">=</span> <span class="n">FitnessAdaptedDistSpeedRelVelocity</span><span class="p">()</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">simout</span><span class="p">)</span>
         <span class="n">adapted_distance</span> <span class="o">=</span> <span class="n">vector_fitness_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -510,18 +510,18 @@
 
 <div class="viewcode-block" id="FitnessAdaptedDistanceSpeedTTC">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC">[docs]</a>
-<span class="k">class</span> <span class="nc">FitnessAdaptedDistanceSpeedTTC</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FitnessAdaptedDistanceSpeedTTC</span><span class="p">(</span><span class="n">Fitness</span><span class="p">):</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">min_or_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Critical adapted distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Velocity at critical distance&quot;</span><span class="p">,</span> <span class="s2">&quot;Min TTC&quot;</span>
 
 <div class="viewcode-block" id="FitnessAdaptedDistanceSpeedTTC.eval">
 <a class="viewcode-back" href="../../../opensbt.evaluation.html#opensbt.evaluation.fitness.FitnessAdaptedDistanceSpeedTTC.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="n">min_ttc</span> <span class="o">=</span> <span class="n">FitnessMinTTC</span><span class="p">()</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">simout</span><span class="p">)</span>
         <span class="n">pos_crit</span> <span class="o">=</span> <span class="n">FitnessAdaptedDistanceSpeed</span><span class="p">()</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">simout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">pos_crit</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos_crit</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">min_ttc</span></div>

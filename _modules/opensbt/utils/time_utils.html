@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.utils.time_utils &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -70,7 +70,7 @@
   <h1>Source code for opensbt.utils.time_utils</h1><div class="highlight"><pre>
 <div class="viewcode-block" id="convert_pymoo_time_to_seconds">
 <a class="viewcode-back" href="../../../opensbt.utils.html#opensbt.utils.time_utils.convert_pymoo_time_to_seconds">[docs]</a>
-<span></span><span class="k">def</span> <span class="nf">convert_pymoo_time_to_seconds</span><span class="p">(</span><span class="n">pymoo_time</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span></span><span class="k">def</span><span class="w"> </span><span class="nf">convert_pymoo_time_to_seconds</span><span class="p">(</span><span class="n">pymoo_time</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">pymoo_time</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
     <span class="n">H</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>

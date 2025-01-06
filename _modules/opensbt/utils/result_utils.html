@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.utils.result_utils &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,21 +68,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.utils.result_utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization</span> <span class="kn">import</span> <span class="n">combined</span>
-<span class="kn">from</span> <span class="nn">pymoo.core.population</span> <span class="kn">import</span> <span class="n">Population</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization.configuration</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.problem</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.result</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">pymoo.algorithms.moo.nsga2</span> <span class="kn">import</span> <span class="n">NSGA2</span>
-<span class="kn">from</span> <span class="nn">pymoo.operators.crossover.sbx</span> <span class="kn">import</span> <span class="n">SBX</span>
-<span class="kn">from</span> <span class="nn">pymoo.operators.mutation.pm</span> <span class="kn">import</span> <span class="n">PM</span>
-<span class="kn">import</span> <span class="nn">copy</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">combined</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.population</span><span class="w"> </span><span class="kn">import</span> <span class="n">Population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.problem</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.result</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.algorithms.moo.nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">NSGA2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.operators.crossover.sbx</span><span class="w"> </span><span class="kn">import</span> <span class="n">SBX</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.operators.mutation.pm</span><span class="w"> </span><span class="kn">import</span> <span class="n">PM</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
 <div class="viewcode-block" id="create_result">
 <a class="viewcode-back" href="../../../opensbt.utils.html#opensbt.utils.result_utils.create_result">[docs]</a>
-<span class="k">def</span> <span class="nf">create_result</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">hist_holder</span><span class="p">,</span> <span class="n">inner_algorithm</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_result</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">hist_holder</span><span class="p">,</span> <span class="n">inner_algorithm</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Generates a result object from generation data to adhere to pymoos result model. Consider the implementation of NSGA-II-DT optimizer for reference. &quot;&quot;&quot;</span>
     <span class="c1"># TODO calculate res.opt</span>
     <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
@@ -114,7 +114,7 @@
 
 <div class="viewcode-block" id="create_result_from_generations">
 <a class="viewcode-back" href="../../../opensbt.utils.html#opensbt.utils.result_utils.create_result_from_generations">[docs]</a>
-<span class="k">def</span> <span class="nf">create_result_from_generations</span><span class="p">(</span><span class="n">path_generations</span><span class="p">,</span> <span class="n">problem</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_result_from_generations</span><span class="p">(</span><span class="n">path_generations</span><span class="p">,</span> <span class="n">problem</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a result object from recorded generation files which contain test inputs from the specific generations in human readable format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     

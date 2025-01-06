@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.problem.pymoo_test_problem &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,20 +68,20 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.problem.pymoo_test_problem</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
-<span class="kn">from</span> <span class="nn">pymoo.problems</span> <span class="kn">import</span> <span class="n">get_problem</span>
-<span class="kn">from</span> <span class="nn">opensbt.evaluation.critical</span> <span class="kn">import</span> <span class="n">Critical</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.problems</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.evaluation.critical</span><span class="w"> </span><span class="kn">import</span> <span class="n">Critical</span>
 
 <div class="viewcode-block" id="PymooTestProblem">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">PymooTestProblem</span><span class="p">(</span><span class="n">Problem</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PymooTestProblem</span><span class="p">(</span><span class="n">Problem</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Problem class to test testing algorithms on mathematical problems implemented in pymoo. &quot;&quot;&quot;</span>
     
 <div class="viewcode-block" id="PymooTestProblem.__init__">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">critical_function</span><span class="p">:</span> <span class="n">Critical</span><span class="p">,</span> <span class="n">approx_eval_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">critical_function</span><span class="p">:</span> <span class="n">Critical</span><span class="p">,</span> <span class="n">approx_eval_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Instantiates a pymoo based problem with name &quot;problem_name&quot; as testing problem. &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">critical_function</span> <span class="o">=</span> <span class="n">critical_function</span>
@@ -97,7 +97,7 @@
 
 <div class="viewcode-block" id="PymooTestProblem._instantiate_from_given_problem">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._instantiate_from_given_problem">[docs]</a>
-    <span class="k">def</span> <span class="nf">_instantiate_from_given_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">problem</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_instantiate_from_given_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">problem</span><span class="p">):</span>
 
         <span class="c1"># HACK: Copy over attribute values pointer to two functions</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">problem</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
@@ -114,7 +114,7 @@
         
 <div class="viewcode-block" id="PymooTestProblem._evaluate">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._evaluate">[docs]</a>
-    <span class="k">def</span> <span class="nf">_evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">test_problem</span><span class="o">.</span><span class="n">_evaluate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">out</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c1"># TODO retrieve fitness values and apply criticality function</span>
         <span class="n">out</span><span class="p">[</span><span class="s2">&quot;CB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -124,26 +124,26 @@
     
 <div class="viewcode-block" id="PymooTestProblem._calc_pareto_front">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_front">[docs]</a>
-    <span class="k">def</span> <span class="nf">_calc_pareto_front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_pareto_front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="PymooTestProblem._calc_pareto_set">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem._calc_pareto_set">[docs]</a>
-    <span class="k">def</span> <span class="nf">_calc_pareto_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_pareto_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="PymooTestProblem.is_simulation">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem.is_simulation">[docs]</a>
-    <span class="k">def</span> <span class="nf">is_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
 <span class="w">    </span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; In seconds &#39;&#39;&#39;</span>
 <div class="viewcode-block" id="PymooTestProblem.approx_sim_time">
 <a class="viewcode-back" href="../../../opensbt.problem.html#opensbt.problem.pymoo_test_problem.PymooTestProblem.approx_sim_time">[docs]</a>
-    <span class="k">def</span> <span class="nf">approx_sim_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">approx_sim_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mf">0.005</span></div>
 </div>
 

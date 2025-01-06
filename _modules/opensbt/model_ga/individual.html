@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.model_ga.individual &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,16 +68,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.model_ga.individual</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pymoo.core.individual</span> <span class="kn">import</span> <span class="n">Individual</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.individual</span><span class="w"> </span><span class="kn">import</span> <span class="n">Individual</span>
 
 <div class="viewcode-block" id="IndividualSimulated">
 <a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated">[docs]</a>
-<span class="k">class</span> <span class="nc">IndividualSimulated</span><span class="p">(</span><span class="n">Individual</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IndividualSimulated</span><span class="p">(</span><span class="n">Individual</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This class extends pymoos&#39; Individual class to integrate simulation output data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="IndividualSimulated.__init__">
 <a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_SO</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_CB</span> <span class="o">=</span> <span class="kc">None</span></div>
@@ -85,34 +85,34 @@
 
 <div class="viewcode-block" id="IndividualSimulated.reset">
 <a class="viewcode-back" href="../../../opensbt.model_ga.html#opensbt.model_ga.individual.IndividualSimulated.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_SO</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_CB</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">SO</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">SO</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SO</span>
 
     <span class="nd">@SO</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">SO</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">SO</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_SO</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">CB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">CB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CB</span>
 
     <span class="nd">@CB</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">CB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">CB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_CB</span> <span class="o">=</span> <span class="n">value</span>
         
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">cb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">CB</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">so</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">so</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SO</span></div>
 
 </pre></div>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.simulation.dummy_simulation &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,21 +68,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.simulation.dummy_simulation</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">opensbt.model_ga.individual</span> <span class="kn">import</span> <span class="n">Individual</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-<span class="kn">from</span> <span class="nn">opensbt.simulation.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span><span class="p">,</span> <span class="n">SimulationOutput</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">ceil</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils</span> <span class="kn">import</span> <span class="n">geometric</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.individual</span><span class="w"> </span><span class="kn">import</span> <span class="n">Individual</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.simulation.simulator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Simulator</span><span class="p">,</span> <span class="n">SimulationOutput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">ceil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometric</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <div class="viewcode-block" id="DummySimulator">
 <a class="viewcode-back" href="../../../opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator">[docs]</a>
-<span class="k">class</span> <span class="nc">DummySimulator</span><span class="p">(</span><span class="n">Simulator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DummySimulator</span><span class="p">(</span><span class="n">Simulator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">        This class implements a simplified driving simulator for two actors, where the ego and adversary move with linear velocity.</span>
 <span class="sd">        The ego scans for nearby vehicles. If the distance is below some threshold the ego reduces its speed until it is 0.</span>
@@ -100,7 +100,7 @@
 <div class="viewcode-block" id="DummySimulator.ind_in_archive">
 <a class="viewcode-back" href="../../../opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.ind_in_archive">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">ind_in_archive</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ind_in_archive</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks if individual is in the archive of individuals.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="ow">in</span> <span class="n">DummySimulator</span><span class="o">.</span><span class="n">archive</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
@@ -111,7 +111,7 @@
 <div class="viewcode-block" id="DummySimulator.simulate">
 <a class="viewcode-back" href="../../../opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.simulate">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">list_individuals</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Individual</span><span class="p">],</span> 
+    <span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span><span class="n">list_individuals</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Individual</span><span class="p">],</span> 
                  <span class="n">variable_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> 
                  <span class="n">scenario_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                  <span class="n">sim_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
@@ -165,7 +165,7 @@
 <div class="viewcode-block" id="DummySimulator.simulate_single">
 <a class="viewcode-back" href="../../../opensbt.simulation.html#opensbt.simulation.dummy_simulation.DummySimulator.simulate_single">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">simulate_single</span><span class="p">(</span><span class="nb">vars</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Individual</span><span class="p">],</span> 
+    <span class="k">def</span><span class="w"> </span><span class="nf">simulate_single</span><span class="p">(</span><span class="nb">vars</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Individual</span><span class="p">],</span> 
                         <span class="n">variable_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> 
                         <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                         <span class="n">sim_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
@@ -276,7 +276,7 @@
     
 <div class="viewcode-block" id="are_actors_nearby">
 <a class="viewcode-back" href="../../../opensbt.simulation.html#opensbt.simulation.dummy_simulation.are_actors_nearby">[docs]</a>
-<span class="k">def</span> <span class="nf">are_actors_nearby</span><span class="p">(</span><span class="n">pos_ego</span><span class="p">,</span> <span class="n">pos_others</span><span class="p">,</span> <span class="n">detection_dist</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">are_actors_nearby</span><span class="p">(</span><span class="n">pos_ego</span><span class="p">,</span> <span class="n">pos_others</span><span class="p">,</span> <span class="n">detection_dist</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Checks if the ego actor is within a certain distance of any actor in a list of positions</span>
 <span class="sd">    </span>
@@ -302,7 +302,7 @@
 
 <div class="viewcode-block" id="plan_motion">
 <a class="viewcode-back" href="../../../opensbt.simulation.html#opensbt.simulation.dummy_simulation.plan_motion">[docs]</a>
-<span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="n">starting_position</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">sampling_time</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plan_motion</span><span class="p">(</span><span class="n">starting_position</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">sampling_time</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plans the motion of an ego vehicle in a linear trajectory based on initial conditions.</span>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.utils.path &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,12 +68,12 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.utils.path</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <div class="viewcode-block" id="get_subfolders_from_folder">
 <a class="viewcode-back" href="../../../opensbt.utils.html#opensbt.utils.path.get_subfolders_from_folder">[docs]</a>
-<span class="k">def</span> <span class="nf">get_subfolders_from_folder</span><span class="p">(</span><span class="n">folder_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_subfolders_from_folder</span><span class="p">(</span><span class="n">folder_name</span><span class="p">):</span>
     <span class="n">subfolders</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">folder_name</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
     <span class="k">return</span> <span class="n">subfolders</span></div>
 

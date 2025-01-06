@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.visualization.scenario_plotter &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,21 +68,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.visualization.scenario_plotter</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
-<span class="kn">from</span> <span class="nn">opensbt</span> <span class="kn">import</span> <span class="n">config</span>
-<span class="kn">from</span> <span class="nn">opensbt.simulation.simulator</span> <span class="kn">import</span> <span class="n">SimulationOutput</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span><span class="p">,</span> <span class="n">PillowWriter</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">colorConverter</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization.configuration</span> <span class="kn">import</span> <span class="o">*</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.simulation.simulator</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulationOutput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.animation</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuncAnimation</span><span class="p">,</span> <span class="n">PillowWriter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rectangle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">colorConverter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="plot_scenario_gif">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.scenario_plotter.plot_scenario_gif">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_scenario_gif</span><span class="p">(</span><span class="n">parameter_values</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_scenario_gif</span><span class="p">(</span><span class="n">parameter_values</span><span class="p">,</span> 
                       <span class="n">simout</span><span class="p">:</span> <span class="n">SimulationOutput</span><span class="p">,</span> 
                       <span class="n">savePath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
                       <span class="n">fileName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
@@ -250,7 +250,7 @@
         <span class="n">y_vehicle</span> <span class="o">=</span> <span class="n">y_vehicles</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vehicle</span><span class="p">,</span> <span class="n">y_vehicle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s2">&quot;traces&quot;</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
         <span class="c1"># updating ego</span>
         <span class="n">rotation_angle_ego</span> <span class="o">=</span> <span class="p">(</span><span class="n">yaw_ego</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">90</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span>
         <span class="n">patch_ego</span><span class="o">.</span><span class="n">set_angle</span><span class="p">(</span><span class="n">rotation_angle_ego</span><span class="p">)</span>

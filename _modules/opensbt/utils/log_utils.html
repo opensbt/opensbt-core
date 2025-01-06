@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.utils.log_utils &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,13 +68,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.utils.log_utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">log</span>
-<span class="kn">import</span> <span class="nn">logging.config</span>
-<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging.config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">reload</span>
 
 <div class="viewcode-block" id="setup_logging">
 <a class="viewcode-back" href="../../../opensbt.utils.html#opensbt.utils.log_utils.setup_logging">[docs]</a>
-<span class="k">def</span> <span class="nf">setup_logging</span><span class="p">(</span><span class="n">log_to</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_logging</span><span class="p">(</span><span class="n">log_to</span><span class="p">):</span>
     <span class="c1"># Disable messages from matplot lib.</span>
     <span class="n">log</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;matplotlib.font_manager&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">({</span>
@@ -100,8 +100,8 @@
 
 <div class="viewcode-block" id="disable_pymoo_warnings">
 <a class="viewcode-back" href="../../../opensbt.utils.html#opensbt.utils.log_utils.disable_pymoo_warnings">[docs]</a>
-<span class="k">def</span> <span class="nf">disable_pymoo_warnings</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">pymoo.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">disable_pymoo_warnings</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
 
     <span class="n">Config</span><span class="o">.</span><span class="n">warnings</span><span class="p">[</span><span class="s1">&#39;not_compiled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span></div>
 

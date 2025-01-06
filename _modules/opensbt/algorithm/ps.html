@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.algorithm.ps &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -70,37 +70,37 @@
   <h1>Source code for opensbt.algorithm.ps</h1><div class="highlight"><pre>
 <span></span>
 
-<span class="kn">import</span> <span class="nn">pymoo</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">log</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymoo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.individual</span> <span class="kn">import</span> <span class="n">IndividualSimulated</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.individual</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndividualSimulated</span>
 <span class="n">pymoo</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">individual</span><span class="o">.</span><span class="n">Individual</span> <span class="o">=</span> <span class="n">IndividualSimulated</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.population</span> <span class="kn">import</span> <span class="n">PopulationExtended</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.population</span><span class="w"> </span><span class="kn">import</span> <span class="n">PopulationExtended</span>
 <span class="n">pymoo</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">Population</span> <span class="o">=</span> <span class="n">PopulationExtended</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.result</span>  <span class="kn">import</span> <span class="n">SimulationResult</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.result</span><span class="w">  </span><span class="kn">import</span> <span class="n">SimulationResult</span>
 <span class="n">pymoo</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">Result</span> <span class="o">=</span> <span class="n">SimulationResult</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.problem</span> <span class="kn">import</span> <span class="n">SimulationProblem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulationProblem</span>
 <span class="n">pymoo</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">Problem</span> <span class="o">=</span> <span class="n">SimulationProblem</span>
 
-<span class="kn">from</span> <span class="nn">pymoo.core.algorithm</span> <span class="kn">import</span> <span class="n">Algorithm</span>
-<span class="kn">from</span> <span class="nn">opensbt.algorithm.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Algorithm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.algorithm.optimizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimizer</span>
 
-<span class="kn">from</span> <span class="nn">pymoo.core.problem</span> <span class="kn">import</span> <span class="n">Problem</span>
-<span class="kn">from</span> <span class="nn">pymoo.operators.sampling.rnd</span> <span class="kn">import</span> <span class="n">FloatRandomSampling</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.core.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.operators.sampling.rnd</span><span class="w"> </span><span class="kn">import</span> <span class="n">FloatRandomSampling</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.experiment.search_configuration</span> <span class="kn">import</span> <span class="n">SearchConfiguration</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_individuals</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.experiment.search_configuration</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchConfiguration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.evaluation</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_individuals</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="n">get_nondominated_population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_nondominated_population</span>
 
 <div class="viewcode-block" id="PureSampling">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling">[docs]</a>
-<span class="k">class</span> <span class="nc">PureSampling</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PureSampling</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class provides the parent class for all sampling based search algorithms.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -109,7 +109,7 @@
 
 <div class="viewcode-block" id="PureSampling.__init__">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                 <span class="n">problem</span><span class="p">:</span> <span class="n">Problem</span><span class="p">,</span>
                 <span class="n">config</span><span class="p">:</span> <span class="n">SearchConfiguration</span><span class="p">,</span>
                 <span class="n">sampling_type</span> <span class="o">=</span> <span class="n">FloatRandomSampling</span><span class="p">):</span>
@@ -137,7 +137,7 @@
 
 <div class="viewcode-block" id="PureSampling.run">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.run">[docs]</a>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimulationResult</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimulationResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Overrides the run method of Optimizer by providing custom evaluation of samples and division in &quot;buckets&quot; for further analysis with pymoo.</span>
 <span class="sd">           (s. n_splits variable)</span>
 <span class="sd">        :return: Return a SimulationResults object which holds all information from the simulation.</span>
@@ -164,7 +164,7 @@
     
 <div class="viewcode-block" id="PureSampling._create_result">
 <a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling._create_result">[docs]</a>
-    <span class="k">def</span> <span class="nf">_create_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">):</span>
         <span class="n">res_holder</span> <span class="o">=</span> <span class="n">SimulationResult</span><span class="p">()</span>
         <span class="n">res_holder</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="p">()</span>
         <span class="n">res_holder</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">pop</span> <span class="o">=</span> <span class="n">pop</span>

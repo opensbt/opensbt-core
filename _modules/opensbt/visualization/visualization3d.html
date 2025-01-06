@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.visualization.visualization3d &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,21 +68,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.visualization.visualization3d</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pymoo.visualization.scatter</span> <span class="kn">import</span> <span class="n">Scatter</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.individual</span> <span class="kn">import</span> <span class="n">Individual</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.population</span> <span class="kn">import</span> <span class="n">Population</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="n">get_nondominated_population</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.duplicates</span> <span class="kn">import</span> <span class="n">duplicate_free</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymoo.visualization.scatter</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scatter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.individual</span><span class="w"> </span><span class="kn">import</span> <span class="n">Individual</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.population</span><span class="w"> </span><span class="kn">import</span> <span class="n">Population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_nondominated_population</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.duplicates</span><span class="w"> </span><span class="kn">import</span> <span class="n">duplicate_free</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.visualization.visualizer</span> <span class="kn">import</span> <span class="n">color_critical</span><span class="p">,</span> <span class="n">color_optimal</span><span class="p">,</span> <span class="n">color_not_critical</span><span class="p">,</span> <span class="n">color_not_optimal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.visualizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">color_critical</span><span class="p">,</span> <span class="n">color_optimal</span><span class="p">,</span> <span class="n">color_not_critical</span><span class="p">,</span> <span class="n">color_not_optimal</span>
 
 <div class="viewcode-block" id="read_testcases">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualization3d.read_testcases">[docs]</a>
-<span class="k">def</span> <span class="nf">read_testcases</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_testcases</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">var_names</span> <span class="o">=</span> <span class="p">[]</span>
@@ -111,7 +111,7 @@
 
 <div class="viewcode-block" id="visualize_3d">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualization3d.visualize_3d">[docs]</a>
-<span class="k">def</span> <span class="nf">visualize_3d</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">visualize_3d</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> 
                 <span class="n">save_folder</span><span class="p">,</span> 
                 <span class="n">labels</span><span class="p">,</span> 
                 <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;critical&quot;</span><span class="p">,</span> 

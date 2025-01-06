@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>opensbt.visualization.output_metric &mdash; OpenSBT  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -68,18 +68,18 @@
            <div itemprop="articleBody">
              
   <h1>Source code for opensbt.visualization.output_metric</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">opensbt.visualization.configuration</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.utils.sorting</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.analysis.quality_indicators.quality</span> <span class="kn">import</span> <span class="n">Quality</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.problem</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">opensbt.model_ga.result</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">log</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.visualization.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.analysis.quality_indicators.quality</span><span class="w"> </span><span class="kn">import</span> <span class="n">Quality</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.problem</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.model_ga.result</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
 
-<span class="kn">from</span> <span class="nn">opensbt.config</span> <span class="kn">import</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">METRIC_PLOTS_FOLDER</span><span class="p">,</span>  \
+<span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">BACKUP_FOLDER</span><span class="p">,</span> <span class="n">METRIC_PLOTS_FOLDER</span><span class="p">,</span>  \
                            <span class="n">COVERAGE_METRIC_NAME</span><span class="p">,</span> <span class="n">N_CELLS</span>
 <span class="w">                           </span>
 <span class="sd">&quot;&quot;&quot;This module holds functions which visualize and output analysis results.</span>
@@ -87,7 +87,7 @@
 
 <div class="viewcode-block" id="cid_analysis_hitherto">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.cid_analysis_hitherto">[docs]</a>
-<span class="k">def</span> <span class="nf">cid_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reference_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_evals_by_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cid_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reference_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_evals_by_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;------ Performing CID analysis ------&quot;</span><span class="p">)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -120,7 +120,7 @@
 
 <div class="viewcode-block" id="calculate_n_crit_distinct">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.calculate_n_crit_distinct">[docs]</a>
-<span class="k">def</span> <span class="nf">calculate_n_crit_distinct</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_n_crit_distinct</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> 
                              <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                              <span class="n">bound_min</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
                              <span class="n">bound_max</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -170,7 +170,7 @@
 
 <div class="viewcode-block" id="gd_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.gd_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">gd_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;gd&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">critical_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gd_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;gd&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">critical_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;------ Performing gd analysis ------&quot;</span><span class="p">)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -205,7 +205,7 @@
 
 <div class="viewcode-block" id="gd_analysis_hitherto">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.gd_analysis_hitherto">[docs]</a>
-<span class="k">def</span> <span class="nf">gd_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;gd_global&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gd_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;gd_global&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;------ Performing igd analysis ------&quot;</span><span class="p">)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -236,7 +236,7 @@
 
 <div class="viewcode-block" id="igd_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.igd_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">igd_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">critical_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;igd&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">igd_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">critical_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;igd&#39;</span><span class="p">):</span>
     <span class="c1"># log.info(&quot;------ Performing igd analysis ------&quot;)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -270,7 +270,7 @@
 
 <div class="viewcode-block" id="igd_analysis_hitherto">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.igd_analysis_hitherto">[docs]</a>
-<span class="k">def</span> <span class="nf">igd_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;igd_global&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">igd_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_pf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;igd_global&#39;</span><span class="p">):</span>
     <span class="c1"># log.info(&quot;------ Performing igd analysis ------&quot;)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -302,7 +302,7 @@
 
 <div class="viewcode-block" id="write_metric_history">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.write_metric_history">[docs]</a>
-<span class="k">def</span> <span class="nf">write_metric_history</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">hist_F</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_metric_history</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">hist_F</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
     <span class="n">history_folder</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> <span class="s2">&quot;history&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">history_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">history_folder</span><span class="o">+</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="n">metric_name</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -316,7 +316,7 @@
 
 <div class="viewcode-block" id="hypervolume_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.hypervolume_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">hypervolume_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ref_point_hv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ideal</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nadir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hypervolume_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ref_point_hv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ideal</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nadir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># log.info(&quot;------ Performing hv analysis ------&quot;)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -350,7 +350,7 @@
 
 <div class="viewcode-block" id="hypervolume_analysis_local">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.hypervolume_analysis_local">[docs]</a>
-<span class="k">def</span> <span class="nf">hypervolume_analysis_local</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hypervolume_analysis_local</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;------ Performing hv analysis ------&quot;</span><span class="p">)</span>
     
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
@@ -383,7 +383,7 @@
 
 <div class="viewcode-block" id="si_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.si_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">si_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">si_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> 
                 <span class="n">save_folder</span><span class="p">,</span>
                 <span class="n">input_pf</span><span class="p">,</span>
                 <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -424,7 +424,7 @@
 
 <div class="viewcode-block" id="spread_analysis">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.spread_analysis">[docs]</a>
-<span class="k">def</span> <span class="nf">spread_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spread_analysis</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">critical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="c1"># log.info(&quot;------ Performing sp analysis ------&quot;)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -458,7 +458,7 @@
 
 <div class="viewcode-block" id="spread_analysis_hitherto">
 <a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.output_metric.spread_analysis_hitherto">[docs]</a>
-<span class="k">def</span> <span class="nf">spread_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">hitherto</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spread_analysis_hitherto</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">hitherto</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;------ Performing sp analysis ------&quot;</span><span class="p">)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span>  <span class="n">save_folder</span> <span class="o">+</span> <span class="n">METRIC_PLOTS_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_plot</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
