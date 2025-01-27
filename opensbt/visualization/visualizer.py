@@ -348,6 +348,14 @@ def design_space(res, save_folder, classification_type=ClassificationType.DT, it
 
     plt.close(f)
 
+def backup_object(object, save_folder, name):
+    save_folder_object = save_folder + BACKUP_FOLDER
+    Path(save_folder_object).mkdir(parents=True, exist_ok=True)   
+
+    import dill
+    with open(save_folder_object + os.sep + name, "wb") as f:
+        dill.dump(object, f)
+
 def backup_problem(res,save_folder):
     save_folder_problem = save_folder + BACKUP_FOLDER
     Path(save_folder_problem).mkdir(parents=True, exist_ok=True)   

@@ -1,3 +1,5 @@
+import os
+
 from abc import ABC, abstractclassmethod, abstractmethod
 from typing import Dict
 
@@ -7,6 +9,10 @@ from opensbt.model_ga.result import SimulationResult
 from pymoo.optimize import minimize
 from pymoo.core.problem import Problem  
 from pymoo.core.algorithm import Algorithm
+
+import dill
+from opensbt.config import RESULTS_FOLDER, EXPERIMENTAL_MODE, BACKUP_ITERATIONS
+from opensbt.visualization.visualizer import create_save_folder, backup_object
 
 class Optimizer(ABC):
     """ Base class for all optimizers in OpenSBT.  Subclasses need to   
@@ -22,6 +28,10 @@ class Optimizer(ABC):
     termination: object
     save_history: bool
     
+    parameters: str
+
+    save_folder: str
+    
     @abstractmethod
     def __init__(self, problem: SimulationProblem, config: SearchConfiguration):
         """Initialize here the Optimization algorithm to be used for search-based testing.
@@ -34,13 +44,24 @@ class Optimizer(ABC):
         pass
 
     def run(self) -> SimulationResult:
-        """Runs the optimizer for a given problem and search configuration.
-           Returns the simulation output as an instance of SimulationResult.
-           This methods need to overriden when a non pymoo-based algorithm is used (e.g., NSGA-II-DT)
-        """
-        return minimize(self.problem,
-                self.algorithm,
-                self.termination,
-                save_history=self.save_history,
-                verbose=True,
-                seed = self.config.seed)
+        # create a backup during the search for each generation
+        algorithm = self.algorithm
+        algorithm.setup(problem = self.problem, 
+                        termination = self.termination,
+                        save_history = self.save_history)
+        save_folder = create_save_folder(self.problem, 
+                                RESULTS_FOLDER,
+                                algorithm_name=self.algorithm_name,
+                                is_experimental=EXPERIMENTAL_MODE)
+
+        while(algorithm.termination.do_continue()):
+            algorithm.next()
+            if BACKUP_ITERATIONS:
+                n_iter = algorithm.n_iter - 1
+                backup_object(algorithm, 
+                              save_folder, 
+                              name = f"algorithm_iteration_{n_iter}")
+
+        res = algorithm.result()
+        self.save_folder = save_folder
+        return res

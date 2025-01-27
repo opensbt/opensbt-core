@@ -190,6 +190,8 @@ if __name__ == "__main__":
         raise ValueError("Error: No algorithm with the given code: " + str(algorithm))
 
     res = optimizer.run()
-    res.write_results(results_folder=results_folder, params = optimizer.parameters)
+    res.write_results(results_folder=results_folder, 
+                      params = optimizer.parameters,
+                      save_folder = optimizer.save_folder)
 
     log.info("====== Algorithm search time: " + str("%.2f" % res.exec_time) + " sec")

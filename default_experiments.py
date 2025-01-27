@@ -195,3 +195,36 @@ def getExp5() -> Experiment:
                             search_configuration=config)
     return experiment
 experiments_store.register(getExp5())
+
+''' Dummy Simulation with planar motion planning and simplified AEB
+'''
+
+def getExp6() -> Experiment:
+    from opensbt.simulation.dummy_simulation import DummySimulator
+
+    problem = ADASProblem(
+                          problem_name="DummySimulatorProblem",
+                          scenario_path="./dummy_scenario",
+                          xl=[0, 1, 0, 1],
+                          xu=[360, 3,360, 3],
+                          simulation_variables=[
+                              "orientation_ego",
+                              "velocity_ego",
+                              "orientation_ped",
+                              "velocity_ped"],
+                          fitness_function=FitnessMinDistanceVelocityFrontOnly(),
+                          critical_function=CriticalAdasDistanceVelocity(),
+                          simulate_function=DummySimulator.simulate,
+                          simulation_time=10,
+                          sampling_time=0.25
+                          )
+    config = DefaultSearchConfiguration()
+    config.population_size = 10
+    config.n_generations = 10
+    config.inner_num_gen = 5
+    experiment = Experiment(name="6",
+                            problem=problem,
+                            algorithm=AlgorithmType.NSGAII_DT,
+                            search_configuration=config)
+    return experiment
+experiments_store.register(getExp6())

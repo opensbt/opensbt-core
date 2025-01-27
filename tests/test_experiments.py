@@ -26,11 +26,10 @@ class TestExperiments():
     WAIT_RESULTS_TIME = 10
 
     @staticmethod
-    def results_correctly_written(results_path):
-        req_folders = ["simout", 
-                       "gif", 
-                       "trace_comparison", 
-                       "design_space", "objective_space", "classification"]
+    def results_correctly_written(result, results_path):
+        req_folders = ["simout", "backup",
+                "gif", "trace_comparison", 
+                "design_space", "objective_space", "classification"]
 
         for folder in req_folders:
             if not os.path.isdir(results_path + folder):
@@ -44,7 +43,7 @@ class TestExperiments():
 
         from opensbt.simulation.dummy_simulation import DummySimulator
         
-        results_folder = '/tests/output/'
+        results_folder = '/results/'
  
         problem = ADASProblem(
                             problem_name="DummySimulatorProblem",
@@ -63,8 +62,8 @@ class TestExperiments():
                             sampling_time=0.25
                           )
         config = DefaultSearchConfiguration()
-        config.population_size = 20
-        config.n_generations = 50
+        config.population_size = 10
+        config.n_generations = 20
 
         print("pymoo NSGA-II algorithm is used.")
         
@@ -73,12 +72,11 @@ class TestExperiments():
                               config=config)
         res = algo.run()        
         res.write_results(results_folder=results_folder,
-                        params = algo.parameters)
-
-        algo_name = "NSGA2"
+                        params = algo.parameters,
+                        save_folder = algo.save_folder)
 
         exp_folder = os.getcwd() + results_folder + os.sep + problem.problem_name + os.sep  + \
-                             algo_name + os.sep
+                             algo.algorithm_name + os.sep
                              
         paths = sorted(Path(exp_folder).iterdir(), key=os.path.getmtime)
         

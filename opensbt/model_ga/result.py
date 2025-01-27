@@ -182,9 +182,12 @@ class SimulationResult(Result):
     @property
     def additional_data(self):
         return self._additional_data
-    
-    """ Write the results artefacts for the current experiment"""
-    def write_results(self, results_folder = RESULTS_FOLDER, params=None, is_experimental=EXPERIMENTAL_MODE):
+
+    def write_results(self, 
+                     results_folder = RESULTS_FOLDER, 
+                     params=None, 
+                     is_experimental=EXPERIMENTAL_MODE,
+                     save_folder = None):  # we can declare the results folder, or the save folder (specific for experiment)
         algorithm = self.algorithm
 
         # WHen algorithm is developed without subclassing pymoos Algorithm,
@@ -198,9 +201,20 @@ class SimulationResult(Result):
           
         log.info(f"=====[{algorithm_name}] Writing results to: ")
 
-        save_folder = visualizer.create_save_folder(self.problem, results_folder, algorithm_name, is_experimental=is_experimental)
+        # we can also pass already the save folder and do not to create it
+        if save_folder is None:
+            save_folder = visualizer. \
+                                create_save_folder(self.problem, 
+                                                    results_folder, 
+                                                    algorithm_name, 
+                                                    is_experimental=is_experimental)
         log.info(save_folder)
-        
+
+        if config.BACKUP_PROBLEM:
+            visualizer.backup_problem(self, save_folder)
+            
+        if config.BACKUP_RESULT:
+            visualizer.backup_object(self, save_folder, name="result")
         # Mostly for algorithm evaluation relevant
         
         # visualizer.convergence_analysis(self, save_folder)
