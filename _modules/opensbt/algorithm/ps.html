@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,9 +12,9 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -98,18 +98,14 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">opensbt.utils.sorting</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_nondominated_population</span>
 
-<div class="viewcode-block" id="PureSampling">
-<a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">PureSampling</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
+<div class="viewcode-block" id="PureSampling"><a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">PureSampling</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class provides the parent class for all sampling based search algorithms.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">algorithm_name</span> <span class="o">=</span> <span class="s2">&quot;RS&quot;</span>
 
-<div class="viewcode-block" id="PureSampling.__init__">
-<a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="PureSampling.__init__"><a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                 <span class="n">problem</span><span class="p">:</span> <span class="n">Problem</span><span class="p">,</span>
                 <span class="n">config</span><span class="p">:</span> <span class="n">SearchConfiguration</span><span class="p">,</span>
                 <span class="n">sampling_type</span> <span class="o">=</span> <span class="n">FloatRandomSampling</span><span class="p">):</span>
@@ -134,10 +130,7 @@
         <span class="p">}</span>
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initialized algorithm with config: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="vm">__dict__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="PureSampling.run">
-<a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.run">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimulationResult</span><span class="p">:</span>
+<div class="viewcode-block" id="PureSampling.run"><a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling.run">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimulationResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Overrides the run method of Optimizer by providing custom evaluation of samples and division in &quot;buckets&quot; for further analysis with pymoo.</span>
 <span class="sd">           (s. n_splits variable)</span>
 <span class="sd">        :return: Return a SimulationResults object which holds all information from the simulation.</span>
@@ -160,11 +153,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_result</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">)</span>
         
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span> </div>
-
     
-<div class="viewcode-block" id="PureSampling._create_result">
-<a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling._create_result">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">):</span>
+<div class="viewcode-block" id="PureSampling._create_result"><a class="viewcode-back" href="../../../opensbt.algorithm.html#opensbt.algorithm.ps.PureSampling._create_result">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">_create_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">):</span>
         <span class="n">res_holder</span> <span class="o">=</span> <span class="n">SimulationResult</span><span class="p">()</span>
         <span class="n">res_holder</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="p">()</span>
         <span class="n">res_holder</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">pop</span> <span class="o">=</span> <span class="n">pop</span>
@@ -191,9 +181,7 @@
             <span class="n">algo</span><span class="o">.</span><span class="n">opt</span> <span class="o">=</span> <span class="n">get_nondominated_population</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">pop</span><span class="p">)</span>
             <span class="n">res_holder</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
         
-        <span class="k">return</span> <span class="n">res_holder</span></div>
-</div>
-
+        <span class="k">return</span> <span class="n">res_holder</span></div></div>
 </pre></div>
 
            </div>

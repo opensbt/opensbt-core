@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,9 +12,9 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -71,9 +71,7 @@
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
 
-<div class="viewcode-block" id="SearchConfiguration">
-<a class="viewcode-back" href="../../../opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration">[docs]</a>
-<span class="nd">@dataclass</span>
+<div class="viewcode-block" id="SearchConfiguration"><a class="viewcode-back" href="../../../opensbt.experiment.html#opensbt.experiment.search_configuration.SearchConfiguration">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SearchConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; This class holds all configuration parameter related to opimization algorithms</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -110,10 +108,7 @@
         
     <span class="p">}</span></div>
 
-
-<div class="viewcode-block" id="DefaultSearchConfiguration">
-<a class="viewcode-back" href="../../../opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">DefaultSearchConfiguration</span><span class="p">(</span><span class="n">SearchConfiguration</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultSearchConfiguration"><a class="viewcode-back" href="../../../opensbt.experiment.html#opensbt.experiment.search_configuration.DefaultSearchConfiguration">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">DefaultSearchConfiguration</span><span class="p">(</span><span class="n">SearchConfiguration</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; This class holds all configuration parameter initialized with default values </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#TODO create a search configuration file specific for each algorithm</span>
@@ -148,7 +143,6 @@
     <span class="n">custom_params</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># to be forwarded to operators</span>
         
     <span class="p">}</span></div>
-
 </pre></div>
 
            </div>

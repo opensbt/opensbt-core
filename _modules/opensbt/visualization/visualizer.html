@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,9 +12,9 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -103,9 +103,7 @@
 
 <span class="sd">&quot;&quot;&quot;This module provides functions for the output and presentation of results.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="create_save_folder">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.create_save_folder">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">create_save_folder</span><span class="p">(</span><span class="n">problem</span><span class="p">:</span> <span class="n">Problem</span><span class="p">,</span> <span class="n">results_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_experimental</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="create_save_folder"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.create_save_folder">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">create_save_folder</span><span class="p">(</span><span class="n">problem</span><span class="p">:</span> <span class="n">Problem</span><span class="p">,</span> <span class="n">results_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_experimental</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">problem_name</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">problem_name</span>
     <span class="c1"># if results folder is already a valid folder, do not create it in parent, use it relative</span>
 
@@ -127,10 +125,7 @@
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Save_folder created: </span><span class="si">{</span><span class="n">save_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">save_folder</span></div>
 
-
-<div class="viewcode-block" id="write_calculation_properties">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_calculation_properties">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_calculation_properties</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">algorithm_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="write_calculation_properties"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_calculation_properties">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">write_calculation_properties</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">algorithm_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="c1"># algorithm_name = type(res.algorithm).__name__</span>
     <span class="n">is_simulation</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">is_simulation</span><span class="p">()</span>
@@ -170,22 +165,13 @@
     <span class="n">_calc_properties</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-
-<div class="viewcode-block" id="_calc_properties">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer._calc_properties">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_calc_properties</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="_calc_properties"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer._calc_properties">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">_calc_properties</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="_additional_description">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer._additional_description">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_additional_description</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="_additional_description"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer._additional_description">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">_additional_description</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="get_pop_using_mode">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.get_pop_using_mode">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_pop_using_mode</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="get_pop_using_mode"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.get_pop_using_mode">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_pop_using_mode</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="n">inds</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
     <span class="c1"># print(f&quot;mode: {mode}&quot;)</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
@@ -199,11 +185,8 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mode is not accepted. Accepted modes are: all, opt, crit.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">inds</span></div>
 
-
 <span class="sd">&#39;&#39;&#39;Output of the simulation data for all solutions (for the moment only partial data)&#39;&#39;&#39;</span>
-<div class="viewcode-block" id="write_simulation_output">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_simulation_output">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_simulation_output</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">write_max</span> <span class="o">=</span>  <span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="write_simulation_output"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_simulation_output">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">write_simulation_output</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">write_max</span> <span class="o">=</span>  <span class="mi">100</span><span class="p">):</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">problem</span><span class="o">.</span><span class="n">is_simulation</span><span class="p">():</span>
         <span class="k">return</span>
@@ -218,10 +201,7 @@
     <span class="n">write_simout</span><span class="p">(</span><span class="n">save_folder_simout</span><span class="p">,</span> 
                 <span class="n">inds</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="write_simout">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_simout">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_simout</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">pop</span><span class="p">):</span>
+<div class="viewcode-block" id="write_simout"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_simout">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">write_simout</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">pop</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="p">):</span>
         <span class="n">param_values</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">param_v_chain</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">param_values</span><span class="p">)</span>
@@ -253,26 +233,17 @@
             <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="HandlerCircle">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.HandlerCircle">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">HandlerCircle</span><span class="p">(</span><span class="n">HandlerPatch</span><span class="p">):</span>
-<div class="viewcode-block" id="HandlerCircle.create_artists">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.HandlerCircle.create_artists">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_artists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span>
+<div class="viewcode-block" id="HandlerCircle"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.HandlerCircle">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">HandlerCircle</span><span class="p">(</span><span class="n">HandlerPatch</span><span class="p">):</span>
+<div class="viewcode-block" id="HandlerCircle.create_artists"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.HandlerCircle.create_artists">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_artists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span>
                        <span class="n">xdescent</span><span class="p">,</span> <span class="n">ydescent</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">,</span> <span class="n">trans</span><span class="p">):</span>
         <span class="n">center</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">width</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">xdescent</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">height</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ydescent</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
                              <span class="n">height</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_prop</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
         <span class="n">p</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span></div>
-</div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span></div></div>
 
-
-<div class="viewcode-block" id="create_markers">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.create_markers">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">create_markers</span><span class="p">():</span>
+<div class="viewcode-block" id="create_markers"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.create_markers">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">create_markers</span><span class="p">():</span>
     <span class="n">patch_not_critical_region</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color_not_critical</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Not critical regions&#39;</span><span class="p">,</span>
                                                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
     <span class="n">patch_critical_region</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color_critical</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Critical regions&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -296,10 +267,7 @@
 
     <span class="k">return</span> <span class="n">marker_list</span></div>
 
-
-<div class="viewcode-block" id="write_summary_results">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_summary_results">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_summary_results</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<div class="viewcode-block" id="write_summary_results"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_summary_results">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">write_summary_results</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
     <span class="n">all_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">obtain_archive</span><span class="p">()</span>
     <span class="n">best_population</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">opt</span>
 
@@ -349,10 +317,7 @@
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">([</span><span class="s1">&#39;Number All Scenarios (duplicate free)&#39;</span><span class="p">,</span> <span class="n">n_all_dup_free</span><span class="p">])</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">([</span><span class="s1">&#39;Ratio Critical/All scenarios (duplicate free)&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_crit_all_dup_free</span><span class="o">/</span><span class="n">n_all_dup_free</span><span class="p">)])</span></div>
 
-
-<div class="viewcode-block" id="design_space">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.design_space">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">design_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">classification_type</span><span class="o">=</span><span class="n">ClassificationType</span><span class="o">.</span><span class="n">DT</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="design_space"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.design_space">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">design_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">classification_type</span><span class="o">=</span><span class="n">ClassificationType</span><span class="o">.</span><span class="n">DT</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">save_folder_design</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> <span class="s2">&quot;design_space&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_design</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">save_folder_plot</span> <span class="o">=</span> <span class="n">save_folder_design</span>
@@ -453,10 +418,7 @@
 
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="backup_problem">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.backup_problem">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">backup_problem</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">save_folder</span><span class="p">):</span>
+<div class="viewcode-block" id="backup_problem"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.backup_problem">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">backup_problem</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">save_folder</span><span class="p">):</span>
     <span class="n">save_folder_problem</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> <span class="n">BACKUP_FOLDER</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_problem</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
 
@@ -464,10 +426,7 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_folder_problem</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="s2">&quot;problem&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">dill</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">problem</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="objective_space">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.objective_space">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">objective_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">last_iteration</span><span class="o">=</span><span class="n">LAST_ITERATION_ONLY_DEFAULT</span><span class="p">):</span>
+<div class="viewcode-block" id="objective_space"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.objective_space">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">objective_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">last_iteration</span><span class="o">=</span><span class="n">LAST_ITERATION_ONLY_DEFAULT</span><span class="p">):</span>
     <span class="n">save_folder_objective</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> <span class="s2">&quot;objective_space&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_objective</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
     <span class="n">save_folder_plot</span> <span class="o">=</span> <span class="n">save_folder_objective</span>
@@ -506,10 +465,7 @@
                 <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">)</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Objective Space: </span><span class="si">{</span><span class="n">save_folder_plot</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="plot_multi_objective_space">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_multi_objective_space">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_multi_objective_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">n_obj</span><span class="p">,</span> <span class="n">save_folder_objective</span><span class="p">,</span> <span class="n">objective_names</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">pf</span><span class="p">,</span> <span class="n">last_iteration</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_multi_objective_space"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_multi_objective_space">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">plot_multi_objective_space</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">n_obj</span><span class="p">,</span> <span class="n">save_folder_objective</span><span class="p">,</span> <span class="n">objective_names</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">pf</span><span class="p">,</span> <span class="n">last_iteration</span><span class="p">):</span>
     <span class="n">all_population</span> <span class="o">=</span> <span class="n">Population</span><span class="p">()</span>
     <span class="c1"># n_evals_all = 0</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">history</span><span class="p">):</span>
@@ -616,10 +572,7 @@
                 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="plot_single_objective_space">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_single_objective_space">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_single_objective_space</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">save_folder_plot</span><span class="p">,</span> <span class="n">objective_names</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">pf</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_single_objective_space"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_single_objective_space">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">plot_single_objective_space</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">save_folder_plot</span><span class="p">,</span> <span class="n">objective_names</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">pf</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">result</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
 
@@ -697,10 +650,7 @@
 
     <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="optimal_individuals">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.optimal_individuals">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">optimal_individuals</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<div class="viewcode-block" id="optimal_individuals"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.optimal_individuals">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">optimal_individuals</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Output of optimal individuals (duplicate free)&quot;&quot;&quot;</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="n">design_names</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">design_names</span>
@@ -730,10 +680,7 @@
             <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="all_individuals">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.all_individuals">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">all_individuals</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<div class="viewcode-block" id="all_individuals"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.all_individuals">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">all_individuals</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Output of all evaluated individuals&quot;&quot;&quot;</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="n">hist</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">history</span>
@@ -763,10 +710,7 @@
                 <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="all_critical_individuals">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.all_critical_individuals">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">all_critical_individuals</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<div class="viewcode-block" id="all_critical_individuals"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.all_critical_individuals">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">all_critical_individuals</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Output of all critical individuals&quot;&quot;&quot;</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="n">hist</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">history</span>    <span class="c1"># TODO check why when iterating over the algo in the history set is different</span>
@@ -797,10 +741,7 @@
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="simulations">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.simulations">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">simulations</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">write_max</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="simulations"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.simulations">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">simulations</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">write_max</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Visualization of the results of simulations&#39;&#39;&#39;</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="n">is_simulation</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">is_simulation</span><span class="p">()</span>
@@ -818,11 +759,8 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No simulation visualization available. The experiment is not a simulation.&quot;</span><span class="p">)</span></div>
 
-
 <span class="sd">&#39;&#39;&#39; Write down the population for each generation&#39;&#39;&#39;</span>
-<div class="viewcode-block" id="write_generations">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_generations">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_generations</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
+<div class="viewcode-block" id="write_generations"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_generations">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">write_generations</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">):</span>
     <span class="n">save_folder_history</span> <span class="o">=</span> <span class="n">save_folder</span> <span class="o">+</span> <span class="s2">&quot;generations&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>
     <span class="n">Path</span><span class="p">(</span><span class="n">save_folder_history</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
 
@@ -853,11 +791,8 @@
                 <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
                 <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
-
             
-<div class="viewcode-block" id="write_pf_individuals">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_pf_individuals">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_pf_individuals</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">pf_pop</span><span class="p">):</span>
+<div class="viewcode-block" id="write_pf_individuals"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.write_pf_individuals">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">write_pf_individuals</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">pf_pop</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Output of pf individuals (duplicate free)&quot;&quot;&quot;</span>
 
     <span class="n">n_var</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pf_pop</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
@@ -889,19 +824,13 @@
             <span class="n">write_to</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="plot_timeseries_basic">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_timeseries_basic">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_timeseries_basic</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;crit&quot;</span><span class="p">,</span> <span class="n">write_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_timeseries_basic"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_timeseries_basic">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">plot_timeseries_basic</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;crit&quot;</span><span class="p">,</span> <span class="n">write_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">plot_timeseries</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">write_max</span><span class="p">)</span>
     <span class="n">plot_timeseries</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="n">write_max</span><span class="p">)</span>
     <span class="n">plot_timeseries</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="n">write_max</span><span class="p">)</span></div>
 
 
-
-<div class="viewcode-block" id="plot_timeseries">
-<a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_timeseries">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_timeseries</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;crit&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="s2">&quot;100&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_timeseries"><a class="viewcode-back" href="../../../opensbt.visualization.html#opensbt.visualization.visualizer.plot_timeseries">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">plot_timeseries</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;crit&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="s2">&quot;100&quot;</span><span class="p">):</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">problem</span>
     <span class="n">is_simulation</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">is_simulation</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">is_simulation</span><span class="p">:</span>
@@ -962,7 +891,6 @@
             <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No simulation visualization available. The experiment is not a simulation.&quot;</span><span class="p">)</span></div>
-
 
 </pre></div>
 
