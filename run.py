@@ -1,3 +1,5 @@
+import sys
+
 import pymoo
 
 from opensbt.model_ga.individual import IndividualSimulated

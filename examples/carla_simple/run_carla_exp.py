@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.getcwd() +  "/examples/carla_simple/carla_runner/src")
+
 import pymoo
 
 from opensbt.model_ga.individual import IndividualSimulated

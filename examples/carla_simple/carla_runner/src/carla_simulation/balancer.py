@@ -3,6 +3,8 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
+import sys
+
 import os
 import time
 import multiprocessing as mp
