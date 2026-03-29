@@ -1,13 +1,25 @@
-<div align="center" style="background: rgb(44,46,57);">
-  <img src="./docs/figures/fortiss-openSBT-Logo-RGB-neg-back.png" height="150" style="background-color: rgb(44,46,57);"/>
+<div align="center">
+
+  <img src="./docs/figures/fortiss-openSBT-Logo-RGB-neg-back.png" height="120" />
+  <p></p>
+  <p style="margin-top: 1em;">
+    <strong>OpenSBT: A Modular Framework for Search-Based Testing of Automated Driving Systems</strong>
+  </p>
+
+  <hr width="60%" style="margin: 1.5em 0;"/>
+
+  <p>
+    <img src="https://github.com/opensbt/opensbt-core/actions/workflows/main.yml/badge.svg" alt="Pipeline Status"/>
+    <img src="https://github.com/opensbt/opensbt-core/actions/workflows/sphinx.yml/badge.svg?branch=main&event=push" alt="Docs Status"/>
+    <a href="https://doi.org/10.1145/3639478.3640027">
+      <img src="https://img.shields.io/badge/DOI-10.1145/3639478.3640027-orange.svg" alt="DOI"/>
+    </a>
+    <a href="https://opensbt.github.io/opensbt-core/">
+      <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation"/>
+    </a>
+  </p>
+
 </div>
-
-# OpenSBT - A Modular Framework for Search-based Testing of Automated Driving Systems
-
-![Pipeline Status](https://github.com/opensbt/opensbt-core/actions/workflows/main.yml/badge.svg)
-![Docs Status](https://github.com/opensbt/opensbt-core/actions/workflows/sphinx.yml/badge.svg?branch=main&event=push)
-[![DOI](https://img.shields.io/badge/DOI-10.1145/3639478.3640027-orange.svg)](https://doi.org/10.1145/3639478.3640027)
-[![Documentation](https://img.shields.io/badge/Documentation-online-blue)](https://opensbt.github.io/opensbt-core/)
 
 ## Table of Contents
 - [About](#about)
